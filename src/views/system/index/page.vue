@@ -1,0 +1,18 @@
+<template>
+  <d2-container>
+    home
+  </d2-container>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>
