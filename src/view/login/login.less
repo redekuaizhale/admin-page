@@ -1,0 +1,43 @@
+.login-container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  .ivu-form-item{
+    margin-bottom: 24px;
+  }
+  .ivu-input-group-large .ivu-input, .ivu-input-group-large > .ivu-input-group-prepend, .ivu-input-group-large > .ivu-input-group-append{
+    height: 40px;
+  }
+  width: 100%;
+  background: #f0f2f5;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/images/bg.svg');
+  .content{
+    flex: 1 1;
+    padding: 130px 0 24px;
+    .header{
+      text-align: center;
+      height: 44px;
+      line-height: 44px;
+      .title{
+        font-size: 30px;
+        color: rgba(0,0,0,.85);
+        font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+        font-weight: 700;
+        position: relative;
+        top: 2px;
+      }
+    }
+    .form{
+      width: 368px;
+      margin: 40px auto;
+    }
+  }
+  .footer{
+    font-size: 15px;
+    padding: 0 16px;
+    margin: 48px 0 24px;
+    text-align: center;
+  }
+}
