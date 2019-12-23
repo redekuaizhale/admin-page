@@ -23,7 +23,7 @@
       <CommonIcon type="_delete"/>
       删除
     </Button>
-    <ConfirmModal ref="confirmModal"/>
+    <ConfirmModal ref="confirmModal" @on-confirm-handle="confirmDeleteHandle"/>
   </div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
       if (!this.validateCheckId()) {
         return
       }
-      this.$emit('delete')
+      this.$refs.confirmModal.openConfirmModalHandle()
     },
     editHandle() {
       if (!this.validateCheckId()) {
@@ -79,6 +79,9 @@ export default {
         this.utils.uncheckedError()
       }
       return !!this.checkedId
+    },
+    confirmDeleteHandle() {
+      this.$emit('delete')
     }
   }
 }

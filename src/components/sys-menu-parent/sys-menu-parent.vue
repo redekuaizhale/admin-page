@@ -9,12 +9,14 @@
   <div>
     <CrudButtonGroup
       ref="crudButtonGroup"
+      :checked-id="checkedId"
       @add="addHandle"
       @delete="deleteHandle"
       @edit="editHandle"
       @refresh="refreshHandle"
     />
     <Table :loading="tableLoading" :columns="tableColumns" :data="tableData" border stripe/>
+    <SysMenuModal ref="sysMenuModal" @update-data="getTableData"/>
   </div>
 </template>
 
@@ -22,10 +24,11 @@
 import { menusReq } from '../../api/menu'
 import CommonIcon from '../common-icon/common-icon'
 import CrudButtonGroup from '../crud-button-group/crud-button-group'
+import SysMenuModal from '../sys-menu-modal/sys-menu-modal'
 
 export default {
   name: 'SysMenuParent',
-  components: { CrudButtonGroup, CommonIcon },
+  components: { SysMenuModal, CrudButtonGroup, CommonIcon },
   data() {
     return {
       checkedId: '',
@@ -50,7 +53,8 @@ export default {
         },
         {
           title: '排序',
-          key: 'menu_order'
+          key: 'menuOrder',
+          width: 70
         },
         {
           title: '菜单标题',
@@ -94,10 +98,11 @@ export default {
   },
   methods: {
     refreshHandle() {
-      console.info('refresh',)
+      this.getTableData()
     },
     addHandle() {
       console.info('add',)
+      this.$refs.sysMenuModal.openModal('新增', true, null)
     },
     deleteHandle() {
       console.info('delete',)

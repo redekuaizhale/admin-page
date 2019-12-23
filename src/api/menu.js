@@ -8,3 +8,19 @@ export const menusReq = (data) => {
   })
 }
 
+export const menuAddReq = (data) => {
+  return request({
+    url: '/menu/add.do',
+    method: 'post',
+    data
+  })
+}
+
+export const menuEditReq = (data) => {
+  return request({
+    url: '/menu/edit.do',
+    method: 'post',
+    data
+  })
+}
+

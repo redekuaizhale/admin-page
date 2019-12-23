@@ -6,24 +6,26 @@
  @company Dingxuan
 !-->
 <template>
-  <Modal v-model="modalVisiable" draggable width="800">
-    <p slot="header">
-      <span>
-        {{ title }}
-      </span>
-    </p>
-    <div>
-      <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="80">
-        <FormItem label="登录账号：" prop="loginCode">
-          <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-200px"></Input>
-        </FormItem>
-      </Form>
-    </div>
-    <div slot="footer">
-      <Button @click="modalVisiable = false">关闭</Button>
-      <Button :loading="modalLoading" type="primary" @click="modalSubmitHandle('modalForm')">提交</Button>
-    </div>
-  </Modal>
+  <div>
+    <Modal v-model="modalVisiable" draggable width="800">
+      <p slot="header">
+        <span>
+          {{ title }}
+        </span>
+      </p>
+      <div>
+        <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="80">
+          <FormItem label="登录账号：" prop="loginCode">
+            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-200px"></Input>
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer">
+        <Button @click="modalVisiable = false">关闭</Button>
+        <Button :loading="modalLoading" type="primary" @click="modalSubmitHandle('modalForm')">提交</Button>
+      </div>
+    </Modal>
+  </div>
 </template>
 
 <script>
