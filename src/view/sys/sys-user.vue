@@ -8,15 +8,14 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_menu-user"/>
+      <CommonIcon type="_menu-user" />
       用户管理
     </p>
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
           <FormItem label="姓名：">
-            <Input v-model="queryForm.name" type="text" placeholder="">
-            </Input>
+            <Input v-model="queryForm.name" type="text" placeholder=""> </Input>
           </FormItem>
           <FormItem label="登录名：">
             <Input v-model="queryForm.loginCode" type="text" placeholder="">
@@ -29,12 +28,7 @@
         </Form>
       </div>
       <div class="query-result">
-        <Table
-          :columns="columns"
-          :data="data"
-          stripe
-          size="small"
-        />
+        <Table :columns="columns" :data="data" stripe size="small" />
         <Page
           :current.sync="pageNum"
           :total="total"
@@ -43,6 +37,7 @@
           prev-text="上一页"
           next-text="下一页"
           show-total
+          show-elevator
           @on-change="pageNumChangeHandle"
           @on-page-size-change="pageSizeChangeHandle"
         />
@@ -62,26 +57,36 @@ export default {
         name: '',
         loginCode: ''
       },
-      columns: [],
+      columns: [
+        {
+          type: 'index',
+          width: 60,
+          align: 'center'
+        },
+        {
+          title: '姓名',
+          key: 'name'
+        },
+        {
+          title: '手机号',
+          key: 'phone'
+        },
+        {
+          title: '所属部门',
+          key: 'deptName'
+        }
+      ],
       data: [],
-      total: 0,
-      pageNum: 0,
+      total: 99,
+      pageNum: 1,
       pageSize: 10
     }
   },
   methods: {
-    queryListHandle() {
-
-    },
-    addListHandle() {
-
-    },
-    pageNumChangeHandle() {
-
-    },
-    pageSizeChangeHandle() {
-
-    }
+    queryListHandle() {},
+    addListHandle() {},
+    pageNumChangeHandle() {},
+    pageSizeChangeHandle() {}
   }
 }
 </script>

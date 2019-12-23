@@ -1,9 +1,17 @@
 <template>
   <div class="header-bar">
-    <sider-trigger :collapsed="collapsed" icon="md-menu" @on-change="handleCollpasedChange"/>
-    <custom-bread-crumb :list="breadCrumbList" show-icon style="margin-left: 30px;"/>
+    <sider-trigger
+      :collapsed="collapsed"
+      icon="md-menu"
+      @on-change="handleCollpasedChange"
+    />
+    <custom-bread-crumb
+      :list="breadCrumbList"
+      show-icon
+      style="margin-left: 30px;"
+    />
     <div class="custom-content-con">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
@@ -18,7 +26,10 @@ export default {
     customBreadCrumb
   },
   props: {
-    collapsed: Boolean
+    collapsed: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     breadCrumbList() {

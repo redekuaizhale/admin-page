@@ -67,11 +67,6 @@ export default {
       loginLoading: false
     }
   },
-  created() {
-    const time = this.dateUtils.currentDateString()
-    console.info('', time)
-    console.info('', this.dateUtils.formatDate(time))
-  },
   methods: {
     loginHandle() {
       this.$refs['loginForm'].validate((valid) => {
@@ -90,6 +85,8 @@ export default {
               this.utils.routerPush('home', {})
               this.loginLoading = false
             })
+          }).catch(() => {
+            this.loginLoading = false
           })
         }
       })

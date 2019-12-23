@@ -5,7 +5,7 @@
  * @company Dingxuan
  */
 import Cookie from 'js-cookie'
-import { Notice } from 'view-design'
+import { Notice, Message } from 'view-design'
 import router from '../router/permissions'
 
 export default class commonUtils {
@@ -70,6 +70,16 @@ export default class commonUtils {
       duration: 10
     })
   }
+
+  /**
+   * 未选中数据提示
+   */
+  static uncheckedError() {
+    Message['error']({
+      background: true,
+      content: '请先选中一条数据！'
+    })
+  }
   /**
    * 格式化金额
    * @param s
@@ -97,17 +107,17 @@ export default class commonUtils {
   /**
    * 创建查询参数
    * @param operate
-   * @param paramName
-   * @param paramValue
-   * @param paramValueClass
-   * @returns {{operate: *, paramValueClass: *, paramName: *, paramValue: *}}
+   * @param fileldName
+   * @param fieldValue
+   * @param fieldValueClass
+   * @returns {{operate: *, fieldName: *, fieldValueClass: *, fieldValue: *}}
    */
-  static newQueryParam(operate, paramName, paramValue, paramValueClass) {
+  static newQueryParam(operate, fileldName, fieldValue, fieldValueClass) {
     return {
       operate: operate,
-      paramName: paramName,
-      paramValue: paramValue,
-      paramValueClass: paramValueClass
+      fieldName: fileldName,
+      fieldValue: fieldValue,
+      fieldValueClass: fieldValueClass
     }
   }
 }

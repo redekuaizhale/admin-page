@@ -37,6 +37,20 @@ export default {
   /**
    * 接口失败全局提示
    */
-  apiErrorMsg: '操作失败，请稍后再试！'
+  apiErrorMsg: '操作失败，请稍后再试！',
+
+  /**
+   * 查询条件-start
+   */
+  String: 'String',
+  Integer: 'Integer',
+  DateTime: 'DateTime',
+  Boolean: 'Boolean',
+  Long: 'Long',
+  BigDecimal: 'BigDecimal',
+  List: 'List'
+  /**
+   * 查询条件-end
+   */
 
 }
