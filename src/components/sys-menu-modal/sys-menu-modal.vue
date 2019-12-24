@@ -37,15 +37,15 @@
             <InputNumber :max="10000" :min="0" v-model="modalForm.menuOrder" style="width: 300px;"/>
           </FormItem>
           <FormItem label="显示状态" prop="hidden">
-            <Switch v-model="modalForm.hidden" size="large">
-              <span slot="显示">显示</span>
-              <span slot="隐藏">隐藏</span>
+            <Switch size="large">
+              <span slot="open" true-value="显示">显示</span>
+              <span slot="close" false-value="隐藏">隐藏</span>
             </Switch>
           </FormItem>
           <FormItem label="使用状态" prop="useFlag">
-            <Switch v-model="modalForm.useFlag" size="large">
-              <span slot="可用">可用</span>
-              <span slot="禁用">禁用</span>
+            <Switch size="large">
+              <span slot="open" true-value="可用">可用</span>
+              <span slot="close" false-value="禁用">禁用</span>
             </Switch>
           </FormItem>
         </Form>
@@ -107,6 +107,8 @@ export default {
       if (data) {
         this.modalForm = Object.assign({}, data)
       }
+      console.info(this.modalForm)
+
       this.modalVisiable = true
     },
     modalSubmitHandle(name) {
