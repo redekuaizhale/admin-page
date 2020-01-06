@@ -36,17 +36,17 @@
           <FormItem label="菜单排序:" prop="menuOrder">
             <InputNumber :max="10000" :min="0" v-model="modalForm.menuOrder" style="width: 300px;"/>
           </FormItem>
-          <FormItem label="显示状态" prop="hidden">
-            <Switch size="large">
+          <FormItem label="显示状态" prop="hidden11">
+            <iSwitch size="large">
               <span slot="open" true-value="显示">显示</span>
               <span slot="close" false-value="隐藏">隐藏</span>
-            </Switch>
+            </iSwitch>
           </FormItem>
           <FormItem label="使用状态" prop="useFlag">
-            <Switch size="large">
+            <iSwitch size="large">
               <span slot="open" true-value="可用">可用</span>
               <span slot="close" false-value="禁用">禁用</span>
-            </Switch>
+            </iSwitch>
           </FormItem>
         </Form>
       </div>
