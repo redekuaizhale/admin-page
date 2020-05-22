@@ -7,19 +7,19 @@
 !-->
 <template>
   <div class="curd-button-group">
-    <Button v-if="refreshVisiable" type="primary" @click="refreshHandle">
+    <Button v-if="refreshVisiable" type="primary" size="small" @click="refreshHandle">
       <CommonIcon type="_refresh"/>
       刷新
     </Button>
-    <Button v-if="addVisiable" type="primary" @click="addHandle">
+    <Button v-if="addVisiable" type="primary" size="small" @click="addHandle">
       <CommonIcon type="_add"/>
       新增
     </Button>
-    <Button v-if="editVisiable" type="primary" @click="editHandle">
+    <Button v-if="editVisiable" type="primary" size="small" @click="editHandle">
       <CommonIcon type="_edit"/>
       修改
     </Button>
-    <Button v-if="deleteVisiable" type="primary" @click="deleteHandle">
+    <Button v-if="deleteVisiable" type="primary" size="small" @click="deleteHandle">
       <CommonIcon type="_delete"/>
       删除
     </Button>

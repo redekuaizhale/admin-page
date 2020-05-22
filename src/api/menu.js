@@ -24,3 +24,11 @@ export const menuEditReq = (data) => {
   })
 }
 
+export const menuDeleteReq = (data) => {
+  return request({
+    url: '/menu/delete.do',
+    method: 'post',
+    data
+  })
+}
+

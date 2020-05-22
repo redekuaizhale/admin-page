@@ -8,7 +8,7 @@
 <template>
   <Card>
     <p slot="title">
-      一级菜单
+      二级菜单
     </p>
     <div>
       <CrudButtonGroup
@@ -41,7 +41,7 @@ import TableCustom from '../table-custom/table-custom'
 import BaseData from '../base-data/base-data'
 
 export default {
-  name: 'SysMenuParent',
+  name: 'SysMenuChild',
   components: { BaseData, TableCustom, SysMenuModal, CrudButtonGroup, CommonIcon },
   extends: BaseData,
   props: {
@@ -93,9 +93,6 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.getTableData()
-  },
   methods: {
     refreshHandle() {
       this.getTableData()
@@ -113,9 +110,13 @@ export default {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', '0', this.config.String)]
+      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.String)]
     },
     getTableData() {
+      if (!this.parentId) {
+        this.utils.warning('一级菜单未勾选！')
+        return
+      }
       this.tableLoading = true
       this.clearCheckedData()
       const requestData = {

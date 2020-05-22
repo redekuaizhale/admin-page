@@ -8,6 +8,8 @@ import Cookie from 'js-cookie'
 import { Notice, Message } from 'view-design'
 import router from '../router/permissions'
 
+import config from '../config/config'
+
 export default class commonUtils {
   /**
    * 设置cookie
@@ -26,6 +28,14 @@ export default class commonUtils {
    */
   static getCookie(key, value) {
     return Cookie.get(key)
+  }
+
+  /**
+   * 获取登录Token
+   * @returns {any}
+   */
+  static getLoginUserToken() {
+    return Cookie.get(config.userTokenKey)
   }
 
   /**
@@ -55,7 +65,7 @@ export default class commonUtils {
   static success(title) {
     Notice.success({
       title: title,
-      duration: 10
+      duration: 5
     })
   }
 
@@ -71,6 +81,13 @@ export default class commonUtils {
     })
   }
 
+  static warning(title) {
+    Message['error']({
+      background: true,
+      content: title
+    })
+  }
+
   /**
    * 未选中数据提示
    */
@@ -80,6 +97,7 @@ export default class commonUtils {
       content: '请先选中一条数据！'
     })
   }
+
   /**
    * 格式化金额
    * @param s
@@ -87,13 +105,19 @@ export default class commonUtils {
    */
   static toThousands(s) {
     const type = 2
-    if (/[^0-9\.]/.test(s)) { return '0.00' }
-    if (s == null || s === 'null' || s === '') { return '0.00' }
+    if (/[^0-9\.]/.test(s)) {
+      return '0.00'
+    }
+    if (s == null || s === 'null' || s === '') {
+      return '0.00'
+    }
     s = s.toString().replace(/^(\d*)$/, '$1.')
     s = (s + '00').replace(/(\d*\.\d\d)\d*/, '$1')
     s = s.replace('.', ',')
     const re = /(\d)(\d{3},)/
-    while (re.test(s)) { s = s.replace(re, '$1,$2') }
+    while (re.test(s)) {
+      s = s.replace(re, '$1,$2')
+    }
     s = s.replace(/,(\d\d)$/, '.$1')
     if (type === 0) {
       const a = s.split('.')
@@ -119,5 +143,14 @@ export default class commonUtils {
       fieldValue: fieldValue,
       fieldValueClass: fieldValueClass
     }
+  }
+
+  /**
+   * 是否是登录页面
+   * @returns {boolean}
+   */
+  static checkIsLoginPage() {
+    const { hash } = window.location
+    return hash.indexOf('login') > 0
   }
 }

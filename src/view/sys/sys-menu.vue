@@ -6,32 +6,34 @@
  @company Dingxuan
 !-->
 <template>
-
-  <Card>
-    <p slot="title">
-      <CommonIcon type="_menu"/>
-      菜单管理
-    </p>
-    <div>
-      <SysMenuParent/>
-    </div>
-  </Card>
-
+  <div>
+    <SysMenuParent :parent-id="parentId" @update-parent-id="updateParentId"/>
+    <SysMenuChild :parent-id="childParentId" @update-child-parent-id="updateChildParentId"/>
+  </div>
 </template>
 
 <script>
 import CommonIcon from '../../components/common-icon/common-icon'
 import SysMenuParent from '../../components/sys-menu-parent/sys-menu-parent'
+import SysMenuChild from '../../components/sys-menu-child/sys-menu-child'
 export default {
   name: 'SysMenu',
-  components: { SysMenuParent, CommonIcon },
+  components: { SysMenuChild, SysMenuParent, CommonIcon },
   data() {
     return {
-
+      parentId: '0',
+      childParentId: ''
     }
   },
   created() {
-    console.info('fuqi',)
+  },
+  methods: {
+    updateParentId(parentId) {
+      this.parentId = parentId
+    },
+    updateChildParentId(childParentId) {
+      this.childParentId = childParentId
+    }
   }
 }
 </script>

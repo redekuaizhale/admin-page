@@ -11,7 +11,6 @@ import commonUtils from './libs/commonUtils'
 import dateUtils from './libs/dateUtils'
 
 Vue.use(ViewUI)
-
 Vue.prototype.config = config
 Vue.prototype.utils = commonUtils
 Vue.prototype.dateUtils = dateUtils

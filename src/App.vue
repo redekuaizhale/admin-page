@@ -23,10 +23,9 @@ export default {
   },
   methods: {
     initUserMenuAndRouterData() {
-      if (this.$route.name === 'login') {
-        return
+      if (!this.utils.checkIsLoginPage() && this.utils.getLoginUserToken()) {
+        this.$store.dispatch('setUserMenu')
       }
-      this.$store.dispatch('setUserMenu')
     },
     reload() {
       this.isRouterAlive = false

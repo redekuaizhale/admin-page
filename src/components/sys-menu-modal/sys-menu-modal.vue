@@ -36,39 +36,49 @@
           <FormItem label="菜单排序:" prop="menuOrder">
             <InputNumber :max="10000" :min="0" v-model="modalForm.menuOrder" style="width: 300px;"/>
           </FormItem>
-          <FormItem label="显示状态" prop="hidden11">
-            <iSwitch size="large">
+          <FormItem label="显示状态:" prop="hidden">
+            <iSwitch :value="modalForm.hidden === '显示'" size="large" @on-change="hiddenChangeHandle">
               <span slot="open" true-value="显示">显示</span>
               <span slot="close" false-value="隐藏">隐藏</span>
             </iSwitch>
           </FormItem>
-          <FormItem label="使用状态" prop="useFlag">
-            <iSwitch size="large">
+          <FormItem label="可用状态:" prop="useFlag">
+            <iSwitch :value="modalForm.useFlag === '可用'" size="large" @on-change="useFlagChangeHandle">
               <span slot="open" true-value="可用">可用</span>
               <span slot="close" false-value="禁用">禁用</span>
             </iSwitch>
           </FormItem>
         </Form>
       </div>
-      <div slot="footer">
-        <Button @click="modalVisiable = false">关闭</Button>
-        <Button :loading="modalLoading" type="primary" @click="modalSubmitHandle('modalForm')">提交</Button>
-      </div>
+      <ModalFooter
+        slot="footer"
+        :submit-loading="submitLoading"
+        @cancel="modalVisiable = false"
+        @submit="modalSubmitHandle"
+      />
     </Modal>
   </div>
 </template>
 
 <script>
 import { menuAddReq, menuEditReq } from '../../api/menu'
+import ModalFooter from '../modal-footer/modal-footer'
 
 export default {
   name: 'SysMenuModal',
+  components: { ModalFooter },
+  props: {
+    parentId: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       addFlag: false,
       title: '',
       modalVisiable: false,
-      modalLoading: false,
+      submitLoading: false,
       modalRule: {
         title: [
           { required: true, message: '菜单标题必填', trigger: 'blur' }
@@ -101,38 +111,47 @@ export default {
   },
   methods: {
     openModal(title, addFlag, data) {
-      this.$refs['modalForm'].resetFields()
       this.title = title
       this.addFlag = addFlag
       if (data) {
         this.modalForm = Object.assign({}, data)
+      } else {
+        this.$refs['modalForm'].resetFields()
       }
-      console.info(this.modalForm)
-
       this.modalVisiable = true
     },
-    modalSubmitHandle(name) {
-      this.$refs[name].validate((valid) => {
+    modalSubmitHandle() {
+      this.$refs['modalForm'].validate((valid) => {
         if (valid) {
-          this.modalLoading = true
+          this.submitLoading = true
           const requestData = Object.assign({}, this.modalForm)
+          requestData.parentId = this.parentId
           if (this.addFlag) {
             menuAddReq(requestData).then(res => {
-              console.info('res',)
-              this.$emit('updateData')
+              this.submitSuccessHandle(res)
             }).finally(() => {
-              this.modalLoading = false
+              this.submitLoading = false
             })
           } else {
             menuEditReq(requestData).then(res => {
-              console.info('res',)
-              this.$emit('updateData')
+              this.submitSuccessHandle(res)
             }).finally(() => {
-              this.modalLoading = false
+              this.submitLoading = false
             })
           }
         }
       })
+    },
+    submitSuccessHandle(res) {
+      this.modalVisiable = false
+      this.utils.success(res.resultMessage)
+      this.$emit('update-memu')
+    },
+    useFlagChangeHandle(flag) {
+      this.modalForm.useFlag = flag ? '可用' : '禁用'
+    },
+    hiddenChangeHandle(flag) {
+      this.modalForm.hidden = flag ? '显示' : '隐藏'
     }
   }
 }

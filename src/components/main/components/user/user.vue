@@ -34,7 +34,7 @@
 import CommonIcon from '../../../common-icon/common-icon'
 import ConfirmModal from '../../../confirm-modal/confirm-modal'
 
-export default {
+export default{
   name: 'User',
   components: { ConfirmModal, CommonIcon },
   data() {
@@ -47,7 +47,7 @@ export default {
     logout() {
       this.utils.removeCookie(this.config.userTokenKey)
       this.utils.removeCookie(this.config.userNameKey)
-      this.utils.routerPush('login', {})
+      this.utils.routerPush('login')
       location.reload()
     },
     handleClick(name) {
