@@ -24,3 +24,35 @@ export const permissionsReq = (data) => {
   })
 }
 
+export const usersReq = (data) => {
+  return request({
+    url: '/user/query.do',
+    method: 'post',
+    data
+  })
+}
+
+export const userAddReq = (data) => {
+  return request({
+    url: '/user/add.do',
+    method: 'post',
+    data
+  })
+}
+
+export const userEditReq = (data) => {
+  return request({
+    url: '/user/edit.do',
+    method: 'post',
+    data
+  })
+}
+
+export const userDeleteReq = (data) => {
+  return request({
+    url: '/user/delete.do',
+    method: 'post',
+    data
+  })
+}
+

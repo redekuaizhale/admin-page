@@ -27,7 +27,7 @@
         :loading="tableLoading"
         @check-change="getCheckedRow"
       />
-      <SysMenuModal ref="SysMenuModal" :parent-id="parentId" @update-memu="getTableData"/>
+      <SysMenuModal ref="SysMenuModal" :parent-id="childParentId" @update-memu="refreshHandle"/>
     </div>
   </Card>
 </template>
@@ -44,12 +44,6 @@ export default {
   name: 'SysMenuChild',
   components: { BaseData, TableCustom, SysMenuModal, CrudButtonGroup, CommonIcon },
   extends: BaseData,
-  props: {
-    parentId: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
       tableColumns: [
@@ -90,33 +84,36 @@ export default {
           title: '组件',
           key: 'component'
         }
-      ]
+      ],
+      childParentId: ''
     }
   },
   methods: {
     refreshHandle() {
-      this.getTableData()
+      this.getTableData(this.childParentId)
     },
     addHandle() {
+      if (!this.childParentId) {
+        this.utils.warning('未勾选一级菜单！')
+        return
+      }
       this.$refs.SysMenuModal.openModal('新增', true, null)
     },
     deleteHandle() {
       menuDeleteReq({ id: this.checkedRow.id }).then(res => {
         this.utils.success(res.resultMessage)
-        this.getTableData()
+        this.refreshHandle()
       })
     },
     editHandle() {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.String)]
+      return [this.utils.newQueryParam('=', 'parentId', this.childParentId, this.config.String)]
     },
-    getTableData() {
-      if (!this.parentId) {
-        this.utils.warning('一级菜单未勾选！')
-        return
-      }
+    getTableData(childParentId) {
+      this.tableData = []
+      this.childParentId = childParentId
       this.tableLoading = true
       this.clearCheckedData()
       const requestData = {
@@ -129,7 +126,9 @@ export default {
         ]
       }
       menusReq(requestData).then(res => {
-        this.tableData = res.data
+        if (res.data.resultList) {
+          this.tableData = res.data.resultList
+        }
       }).finally(() => {
         this.tableLoading = false
       })

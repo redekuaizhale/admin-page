@@ -36,7 +36,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '删除确认'
+      default: '提示'
     },
     desc: {
       type: String,

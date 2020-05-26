@@ -68,8 +68,8 @@ export default {
       this.checkChange(row)
     },
     onRowClickHandle(row) {
-      this.checkedId = row.id
-      this.checkChange(row)
+      /* this.checkedId = row.id
+      this.checkChange(row)*/
     },
     clearCheckedId() {
       this.checkedId = ''

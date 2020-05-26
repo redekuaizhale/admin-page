@@ -7,8 +7,8 @@
 !-->
 <template>
   <div>
-    <SysMenuParent :parent-id="parentId" @update-parent-id="updateParentId"/>
-    <SysMenuChild :parent-id="childParentId" @update-child-parent-id="updateChildParentId"/>
+    <SysMenuParent parent-id="0" @update-parent-id="updateParentId"/>
+    <SysMenuChild ref="SysMenuChild"/>
   </div>
 </template>
 
@@ -21,18 +21,16 @@ export default {
   components: { SysMenuChild, SysMenuParent, CommonIcon },
   data() {
     return {
-      parentId: '0',
-      childParentId: ''
     }
   },
   created() {
   },
   methods: {
-    updateParentId(parentId) {
-      this.parentId = parentId
-    },
-    updateChildParentId(childParentId) {
-      this.childParentId = childParentId
+    updateParentId(childParentId) {
+      if (!childParentId) {
+        return
+      }
+      this.$refs.SysMenuChild.getTableData(childParentId)
     }
   }
 }

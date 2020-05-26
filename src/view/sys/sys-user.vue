@@ -28,19 +28,15 @@
         </Form>
       </div>
       <div class="query-result">
-        <Table :columns="columns" :data="data" stripe size="small" />
-        <Page
-          :current.sync="pageNum"
-          :total="total"
-          :page-size="pageSize"
-          show-sizer
-          prev-text="上一页"
-          next-text="下一页"
-          show-total
-          show-elevator
-          @on-change="pageNumChangeHandle"
-          @on-page-size-change="pageSizeChangeHandle"
+        <TableCustom
+          ref="TableCustom"
+          :columns="tableColumns"
+          :data="tableData"
+          :check="true"
+          :loading="tableLoading"
+          @check-change="getCheckedRow"
         />
+        <PageCustom/>
       </div>
     </div>
   </Card>
@@ -48,16 +44,22 @@
 
 <script>
 import CommonIcon from '../../components/common-icon/common-icon'
+import TableCustom from '../../components/table-custom/table-custom'
+import PageCustom from '../../components/page-custom/page-custom'
+import BaseData from '../../components/base-data/base-data'
+import { userAddReq, userDeleteReq, userEditReq, usersReq } from '../../api/user'
+
 export default {
   name: 'SysUser',
-  components: { CommonIcon },
+  components: { BaseData, PageCustom, TableCustom, CommonIcon },
+  extends: BaseData,
   data() {
     return {
       queryForm: {
         name: '',
         loginCode: ''
       },
-      columns: [
+      tableColumns: [
         {
           type: 'index',
           width: 60,
@@ -75,18 +77,47 @@ export default {
           title: '所属部门',
           key: 'deptName'
         }
-      ],
-      data: [],
-      total: 99,
-      pageNum: 1,
-      pageSize: 10
+      ]
     }
   },
+  mounted() {
+    this.getTableData()
+  },
   methods: {
-    queryListHandle() {},
-    addListHandle() {},
-    pageNumChangeHandle() {},
-    pageSizeChangeHandle() {}
+    setQueryParam() {
+      const { name, loginCode } = this.queryForm
+      const params = []
+      if (name) {
+        params.push(this.utils.newQueryParam('=', 'name', name, this.config.String))
+      }
+      if (loginCode) {
+        params.push(this.utils.newQueryParam('=', 'loginCode', loginCode, this.config.String))
+      }
+      return params
+    },
+    queryListHandle() {
+      this.getTableData()
+    },
+    getTableData() {
+      this.tableLoading = true
+      this.clearCheckedData()
+      const requestData = {
+        queryParamList: this.setQueryParam()
+      }
+      usersReq(requestData).then(res => {
+        if (res.data) {
+          this.tableData = res.data.resultList
+        }
+      }).finally(() => {
+        this.tableLoading = false
+      })
+    },
+    addListHandle() {
+
+    },
+    getCheckedRow(row) {
+      this.checkedRow = row
+    }
   }
 }
 </script>

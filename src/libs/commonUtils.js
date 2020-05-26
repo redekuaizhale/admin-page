@@ -63,9 +63,9 @@ export default class commonUtils {
    * @param title
    */
   static success(title) {
-    Notice.success({
-      title: title,
-      duration: 5
+    Message.success({
+      background: true,
+      content: title
     })
   }
 

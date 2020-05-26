@@ -113,9 +113,10 @@ export default {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', '0', this.config.String)]
+      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.String)]
     },
     getTableData() {
+      this.tableData = []
       this.tableLoading = true
       this.clearCheckedData()
       const requestData = {
@@ -128,13 +129,16 @@ export default {
         ]
       }
       menusReq(requestData).then(res => {
-        this.tableData = res.data
+        if (res.data.resultList) {
+          this.tableData = res.data.resultList
+        }
       }).finally(() => {
         this.tableLoading = false
       })
     },
     getCheckedRow(row) {
       this.checkedRow = row
+      this.$emit('update-parent-id', row.id)
     },
     clearCheckedData() {
       this.checkedRow = {}

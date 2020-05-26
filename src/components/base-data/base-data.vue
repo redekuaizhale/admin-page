@@ -18,6 +18,12 @@ export default {
       checkedRow: {},
       tableData: []
     }
+  },
+  methods:{
+    clearCheckedData() {
+      this.checkedRow = {}
+      this.$refs.TableCustom.clearCheckedId()
+    }
   }
 }
 </script>
