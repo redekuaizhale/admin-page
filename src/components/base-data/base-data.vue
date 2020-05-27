@@ -19,7 +19,7 @@ export default {
       tableData: []
     }
   },
-  methods:{
+  methods: {
     clearCheckedData() {
       this.checkedRow = {}
       this.$refs.TableCustom.clearCheckedId()

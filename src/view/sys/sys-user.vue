@@ -28,6 +28,18 @@
         </Form>
       </div>
       <div class="query-result">
+        <CrudButtonGroup
+          ref="CrudButtonGroup"
+          :checked-id="checkedRow.id"
+          @edit="editHandle"
+          @add="addHandle"
+          @delete="deleteHandle"
+          @refresh="refreshHandle"
+        >
+          <div slot="extra" class="extra">
+            <Button type="primary" size="small">test</Button>
+          </div>
+        </CrudButtonGroup>
         <TableCustom
           ref="TableCustom"
           :columns="tableColumns"
@@ -48,10 +60,12 @@ import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
 import BaseData from '../../components/base-data/base-data'
 import { userAddReq, userDeleteReq, userEditReq, usersReq } from '../../api/user'
+import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
+import { roleDeleteReq } from '../../api/role'
 
 export default {
   name: 'SysUser',
-  components: { BaseData, PageCustom, TableCustom, CommonIcon },
+  components: { CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
   extends: BaseData,
   data() {
     return {
@@ -99,13 +113,14 @@ export default {
       this.getTableData()
     },
     getTableData() {
+      this.tableData = []
       this.tableLoading = true
       this.clearCheckedData()
       const requestData = {
         queryParamList: this.setQueryParam()
       }
       usersReq(requestData).then(res => {
-        if (res.data) {
+        if (res.data.resultList) {
           this.tableData = res.data.resultList
         }
       }).finally(() => {
@@ -117,6 +132,21 @@ export default {
     },
     getCheckedRow(row) {
       this.checkedRow = row
+    },
+    refreshHandle() {
+      this.getTableData()
+    },
+    addHandle() {
+      this.$refs.SysRoleModal.openModal('新增', true, null)
+    },
+    editHandle() {
+      this.$refs.SysRoleModal.openModal('修改', false, this.checkedRow)
+    },
+    deleteHandle() {
+      roleDeleteReq({ id: this.checkedRow.id }).then(res => {
+        this.utils.success(res.resultMessage)
+        this.refreshHandle()
+      })
     }
   }
 }

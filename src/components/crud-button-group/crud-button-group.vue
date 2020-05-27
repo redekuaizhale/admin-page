@@ -23,6 +23,7 @@
       <CommonIcon type="_delete"/>
       删除
     </Button>
+    <slot name="extra"/>
     <ConfirmModal ref="confirmModal" @on-confirm-handle="confirmDeleteHandle"/>
   </div>
 </template>
@@ -92,6 +93,9 @@ export default {
     margin-bottom: 5px;
     .ivu-btn{
       margin-right: 5px;
+    }
+    .extra{
+      display: inline-block;
     }
   }
 </style>
