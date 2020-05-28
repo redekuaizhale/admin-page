@@ -37,7 +37,14 @@
           @refresh="refreshHandle"
         >
           <div slot="extra" class="extra">
-            <Button type="primary" size="small">test</Button>
+            <Button type="primary" size="small" @click="menuSetHandle">
+              <CommonIcon type="_menu"/>
+              配置菜单
+            </Button>
+            <Button type="primary" size="small">
+              <CommonIcon type="_menu-role"/>
+              配置角色
+            </Button>
           </div>
         </CrudButtonGroup>
         <TableCustom
@@ -50,6 +57,7 @@
         />
         <PageCustom/>
       </div>
+      <SysUserMenuModal ref="SysUserMenuModal" :checked-id="checkedRow.id"/>
     </div>
   </Card>
 </template>
@@ -62,10 +70,11 @@ import BaseData from '../../components/base-data/base-data'
 import { userAddReq, userDeleteReq, userEditReq, usersReq } from '../../api/user'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import { roleDeleteReq } from '../../api/role'
+import SysUserMenuModal from '../../components/sys-user-menu-modal/sys-user-menu-modal'
 
 export default {
   name: 'SysUser',
-  components: { CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
+  components: { SysUserMenuModal, CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
   extends: BaseData,
   data() {
     return {
@@ -147,6 +156,11 @@ export default {
         this.utils.success(res.resultMessage)
         this.refreshHandle()
       })
+    },
+    menuSetHandle() {
+      if (this.utils.isChecked(this.checkedRow.id)) {
+        this.$refs.SysUserMenuModal.openModal()
+      }
     }
   }
 }

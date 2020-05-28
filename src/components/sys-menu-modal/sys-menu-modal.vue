@@ -21,13 +21,13 @@
           <FormItem label="菜单图标:" prop="icon">
             <Input v-model="modalForm.icon" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
-          <FormItem label="菜单组件:" prop="name">
+          <FormItem label="菜单名称:" prop="name">
             <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
           <FormItem label="菜单路径:" prop="path">
             <Input v-model="modalForm.path" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
-          <FormItem label="绝对路径:" prop="component">
+          <FormItem label="组件:" prop="component">
             <Input v-model="modalForm.component" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
           <FormItem label="重定向地址:" prop="redirect">
@@ -87,13 +87,13 @@ export default {
           { required: true, message: '菜单图标必填', trigger: 'blur' }
         ],
         name: [
-          { required: true, message: '菜单组件必填', trigger: 'blur' }
+          { required: true, message: '菜单名称必填', trigger: 'blur' }
         ],
         path: [
           { required: true, message: '菜单路径必填', trigger: 'blur' }
         ],
         component: [
-          { required: true, message: '绝对路径必填', trigger: 'blur' }
+          { required: true, message: '组件必填', trigger: 'blur' }
         ]
       },
       modalForm: {

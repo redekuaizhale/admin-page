@@ -99,6 +99,18 @@ export default class commonUtils {
   }
 
   /**
+   * 未选中数据提示
+   */
+  static isChecked(id) {
+    if (!id) {
+      this.uncheckedError()
+      return false
+    } else {
+      return true
+    }
+  }
+
+  /**
    * 格式化金额
    * @param s
    * @returns {string}

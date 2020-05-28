@@ -18,6 +18,9 @@
           <FormItem label="登录账号：" prop="loginCode">
             <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-200px"></Input>
           </FormItem>
+          <FormItem label="默认密码：" prop="password">
+            <Input v-model="modalForm.password" placeholder=" " class="input-width-200px"></Input>
+          </FormItem>
         </Form>
       </div>
       <div slot="footer">

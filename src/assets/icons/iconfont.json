@@ -6,53 +6,18 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "13335",
-      "name": "退出",
-      "font_class": "logout",
-      "unicode": "e622",
-      "unicode_decimal": 58914
+      "icon_id": "10268962",
+      "name": "科室",
+      "font_class": "dept",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
     },
     {
-      "icon_id": "356295",
-      "name": "提交",
-      "font_class": "submit",
-      "unicode": "e64e",
-      "unicode_decimal": 58958
-    },
-    {
-      "icon_id": "559173",
-      "name": "角色管理",
-      "font_class": "menu-role",
-      "unicode": "e60a",
-      "unicode_decimal": 58890
-    },
-    {
-      "icon_id": "808086",
-      "name": "menu",
-      "font_class": "menu",
-      "unicode": "e614",
-      "unicode_decimal": 58900
-    },
-    {
-      "icon_id": "1520340",
-      "name": "修改密码",
-      "font_class": "password",
-      "unicode": "e61b",
-      "unicode_decimal": 58907
-    },
-    {
-      "icon_id": "2732015",
-      "name": "系统管理",
-      "font_class": "menu-sys",
-      "unicode": "e698",
-      "unicode_decimal": 59032
-    },
-    {
-      "icon_id": "2872944",
-      "name": "新增",
-      "font_class": "add",
-      "unicode": "e63f",
-      "unicode_decimal": 58943
+      "icon_id": "968468",
+      "name": "机构",
+      "font_class": "org",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
     },
     {
       "icon_id": "2877906",
@@ -62,46 +27,11 @@
       "unicode_decimal": 58918
     },
     {
-      "icon_id": "4519492",
-      "name": "个人信息",
-      "font_class": "personinfo",
-      "unicode": "e653",
-      "unicode_decimal": 58963
-    },
-    {
-      "icon_id": "5651532",
-      "name": "询问",
-      "font_class": "question",
-      "unicode": "e693",
-      "unicode_decimal": 59027
-    },
-    {
-      "icon_id": "5712480",
-      "name": "刷新",
-      "font_class": "refresh",
-      "unicode": "e603",
-      "unicode_decimal": 58883
-    },
-    {
-      "icon_id": "6955543",
-      "name": "用户管理",
-      "font_class": "menu-user",
-      "unicode": "e639",
-      "unicode_decimal": 58937
-    },
-    {
-      "icon_id": "7708180",
-      "name": "首页-选中",
-      "font_class": "menu-home",
-      "unicode": "e600",
-      "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "7774955",
-      "name": "删 除",
-      "font_class": "delete",
-      "unicode": "e602",
-      "unicode_decimal": 58882
+      "icon_id": "356295",
+      "name": "提交",
+      "font_class": "submit",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
     },
     {
       "icon_id": "8224478",
@@ -111,11 +41,95 @@
       "unicode_decimal": 58884
     },
     {
+      "icon_id": "7774955",
+      "name": "删 除",
+      "font_class": "delete",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "9917843",
       "name": "修 改",
       "font_class": "edit",
       "unicode": "e601",
       "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "2872944",
+      "name": "新增",
+      "font_class": "add",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "5712480",
+      "name": "刷新",
+      "font_class": "refresh",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "808086",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "5651532",
+      "name": "询问",
+      "font_class": "question",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "13335",
+      "name": "退出",
+      "font_class": "logout",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "4519492",
+      "name": "个人信息",
+      "font_class": "personinfo",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "1520340",
+      "name": "修改密码",
+      "font_class": "password",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "559173",
+      "name": "角色管理",
+      "font_class": "menu-role",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "6955543",
+      "name": "用户管理",
+      "font_class": "menu-user",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "2732015",
+      "name": "系统管理",
+      "font_class": "menu-sys",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "7708180",
+      "name": "首页-选中",
+      "font_class": "menu-home",
+      "unicode": "e600",
+      "unicode_decimal": 58880
     }
   ]
 }
