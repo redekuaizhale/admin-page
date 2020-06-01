@@ -2,6 +2,7 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router/permissions'
+import iviewArea from 'iview-area'
 import store from './store'
 import ViewUI from 'view-design'
 import config from './config/config'
@@ -11,6 +12,7 @@ import commonUtils from './libs/commonUtils'
 import dateUtils from './libs/dateUtils'
 
 Vue.use(ViewUI)
+Vue.use(iviewArea)
 Vue.prototype.config = config
 Vue.prototype.utils = commonUtils
 Vue.prototype.dateUtils = dateUtils

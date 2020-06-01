@@ -165,4 +165,30 @@ export default class commonUtils {
     const { hash } = window.location
     return hash.indexOf('login') > 0
   }
+
+  /**
+   * 格式化行政区域
+   * @param arr
+   * @returns {string}
+   */
+  static formatArea = (arr) => {
+    let areaString = ''
+    if (arr.length === 0) {
+      areaString = ''
+    } else {
+      arr.map(item => {
+        areaString += '/' + item.name
+      })
+      areaString = areaString.substr(1)
+    }
+    return areaString
+  }
+
+  /**
+   * 分隔行政区域
+   * @param value
+   */
+  static splitArea = (value) => {
+    return value ? value.split('/') : ''
+  }
 }

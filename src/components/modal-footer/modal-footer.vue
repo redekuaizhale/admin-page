@@ -8,7 +8,7 @@
 <template>
   <div>
     <Button @click="modalCancelHandle">关闭</Button>
-    <Button :loading="submitLoading" type="primary" @click="modalSubmitHandle()">提交</Button>
+    <Button v-if="!readOnly" :loading="submitLoading" type="primary" @click="modalSubmitHandle()">提交</Button>
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
   name: 'ModalFooter',
   props: {
     submitLoading: {
+      type: Boolean,
+      default: false
+    },
+    readOnly: {
       type: Boolean,
       default: false
     }

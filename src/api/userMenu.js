@@ -7,3 +7,11 @@ export const userHasMenusReq = (data) => {
     data
   })
 }
+
+export const editUserHasMenusReq = (data) => {
+  return request({
+    url: '/userMenu/editUserHasMenus.do',
+    method: 'post',
+    data
+  })
+}

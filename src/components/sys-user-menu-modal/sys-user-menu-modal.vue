@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { userHasMenusReq } from '../../api/userMenu'
+import { userHasMenusReq, editUserHasMenusReq } from '../../api/userMenu'
 import ModalFooter from '../modal-footer/modal-footer'
 
 export default {
@@ -54,24 +54,29 @@ export default {
     },
     getTreeData() {
       const request = {
-        userEntity: {
-          id: this.checkedId
-        }
+        userId: this.checkedId
       }
       userHasMenusReq(request).then(res => {
         this.treeData = res.data
       })
     },
     modalSubmitHandle() {
-
+      this.submitLoading = true
+      const request = {
+        menuIdList: this.checkedTree,
+        userId: this.checkedId
+      }
+      editUserHasMenusReq(request).then(res => {
+        this.$Message.success(res.resultMessage)
+      }).finally(() => {
+        this.submitLoading = false
+      })
     },
     treeCheckHandle(checkedTree) {
       this.checkedTree = []
       if (checkedTree.length > 0) {
         checkedTree.map(item => {
-          this.checkedTree.push({
-            id: item.id
-          })
+          this.checkedTree.push(item.id)
         })
       }
     }
