@@ -23,7 +23,6 @@
           </FormItem>
           <FormItem>
             <Button icon="md-search" type="primary" @click="queryListHandle()">查询</Button>
-            <Button icon="md-add" class="margin-left-10" type="primary" @click="addListHandle()">新增</Button>
           </FormItem>
         </Form>
       </div>
@@ -58,6 +57,7 @@
         <PageCustom/>
       </div>
       <SysUserMenuModal ref="SysUserMenuModal" :checked-id="checkedRow.id"/>
+      <SysUserModal ref="SysUserModal"/>
     </div>
   </Card>
 </template>
@@ -71,10 +71,11 @@ import { userAddReq, userDeleteReq, userEditReq, usersReq } from '../../api/user
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import { roleDeleteReq } from '../../api/role'
 import SysUserMenuModal from '../../components/sys-user-menu-modal/sys-user-menu-modal'
+import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 
 export default {
   name: 'SysUser',
-  components: { SysUserMenuModal, CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
+  components: { SysUserModal, SysUserMenuModal, CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
   extends: BaseData,
   data() {
     return {

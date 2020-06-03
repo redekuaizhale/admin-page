@@ -48,9 +48,9 @@ export default {
   Boolean: 'Boolean',
   Long: 'Long',
   BigDecimal: 'BigDecimal',
-  List: 'List'
+  List: 'List',
   /**
    * 查询条件-end
    */
-
+  defaultUserPass: '123456'
 }

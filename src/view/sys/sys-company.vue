@@ -1,24 +1,26 @@
 <template>
-
   <Card>
     <p slot="title">
       <CommonIcon type="_org"/>
       机构管理
+      <Checkbox v-model="edit" style="margin-left: 10px;">修改</Checkbox>
     </p>
     <div>
       <Tree :data="treeData" :render="renderContent"/>
     </div>
-    <SysCompanyModal ref="SysCompanyModal" :read-only="readOnly" :parent-id="parentId"/>
+    <SysCompanyModal ref="SysCompanyModal" :read-only="readOnly" :parent-id="parentId" @update-company="getCompanyTree"/>
+    <ConfirmModal ref="ConfirmModal" @on-confirm-handle="confirmDeleteHandle"/>
   </Card>
 </template>
 <script>
 import CommonIcon from '../../components/common-icon/common-icon'
 import SysCompanyModal from '../../components/sys-company-modal/sys-company-modal'
-import { companyTreeReq } from '../../api/company'
+import { companyTreeReq, companyDeleteReq } from '../../api/company'
+import ConfirmModal from '../../components/confirm-modal/confirm-modal'
 
 export default {
   name: 'SysCompany',
-  components: { SysCompanyModal, CommonIcon },
+  components: { ConfirmModal, SysCompanyModal, CommonIcon },
   data() {
     return {
       treeData: [
@@ -38,7 +40,8 @@ export default {
               h('span', [
                 h('Icon', {
                   props: {
-                    type: 'ios-folder-outline'
+                    type: 'ios-home',
+                    size: 18
                   },
                   style: {
                     marginRight: '8px'
@@ -51,7 +54,7 @@ export default {
                   display: 'inline-block',
                   float: 'right'
                 }
-              }, [
+              }, this.edit ? [
                 h('Button', {
                   props: Object.assign({}, this.buttonProps, {
                     icon: 'md-create',
@@ -61,7 +64,7 @@ export default {
                     marginRight: '8px'
                   },
                   on: {
-                    click: () => { this.editCompanyHandle(data) }
+                    click: () => { this.editCompanyHandle(data.detail) }
                   }
                 }, '修改'),
                 h('Button', {
@@ -73,7 +76,7 @@ export default {
                     marginRight: '8px'
                   },
                   on: {
-                    click: () => { this.append(data) }
+                    click: () => { this.viewCompanyHandle(data.detail) }
                   }
                 }, '详情'),
                 h('Button', {
@@ -87,7 +90,7 @@ export default {
                     click: () => { this.addCompanyHandle(data) }
                   }
                 }, '新增')
-              ])
+              ] : [])
             ])
           },
           children: []
@@ -98,7 +101,9 @@ export default {
         size: 'small'
       },
       readOnly: false,
-      parentId: ''
+      parentId: '',
+      id: '',
+      edit: false
     }
   },
   created() {
@@ -106,6 +111,7 @@ export default {
   },
   methods: {
     getCompanyTree() {
+      this.treeData[0].children = []
       companyTreeReq({}).then(res => {
         if (res.data) {
           const { id, fullName, children } = res.data
@@ -113,23 +119,38 @@ export default {
           this.treeData[0].title = fullName
           this.treeData[0].detail = res.data
           if (children) {
+            for (const item of children) {
+              item.title = item.name
+            }
             this.treeData[0].children = children
           }
         }
       })
     },
     addCompanyHandle(data) {
+      this.readOnly = false
       this.parentId = data.id
       this.$refs.SysCompanyModal.openModal('新增', true, null)
     },
     editCompanyHandle(data) {
-      const { nodeKey, parentId } = data
-      this.parentId = parentId
-      const curData = nodeKey === 0 ? data.detail : data
-      curData.area = this.utils.splitArea(curData.area)
+      this.readOnly = false
+      this.parentId = data.parentId
+      this.$refs.SysCompanyModal.openModal('修改', false, data)
+    },
+    viewCompanyHandle(data) {
+      this.readOnly = true
+      this.$refs.SysCompanyModal.openModal('详情', false, data)
+    },
+    deleteCompanyHandle(data) {
+      this.id = data.id
+      this.$refs.ConfirmModal.openConfirmModalHandle()
+    },
 
-      console.info('curData', curData)
-      this.$refs.SysCompanyModal.openModal('修改', false, curData)
+    confirmDeleteHandle() {
+      companyDeleteReq({ id: this.id }).then(res => {
+        this.utils.success(res.resultMessage)
+        this.getCompanyTree()
+      })
     },
     renderContent(h, { root, node, data }) {
       return h('span', {
@@ -141,7 +162,8 @@ export default {
         h('span', [
           h('Icon', {
             props: {
-              type: 'ios-paper-outline'
+              type: 'ios-cube',
+              size: 15
             },
             style: {
               marginRight: '8px'
@@ -154,7 +176,7 @@ export default {
             display: 'inline-block',
             float: 'right'
           }
-        }, [
+        }, this.edit ? [
           h('Button', {
             props: Object.assign({}, this.buttonProps, {
               icon: 'md-create',
@@ -164,7 +186,7 @@ export default {
               marginRight: '8px'
             },
             on: {
-              click: () => { this.append(data) }
+              click: () => { this.editCompanyHandle(data) }
             }
           }, '修改'),
           h('Button', {
@@ -176,7 +198,7 @@ export default {
               marginRight: '8px'
             },
             on: {
-              click: () => { this.remove(root, node, data) }
+              click: () => { this.viewCompanyHandle(data) }
             }
           }, '详情'),
           h('Button', {
@@ -185,25 +207,11 @@ export default {
               type: 'primary'
             }),
             on: {
-              click: () => { this.remove(root, node, data) }
+              click: () => { this.deleteCompanyHandle(data) }
             }
           }, '删除')
-        ])
+        ] : [])
       ])
-    },
-    append(data) {
-      const children = data.children || []
-      children.push({
-        title: 'appended node',
-        expand: true
-      })
-      this.$set(data, 'children', children)
-    },
-    remove(root, node, data) {
-      const parentKey = root.find(el => el === node).parent
-      const parent = root.find(el => el.nodeKey === parentKey).node
-      const index = parent.children.indexOf(data)
-      parent.children.splice(index, 1)
     }
   }
 }

@@ -32,3 +32,11 @@ export const deptDeleteReq = (data) => {
   })
 }
 
+export const findByCompanyIdReq = (data) => {
+  return request({
+    url: '/dept/findByCompanyId.do',
+    method: 'post',
+    data
+  })
+}
+

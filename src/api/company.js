@@ -39,3 +39,11 @@ export const companyTreeReq = (data) => {
     data
   })
 }
+
+export const loginUsercompanyTreeReq = (data) => {
+  return request({
+    url: '/company/findLoginUserCompanyTree.do',
+    method: 'post',
+    data
+  })
+}

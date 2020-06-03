@@ -167,28 +167,12 @@ export default class commonUtils {
   }
 
   /**
-   * 格式化行政区域
-   * @param arr
-   * @returns {string}
-   */
-  static formatArea = (arr) => {
-    let areaString = ''
-    if (arr.length === 0) {
-      areaString = ''
-    } else {
-      arr.map(item => {
-        areaString += '/' + item.name
-      })
-      areaString = areaString.substr(1)
-    }
-    return areaString
-  }
-
-  /**
-   * 分隔行政区域
+   * 分隔字符串
    * @param value
+   * @param char
+   * @returns {*}
    */
-  static splitArea = (value) => {
-    return value ? value.split('/') : ''
+  static splitContent = (value, char) => {
+    return value ? value.split(char) : ''
   }
 }

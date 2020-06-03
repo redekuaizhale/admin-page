@@ -8,9 +8,12 @@
 <template>
   <div>
     <al-cascader
+      v-if="modalVisiable"
       :level="level"
       v-model="value"
       :style="{'width':width+'px'}"
+      data-type="name"
+      @on-change="areaChangeHandle"
     />
   </div>
 </template>
@@ -23,25 +26,27 @@ export default {
       type: Number,
       default: 200
     },
-    area: {
-      type: Array,
-      default: Array
-    },
     level: {
       type: String,
       default: '1'
+    },
+    modalVisiable: {
+      type: Boolean,
+      default: false
     }
-
   },
-  computed: {
-    value: {
-      get() {
-        console.info('31312313',)
-        return this.area ? this.area : []
-      },
-      set(value) {
-        this.$emit('udpate-area', this.utils.formatArea(value))
-      }
+  data() {
+    return {
+      show: false,
+      value: []
+    }
+  },
+  methods: {
+    setDefaultValue(value) {
+      this.value = value
+    },
+    areaChangeHandle(value) {
+      this.$emit('udpate-area', value ? value.toString().replace(',', '/') : '')
     }
   }
 }

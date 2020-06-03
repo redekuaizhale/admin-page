@@ -26,19 +26,20 @@
           <FormItem label="状态:" prop="status">
             <span v-if="readOnly">{{ modalForm.status }}</span>
             <RadioGroup v-else v-model="modalForm.status">
-              <Radio v-for="item in statusOptions" :label="item.label"/>
+              <Radio v-for="item in statusList" :key="item.label" :label="item.label"/>
             </RadioGroup>
           </FormItem>
           <FormItem label="机构排序:" prop="companyOrder">
-            <InputNumber :max="10000" :min="0" v-model="modalForm.companyOrder" style="width: 300px;"/>
+            <span v-if="readOnly">{{ modalForm.companyOrder }}</span>
+            <InputNumber v-else :max="10000" :min="0" v-model="modalForm.companyOrder" style="width: 300px;"/>
           </FormItem>
           <FormItem label="所属区域:" prop="area">
             <span v-if="readOnly">{{ modalForm.area }}</span>
-            <AreaSelect v-else :width="300" :area="modalForm.area" @udpate-area="areaChangeHandle"/>
+            <AreaSelect v-else ref="AreaSelect" :modal-visiable="modalVisiable" :width="300" @udpate-area="areaChangeHandle"/>
           </FormItem>
           <FormItem label="详细地址:" prop="address">
             <span v-if="readOnly">{{ modalForm.address }}</span>
-            <Textarea :content="modalForm.address" :width="300" @update-textarea="addressChangeHandle"/>
+            <Textarea v-else :content="modalForm.address" :width="300" @update-textarea="addressChangeHandle"/>
           </FormItem>
         </Form>
       </div>
@@ -88,9 +89,6 @@ export default {
         status: [
           { required: true, message: '状态必填', trigger: 'change' }
         ],
-        companyOrder: [
-          { required: true, message: '状态必填', trigger: 'change' }
-        ],
         area: [
           { required: true, message: '所属区域必填', trigger: 'blur' }
         ],
@@ -106,31 +104,32 @@ export default {
         area: [],
         address: ''
       },
-      statusOptions: [
+      statusList: [
         {
           label: '营业'
         },
         {
           label: '筹备'
         }
-      ]
+      ],
+      area: []
     }
   },
   methods: {
     openModal(title, addFlag, data) {
-      console.info('data', data)
       this.title = title
       this.addFlag = addFlag
       if (data) {
-        console.info('data', data)
-        Object.assign(this.modalForm, data)
-        console.info('this.modalForm0', this.modalForm)
+        this.modalForm = Object.assign({}, data)
+        this.area = this.utils.splitContent(data.area, '/')
       } else {
         this.$refs['modalForm'].resetFields()
+        this.area = []
       }
-
-      console.info('this.modalForm1', this.modalForm)
       this.modalVisiable = true
+      if (this.$refs.AreaSelect) {
+        this.$refs.AreaSelect.setDefaultValue(this.area)
+      }
     },
     modalSubmitHandle() {
       this.$refs['modalForm'].validate((valid) => {
@@ -157,13 +156,7 @@ export default {
     submitSuccessHandle(res) {
       this.modalVisiable = false
       this.utils.success(res.resultMessage)
-      this.$emit('update-memu')
-    },
-    useFlagChangeHandle(flag) {
-      this.modalForm.useFlag = flag ? '可用' : '禁用'
-    },
-    hiddenChangeHandle(flag) {
-      this.modalForm.hidden = flag ? '显示' : '隐藏'
+      this.$emit('update-company')
     },
     areaChangeHandle(value) {
       this.modalForm.area = value
