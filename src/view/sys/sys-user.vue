@@ -57,7 +57,7 @@
         <PageCustom/>
       </div>
       <SysUserMenuModal ref="SysUserMenuModal" :checked-id="checkedRow.id"/>
-      <SysUserModal ref="SysUserModal"/>
+      <SysUserModal ref="SysUserModal" @update-user="refreshHandle"/>
     </div>
   </Card>
 </template>
@@ -67,9 +67,8 @@ import CommonIcon from '../../components/common-icon/common-icon'
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
 import BaseData from '../../components/base-data/base-data'
-import { userAddReq, userDeleteReq, userEditReq, usersReq } from '../../api/user'
+import { userDeleteReq, usersReq } from '../../api/user'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
-import { roleDeleteReq } from '../../api/role'
 import SysUserMenuModal from '../../components/sys-user-menu-modal/sys-user-menu-modal'
 import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 
@@ -94,12 +93,30 @@ export default {
           key: 'name'
         },
         {
+          title: '登录名',
+          key: 'loginCode'
+        },
+        {
+          title: '账号状态',
+          key: 'status'
+        },
+        {
           title: '手机号',
           key: 'phone'
         },
         {
+          title: '所属机构',
+          key: 'companyEntity.name',
+          render: (h, params) => {
+            return h('div', params.row.deptEntity.companyEntity.name)
+          }
+        },
+        {
           title: '所属部门',
-          key: 'deptName'
+          key: 'deptEntity.name',
+          render: (h, params) => {
+            return h('div', params.row.deptEntity.name)
+          }
         }
       ]
     }
@@ -147,13 +164,13 @@ export default {
       this.getTableData()
     },
     addHandle() {
-      this.$refs.SysRoleModal.openModal('新增', true, null)
+      this.$refs.SysUserModal.openModal('新增', true, {})
     },
     editHandle() {
-      this.$refs.SysRoleModal.openModal('修改', false, this.checkedRow)
+      this.$refs.SysUserModal.openModal('修改', false, this.checkedRow)
     },
     deleteHandle() {
-      roleDeleteReq({ id: this.checkedRow.id }).then(res => {
+      userDeleteReq({ id: this.checkedRow.id }).then(res => {
         this.utils.success(res.resultMessage)
         this.refreshHandle()
       })

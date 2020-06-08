@@ -7,32 +7,32 @@
 !-->
 <template>
   <div>
-    <Modal v-model="modalVisiable" draggable width="800">
+    <Modal v-model="modalVisiable" draggable width="500">
       <p slot="header">
         <span>
           {{ title }}
         </span>
       </p>
       <div>
-        <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="80">
+        <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
           <FormItem label="登录账号：" prop="loginCode">
-            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-200px"></Input>
+            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
           <FormItem label="是否可用：" prop="status">
             <RadioGroup v-model="modalForm.status">
               <Radio v-for="item in statusList" :key="item.label" :label="item.label"/>
             </RadioGroup>
           </FormItem>
-          <FormItem label="所属机构：" prop="company">
-            <CompanySelect @commit-compnay-id="companyIdChangeHandle"/>
+          <FormItem label="所属机构：">
+            <CompanySelect :id="modalForm.companyId" @commit-compnay-id="companyIdChangeHandle"/>
           </FormItem>
           <FormItem label="所属部门：" prop="deptId">
-            <Select v-model="modalForm.deptId" class="select-width-200px">
+            <Select v-model="modalForm.deptId" class="select-width-300px">
               <Option v-for="item in deptList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </FormItem>
           <FormItem label="备注：" prop="remark">
-            <Textarea :content="modalForm.remark" @update-textarea="updateTextareaHandle"/>
+            <Textarea :content="modalForm.remark" :width="300" @update-textarea="updateTextareaHandle"/>
           </FormItem>
         </Form>
       </div>
@@ -48,23 +48,49 @@
 import CompanySelect from '../company-select/company-select'
 import Textarea from '../textarea/textarea'
 import { findByCompanyIdReq } from '../../api/dept'
+import { userAddReq, userEditReq } from '../../api/user'
 
 export default {
   name: 'SysUserModal',
   components: { Textarea, CompanySelect },
   data() {
+    const validateCompany = (rule, value, callback) => {
+      console.info('this.companyId', this)
+      if (!this.companyId) {
+        callback(new Error('所属机构不能为空！'))
+      } else {
+        callback()
+      }
+    }
+    const validateDept = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('所属部门不能为空！'))
+      } else {
+        callback()
+      }
+    }
     return {
       modalVisiable: false,
       title: '',
       modalLoading: false,
       modalForm: {
         loginCode: '',
-        status: '',
+        password: '',
         companyId: '',
         deptId: '',
         remark: ''
       },
-      modalRule: [],
+      modalRule: {
+        loginCode: [
+          { required: true, message: '登录账号不能为空！', trigger: 'blur' }
+        ],
+        companyId: [
+          { required: true, validator: validateCompany, trigger: 'change' }
+        ],
+        deptId: [
+          { required: true, validator: validateDept, trigger: 'change' }
+        ]
+      },
       statusList: [
         {
           label: '可用'
@@ -73,30 +99,77 @@ export default {
           label: '禁用'
         }
       ],
-      deptList: []
+      deptList: [],
+      comanyId: ''
     }
   },
   methods: {
-    modalSubmitHandle() {
-
-    },
-    modalOpenHandle() {
+    openModal(title, addFlag, data) {
+      this.title = title
+      this.addFlag = addFlag
       this.modalVisiable = true
+      this.modalForm = Object.assign({}, data)
+      if (addFlag) {
+        this.modalForm.status = this.config.status.inUse
+        this.$refs['modalForm'].resetFields()
+      } else {
+        this.modalForm.companyId = data.deptEntity.companyEntity.id
+        this.modalForm.deptId = data.deptEntity.id
+      }
+    },
+
+    modalSubmitHandle() {
+      this.$refs['modalForm'].validate((valid) => {
+        if (valid) {
+          this.submitLoading = true
+          const requestData = Object.assign({}, this.modalForm)
+          requestData.password = this.config.defaultUserPass
+          if (this.addFlag) {
+            userAddReq(requestData).then(res => {
+              this.submitSuccessHandle(res)
+            }).finally(() => {
+              this.submitLoading = false
+            })
+          } else {
+            userEditReq(requestData).then(res => {
+              this.submitSuccessHandle(res)
+            }).finally(() => {
+              this.submitLoading = false
+            })
+          }
+        }
+      })
+    },
+    submitSuccessHandle(res) {
+      this.modalVisiable = false
+      this.utils.success(res.resultMessage)
+      this.$emit('update-user')
     },
     companyIdChangeHandle(companyId) {
       this.modalForm.companyId = companyId
+      this.comanyId = companyId
+      this.getDeptList()
     },
     updateTextareaHandle(remark) {
       this.modalForm.remark = remark
     },
-
     getDeptList() {
+      this.modalForm.deptId = ''
+      this.deptList = []
       const { companyId } = this.modalForm
       if (!companyId) {
-        this.deptList = []
         return
       }
-      findByCompanyIdReq({ companyId: this.modalForm.deptId })
+      findByCompanyIdReq({ companyId: this.modalForm.companyId }).then(res => {
+        if (res.data) {
+          res.data.map(item => {
+            this.deptList.push({
+              value: item.id,
+              label: item.name
+            })
+          })
+        }
+      })
     }
   }
 }

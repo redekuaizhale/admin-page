@@ -10,7 +10,7 @@
     <Col span="4" style="width: 300px;">
     <treeselect
       :disabled="disabled"
-      v-model="companyid"
+      v-model="companyId"
       :options="companyList"
       :show-count="false"
       :normalizer="normalizer"
@@ -56,25 +56,22 @@ export default {
     paramPath: {
       type: String,
       default: 'company.path'
+    },
+    id: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       companyList: [],
-      companyid: '',
+      companyId: this.id,
       path: '',
       queryChildFlag: true,
       normalizer(node) {
         return {
           label: node.fullName
         }
-      }
-    }
-  },
-  watch: {
-    'companyid'(value) {
-      if (value === undefined) {
-        this.commitSelectedData()
       }
     }
   },
@@ -85,22 +82,29 @@ export default {
     queryCompanyData() {
       loginUsercompanyTreeReq({}).then(res => {
         this.companyList = res.data
+        if (!this.companyId) {
+          this.companyId = res.data[0].id
+        }
+        this.commitCompanyId()
       })
     },
     companyChangeHandle(e) {
       const { id, path } = e
-      this.companyid = id
+      this.companyId = id
       this.path = path
       this.commitSelectedData()
     },
     queryChildChange() {
       this.commitSelectedData()
     },
+    commitCompanyId() {
+      this.$emit('commit-compnay-id', this.companyId)
+    },
     commitSelectedData() {
       let operate, fieldName, fieldValue, fieldValueClass, param
-      this.$emit('commit-compnay-id', this.companyid)
+      this.commitCompanyId()
       if (this.child) {
-        if (!this.companyid) {
+        if (!this.companyId) {
           this.$emit('commit-company-path', param)
           return
         }
@@ -112,15 +116,12 @@ export default {
         } else {
           operate = '='
           fieldName = this.paramId
-          fieldValue = this.companyid
+          fieldValue = this.companyId
           fieldValueClass = this.config.String
         }
         param = this.utils.newQueryParam(operate, fieldName, fieldValue, fieldValueClass)
         this.$emit('commit-query-data', param)
       }
-    },
-    setCompanyid(companyid) {
-      this.companyid = companyid
     }
   }
 }
