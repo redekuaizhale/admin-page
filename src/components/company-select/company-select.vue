@@ -7,13 +7,14 @@
 !-->
 <template>
   <Row class="company-select">
-    <Col span="4" style="width: 300px;">
+    <Col span="4" style="width:350px;">
     <treeselect
       :disabled="disabled"
       v-model="companyId"
       :options="companyList"
       :show-count="false"
       :normalizer="normalizer"
+      style="width: 350px"
       no-results-text=" "
       placeholder="请选择"
       no-children-text="无数据"

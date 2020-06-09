@@ -99,7 +99,7 @@ export default {
     submitSuccessHandle(res) {
       this.modalVisiable = false
       this.utils.success(res.resultMessage)
-      this.$emit('update-dept')
+      this.$emit('update-role')
     },
     updateTextareaHandle(value) {
       this.modalForm.remark = value

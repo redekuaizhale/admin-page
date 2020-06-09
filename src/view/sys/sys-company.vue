@@ -34,7 +34,7 @@ export default {
             return h('span', {
               style: {
                 display: 'inline-block',
-                width: '500px'
+                width: '600px'
               }
             }, [
               h('span', [
@@ -156,7 +156,7 @@ export default {
       return h('span', {
         style: {
           display: 'inline-block',
-          width: '482px'
+          width: '582px'
         }
       }, [
         h('span', [
