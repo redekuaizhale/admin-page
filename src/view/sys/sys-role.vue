@@ -94,8 +94,7 @@ export default {
       this.tableData = []
       this.tableLoading = true
       this.clearCheckedData()
-      const requestData = {
-      }
+      const requestData = {}
       rolesReq(requestData).then(res => {
         if (res.data.resultList) {
           this.tableData = res.data.resultList

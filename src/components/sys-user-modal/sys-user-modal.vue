@@ -16,7 +16,7 @@
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
           <FormItem label="登录账号：" prop="loginCode">
-            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-350px"></Input>
           </FormItem>
           <FormItem label="是否可用：" prop="status">
             <RadioGroup v-model="modalForm.status">
@@ -27,12 +27,12 @@
             <CompanySelect :id="modalForm.companyId" @commit-compnay-id="companyIdChangeHandle"/>
           </FormItem>
           <FormItem label="所属部门：" prop="deptId">
-            <Select v-model="modalForm.deptId" class="select-width-300px">
+            <Select v-model="modalForm.deptId" class="select-width-350px">
               <Option v-for="item in deptList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </FormItem>
           <FormItem label="备注：" prop="remark">
-            <Textarea :content="modalForm.remark" :width="300" @update-textarea="updateTextareaHandle"/>
+            <Textarea :content="modalForm.remark" :width="350" @update-textarea="updateTextareaHandle"/>
           </FormItem>
         </Form>
       </div>
