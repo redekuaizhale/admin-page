@@ -19,5 +19,6 @@ export default {
   status: {
     inUse: '可用',
     noUse: '禁用'
-  }
+  },
+  TreeRoot: '0'
 }

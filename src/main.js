@@ -10,12 +10,14 @@ import './index.less'
 import '@/assets/icons/iconfont.css'
 import commonUtils from './libs/commonUtils'
 import dateUtils from './libs/dateUtils'
+import echarts from 'echarts'
 
 Vue.use(ViewUI)
 Vue.use(iviewArea)
 Vue.prototype.config = config
 Vue.prototype.utils = commonUtils
 Vue.prototype.dateUtils = dateUtils
+Vue.prototype.echarts = echarts
 
 const develop_mode = process.env.NODE_ENV !== 'production'
 Vue.config.debug = develop_mode

@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { roleAddReq, rolesReq } from '../../api/role'
-import { userRolesReq } from '../../api/userRole'
+import { rolesReq } from '../../api/role'
+import { addUserRoleReq, findHasRoleIdsReq } from '../../api/userRole'
 import ModalFooter from '../modal-footer/modal-footer'
 import Textarea from '../textarea/textarea'
 
@@ -60,7 +60,16 @@ export default {
       this.getHasRuleList()
     },
     modalSubmitHandle() {
-      const requestData = {}
+      this.modalLoading = true
+      const requestData = {
+        userId: this.userId,
+        roleIdList: this.roleIdList
+      }
+      addUserRoleReq(requestData).then(res => {
+        this.modalVisiable = false
+        this.modalLoading = false
+        this.$Message.success(res.resultMessage)
+      })
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
@@ -75,16 +84,8 @@ export default {
     },
     getHasRuleList() {
       this.roleIdList = []
-      const requestData = {
-        queryParamList: [this.utils.newQueryParam('=', 'userEntity.id', this.userId, this.config.String)]
-      }
-      userRolesReq(requestData).then(res => {
-        const list = res.data.resultList
-        if (list && list.length > 0) {
-          list.map(item => {
-            this.roleIdList.push(item.id)
-          })
-        }
+      findHasRoleIdsReq({ userId: this.userId }).then(res => {
+        this.roleIdList = res.data
       })
     }
   }
@@ -95,6 +96,7 @@ export default {
 .sys-user-role{
   .ivu-checkbox-wrapper{
     display: block;
+    padding-left: 20px;
   }
 }
 </style>

@@ -70,14 +70,20 @@ export default {
         this.$Message.success(res.resultMessage)
       }).finally(() => {
         this.submitLoading = false
+        this.modalVisiable = false
       })
     },
     treeCheckHandle(checkedTree) {
       this.checkedTree = []
+      const list = []
       if (checkedTree.length > 0) {
         checkedTree.map(item => {
-          this.checkedTree.push(item.id)
+          list.push(item.id)
+          if (item.parentId !== this.config.TreeRoot) {
+            list.push(item.parentId)
+          }
         })
+        this.checkedTree = this.utils.removeArrayRepeat(list)
       }
     }
   }

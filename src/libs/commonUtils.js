@@ -175,4 +175,54 @@ export default class commonUtils {
   static splitContent = (value, char) => {
     return value ? value.split(char) : ''
   }
+
+  /**
+   * 去重数据元素
+   * @param arr
+   */
+  static removeArrayRepeat = (arr) => {
+    if (!arr || arr.length === 0) {
+      return []
+    }
+    return Array.from(new Set(arr))
+  }
+
+  /**
+   * @description 绑定事件 on(element, event, handler)
+   */
+  static on = (function() {
+    console.info('3131312',)
+    if (document.addEventListener) {
+      return function(element, event, handler) {
+        if (element && event && handler) {
+          element.addEventListener(event, handler, false)
+        }
+      }
+    } else {
+      return function(element, event, handler) {
+        if (element && event && handler) {
+          element.attachEvent('on' + event, handler)
+        }
+      }
+    }
+  })()
+
+  /**
+   * @description 解绑事件 off(element, event, handler)
+   */
+  static off = (function() {
+    if (document.removeEventListener) {
+      return function(element, event, handler) {
+        if (element && event) {
+          element.removeEventListener(event, handler, false)
+        }
+      }
+    } else {
+      return function(element, event, handler) {
+        if (element && event) {
+          element.detachEvent('on' + event, handler)
+        }
+      }
+    }
+  })()
 }

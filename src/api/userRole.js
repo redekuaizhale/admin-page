@@ -8,3 +8,19 @@ export const userRolesReq = (data) => {
   })
 }
 
+export const addUserRoleReq = (data) => {
+  return request({
+    url: '/userRole/addUserRole.do',
+    method: 'post',
+    data
+  })
+}
+
+export const findHasRoleIdsReq = (data) => {
+  return request({
+    url: '/userRole/findHasRoleIds.do',
+    method: 'post',
+    data
+  })
+}
+
