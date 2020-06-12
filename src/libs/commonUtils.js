@@ -188,41 +188,19 @@ export default class commonUtils {
   }
 
   /**
-   * @description 绑定事件 on(element, event, handler)
+   * 判断当前设备
+   * @returns {boolean}
    */
-  static on = (function() {
-    console.info('3131312',)
-    if (document.addEventListener) {
-      return function(element, event, handler) {
-        if (element && event && handler) {
-          element.addEventListener(event, handler, false)
-        }
-      }
-    } else {
-      return function(element, event, handler) {
-        if (element && event && handler) {
-          element.attachEvent('on' + event, handler)
-        }
+  static checkDeviceIsMobile = () => {
+    const userAgentInfo = navigator.userAgent
+    const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
+    let flag = false
+    for (let v = 0; v < Agents.length; v++) {
+      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+        flag = true
+        break
       }
     }
-  })()
-
-  /**
-   * @description 解绑事件 off(element, event, handler)
-   */
-  static off = (function() {
-    if (document.removeEventListener) {
-      return function(element, event, handler) {
-        if (element && event) {
-          element.removeEventListener(event, handler, false)
-        }
-      }
-    } else {
-      return function(element, event, handler) {
-        if (element && event) {
-          element.detachEvent('on' + event, handler)
-        }
-      }
-    }
-  })()
+    return flag
+  }
 }

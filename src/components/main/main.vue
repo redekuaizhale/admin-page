@@ -42,8 +42,8 @@ export default {
   },
   data() {
     return {
-      collapsed: false,
-      isFullscreen: false
+      isFullscreen: false,
+      collapsed: this.$store.state.isMobile
     }
   },
   computed: {

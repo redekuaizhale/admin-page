@@ -19,6 +19,7 @@ export default {
     }
   },
   created() {
+    this.initDevice()
     this.initUserMenuAndRouterData()
   },
   methods: {
@@ -32,6 +33,9 @@ export default {
       this.$nextTick(() => {
         this.isRouterAlive = true
       })
+    },
+    initDevice() {
+      this.$store.dispatch('setDevice', this.utils.checkDeviceIsMobile())
     }
   }
 }

@@ -6,20 +6,21 @@
  @company Dingxuan
 !-->
 <template>
-  <div>
+  <div class="Home">
     <Card>
       <p slot="title">
+        <AvatorIcon :size="15" type="_barchart"/>
         测试
       </p>
       <div>
         <Row>
-          <Col id="col1" ref="test" span="12">
+          <Col :xs="24" :md="16">
           <h4 id="h4">访问量趋势</h4>
-          <HomeTreatTotal/>
+          <HomeTreatTotal class="card-body"/>
           </Col>
-          <Col span="12">
+          <Col :xs="24" :md="8">
           <h4>访问量趋势</h4>
-          <HomeSickTypeTotal/>
+          <HomeSickTypeTotal class="card-body"/>
           </Col>
         </Row>
       </div>
@@ -30,18 +31,19 @@
 <script>
 import HomeTreatTotal from '../../components/home-chart/home-treat-total'
 import HomeSickTypeTotal from '../../components/home-chart/home-sick-type-total'
+import CommonIcon from '../../components/common-icon/common-icon'
+import AvatorIcon from '../../components/avator-icon/avator-icon'
 export default {
   name: 'Home',
-  components: { HomeSickTypeTotal, HomeTreatTotal },
-  created() {
-  },
-  mounted() {
-    const width = document.getElementById('h4').offsetWidth
-    console.info('h4', width)
-  }
+  components: { AvatorIcon, CommonIcon, HomeSickTypeTotal, HomeTreatTotal }
 }
 </script>
 
-<style scoped>
+<style lang="less">
+  .Home{
+    .card-body{
+      height: 240px;
+    }
+  }
 
 </style>

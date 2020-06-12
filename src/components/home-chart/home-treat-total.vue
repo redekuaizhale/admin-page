@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <div id="test" ref="dom" style="height: 300px;"/>
+  <div id="test" ref="dom"/>
 </template>
 
 <script>
@@ -18,6 +18,13 @@ export default {
         tooltip: {},
         xAxis: {
           data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+        },
+        grid: {
+          top: '5%',
+          left: '2%',
+          right: '5%',
+          bottom: '5%',
+          containLabel: true
         },
         color: ['#58AFFF'],
         yAxis: {
@@ -32,7 +39,7 @@ export default {
           {
             name: '治疗人次',
             type: 'bar',
-            barWidth: 45,
+            barMaxWidth: 40,
             data: [414, 700, 200, 600, 800, 1200, 540, 874, 3000, 200, 471, 658]
           }
         ]

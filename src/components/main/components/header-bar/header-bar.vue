@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     breadCrumbList() {
-      return this.$store.state.app.breadCrumbList
+      return []
     }
   },
   methods: {
