@@ -188,7 +188,7 @@ export default class commonUtils {
   }
 
   /**
-   * 判断当前设备
+   * 判断当前设备是否手机端访问
    * @returns {boolean}
    */
   static checkDeviceIsMobile = () => {
