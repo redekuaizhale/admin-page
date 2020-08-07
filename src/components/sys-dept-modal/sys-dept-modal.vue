@@ -15,14 +15,17 @@
       </p>
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
-          <FormItem label="部门名称:" prop="name">
-            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
-          </FormItem>
           <FormItem label="部门排序:" prop="deptOrder">
             <InputNumber :max="10000" :min="0" v-model="modalForm.deptOrder" style="width: 300px;"/>
           </FormItem>
+          <FormItem label="部门名称:" prop="name">
+            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
+          </FormItem>
+          <FormItem label="成立时间:" prop="setupDate">
+            <DatePicker v-model="modalForm.setupDate" format="yyyy-MM-dd HH:mm:ss" type="date" placeholder=" " class="input-width-300px"/>
+          </FormItem>
           <FormItem label="部门描述:" prop="remark">
-            <Textarea :content="modalForm.remark" :width="300" @update-textarea="updateTextareaHandle"/>
+            <Textarea v-model="modalForm.remark" :width="300"/>
           </FormItem>
         </Form>
       </div>
@@ -82,7 +85,7 @@ export default {
     modalSubmitHandle() {
       this.$refs['modalForm'].validate((valid) => {
         if (valid) {
-          this.submitLoading = true
+          // this.submitLoading = true
           const requestData = Object.assign({}, this.modalForm)
           requestData.companyId = this.companyId
           if (this.addFlag) {
@@ -92,11 +95,12 @@ export default {
               this.submitLoading = false
             })
           } else {
-            deptEditReq(requestData).then(res => {
+            console.info('this.modalForm', this.modalForm)
+            /* deptEditReq(requestData).then(res => {
               this.submitSuccessHandle(res)
             }).finally(() => {
               this.submitLoading = false
-            })
+            })*/
           }
         }
       })

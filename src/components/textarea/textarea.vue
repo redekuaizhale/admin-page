@@ -8,12 +8,13 @@
 <template>
   <div>
     <Input
-      v-model="value"
+      v-model="currentValue"
       :style="{'width':width+'px'}"
       maxlength="2000"
       show-word-limit
       type="textarea"
       placeholder=" "
+      @input="handleInput"
     >
     </Input>
   </div>
@@ -30,16 +31,29 @@ export default {
     content: {
       type: String,
       default: ''
+    },
+    value: {
+      type: [String, Number],
+      default: ''
     }
   },
-  computed: {
-    value: {
-      get() {
-        return this.content
-      },
-      set(value) {
-        this.$emit('update-textarea', value)
-      }
+  data() {
+    return {
+      currentValue: this.value
+    }
+  },
+  watch: {
+    value(val) {
+      this.setCurrentValue(val)
+    }
+  },
+  methods: {
+    setCurrentValue(value) {
+      this.currentValue = value
+    },
+    handleInput(value) {
+      this.$emit('input', value)
+      this.$emit('on-change', value)
     }
   }
 }
