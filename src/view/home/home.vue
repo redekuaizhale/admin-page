@@ -31,11 +31,10 @@
 <script>
 import HomeTreatTotal from '../../components/home-chart/home-treat-total'
 import HomeSickTypeTotal from '../../components/home-chart/home-sick-type-total'
-import CommonIcon from '../../components/common-icon/common-icon'
 import AvatorIcon from '../../components/avator-icon/avator-icon'
 export default {
   name: 'Home',
-  components: { AvatorIcon, CommonIcon, HomeSickTypeTotal, HomeTreatTotal }
+  components: { AvatorIcon, HomeSickTypeTotal, HomeTreatTotal }
 }
 </script>
 

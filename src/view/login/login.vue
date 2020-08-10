@@ -40,12 +40,10 @@
 </template>
 
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import { loginReq } from '../../api/user'
 
 export default {
   name: 'Login',
-  components: { CommonIcon },
   data() {
     return {
       errorMessage: '',
@@ -82,7 +80,7 @@ export default {
             this.utils.setCookie(this.config.userTokenKey, token)
             this.utils.setCookie(this.config.userNameKey, name)
             this.$store.dispatch('setUserMenu').then(() => {
-              this.utils.routerPush('home', {})
+              this.utils.routerPush(this.config.index, {})
               this.loginLoading = false
             })
           }).catch(() => {

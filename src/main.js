@@ -11,7 +11,9 @@ import '@/assets/icons/iconfont.css'
 import commonUtils from './libs/commonUtils'
 import dateUtils from './libs/dateUtils'
 import echarts from 'echarts'
+import CommonIcon from './components/common-icon'
 
+Vue.component(CommonIcon.name, CommonIcon)
 Vue.use(ViewUI)
 Vue.use(iviewArea)
 Vue.prototype.config = config

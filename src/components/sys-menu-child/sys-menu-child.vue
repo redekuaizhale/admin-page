@@ -34,16 +34,15 @@
 
 <script>
 import { menusReq, menuDeleteReq } from '../../api/menu'
-import CommonIcon from '../common-icon/common-icon'
 import CrudButtonGroup from '../crud-button-group/crud-button-group'
 import SysMenuModal from '../sys-menu-modal/sys-menu-modal'
 import TableCustom from '../table-custom/table-custom'
-import BaseData from '../base-data/base-data'
+import BaseTableData from '../base-table-data/base-table-data'
 
 export default {
   name: 'SysMenuChild',
-  components: { BaseData, TableCustom, SysMenuModal, CrudButtonGroup, CommonIcon },
-  extends: BaseData,
+  components: { BaseTableData, TableCustom, SysMenuModal, CrudButtonGroup },
+  extends: BaseTableData,
   data() {
     return {
       tableColumns: [

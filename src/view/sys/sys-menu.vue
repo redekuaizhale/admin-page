@@ -13,12 +13,11 @@
 </template>
 
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import SysMenuParent from '../../components/sys-menu-parent/sys-menu-parent'
 import SysMenuChild from '../../components/sys-menu-child/sys-menu-child'
 export default {
   name: 'SysMenu',
-  components: { SysMenuChild, SysMenuParent, CommonIcon },
+  components: { SysMenuChild, SysMenuParent },
   data() {
     return {
     }

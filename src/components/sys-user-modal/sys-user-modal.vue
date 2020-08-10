@@ -15,23 +15,23 @@
       </p>
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
-          <FormItem label="登录账号：" prop="loginCode">
+          <FormItem label="登录账号:" prop="loginCode">
             <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-350px"></Input>
           </FormItem>
-          <FormItem label="是否可用：" prop="status">
+          <FormItem label="是否可用:" prop="status">
             <RadioGroup v-model="modalForm.status">
               <Radio v-for="item in statusList" :key="item.label" :label="item.label"/>
             </RadioGroup>
           </FormItem>
-          <FormItem label="所属机构：">
+          <FormItem label="所属机构:">
             <CompanySelect :id="modalForm.companyId" @commit-compnay-id="companyIdChangeHandle"/>
           </FormItem>
-          <FormItem label="所属部门：" prop="deptId">
+          <FormItem label="所属部门:" prop="deptId">
             <Select v-model="modalForm.deptId" class="select-width-350px">
               <Option v-for="item in deptList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </FormItem>
-          <FormItem label="备注：" prop="remark">
+          <FormItem label="备注:" prop="remark">
             <Textarea :content="modalForm.remark" :width="350" @update-textarea="updateTextareaHandle"/>
           </FormItem>
         </Form>
@@ -113,8 +113,8 @@ export default {
         this.modalForm.status = this.config.status.inUse
         this.$refs['modalForm'].resetFields()
       } else {
-        this.modalForm.companyId = data.deptEntity.companyEntity.id
-        this.modalForm.deptId = data.deptEntity.id
+        this.modalForm.companyId = data.companyId
+        this.modalForm.deptId = data.deptId
       }
     },
 

@@ -8,14 +8,13 @@
 <template>
   <div>
     <Page
-      :current.sync="pageNum"
+      :current.sync="currentPage"
       :total="total"
-      :page-size="pageSize"
+      :page-size="currentPageSize"
       show-sizer
       prev-text="上一页"
       next-text="下一页"
       show-total
-      show-elevator
       @on-change="pageNumChangeHandle"
       @on-page-size-change="pageSizeChangeHandle"
     />
@@ -26,28 +25,31 @@
 export default {
   name: 'PageCustom',
   props: {
+    // eslint-disable-next-line vue/require-default-prop
     pageNum: {
-      type: Number,
-      default: 1
+      type: Number
     },
+    // eslint-disable-next-line vue/require-default-prop
     total: {
-      type: Number,
-      default: 0
+      type: Number
     },
+    // eslint-disable-next-line vue/require-default-prop
     pageSize: {
-      type: Number,
-      default: 10
+      type: Number
     }
   },
   data() {
-    return {}
+    return {
+      currentPage: this.pageNum,
+      currentPageSize: this.pageSize
+    }
   },
   methods: {
     pageNumChangeHandle(pageNum) {
-
+      this.$emit('on-change', pageNum)
     },
     pageSizeChangeHandle(pageSize) {
-
+      this.$emit('on-page-size-change', pageSize)
     }
   }
 }

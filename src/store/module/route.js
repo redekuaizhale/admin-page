@@ -17,6 +17,7 @@ export default {
               path: child.path,
               name: child.name,
               meta: {
+                icon: child.icon,
                 title: child.title,
                 auth: true,
                 parent: child.parentName
@@ -32,7 +33,8 @@ export default {
           children: childRouters,
           name: parent.name,
           meta: {
-            auth: true
+            auth: true,
+            icon: parent.icon
           }
         })
       })

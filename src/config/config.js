@@ -1,4 +1,6 @@
 export default {
+  login: 'login',
+  index: 'home',
   userTokenKey: 'user-token-key',
   userNameKey: 'user-name-key',
   title: 'REDEKUAIZHALE',
@@ -20,5 +22,8 @@ export default {
     inUse: '可用',
     noUse: '禁用'
   },
-  TreeRoot: '0'
+  TreeRoot: '0',
+  pageNum: 1,
+  pageSize: 10,
+  total: 0
 }

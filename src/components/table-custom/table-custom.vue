@@ -28,12 +28,16 @@ export default {
     check: {
       type: Boolean,
       default: false
+    },
+    index: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       checkedId: '',
-      operateCheck: {
+      operateCheckCol: {
         title: '选中',
         width: '70',
         render: (h, params) => {
@@ -50,14 +54,23 @@ export default {
             })
           ])
         }
+      },
+      indexCol: {
+        title: '序号',
+        type: 'index',
+        width: 70,
+        align: 'center'
       }
     }
   },
   computed: {
     initColumns() {
       const newColumns = [...this.columns]
+      if (this.index) {
+        newColumns.unshift(this.indexCol)
+      }
       if (this.check) {
-        newColumns.unshift(this.operateCheck)
+        newColumns.unshift(this.operateCheckCol)
       }
       return newColumns
     }

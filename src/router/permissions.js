@@ -4,6 +4,7 @@ import routes from './routers'
 import ViewUI from 'view-design'
 import utils from '../libs/commonUtils'
 import { permissionsReq } from '../api/user'
+import config from '../config/config'
 Vue.use(Router)
 
 export const router = new Router({
@@ -16,9 +17,11 @@ router.beforeEach((to, from, next) => {
   if (utils.getLoginUserToken()) {
     const { path } = to
     if (path === '/') {
-      next()
+      next({
+        name: config.index
+      })
     } else {
-      if (to.name === 'login') {
+      if (to.name === config.login) {
         next()
       } else {
         if (to.name) {
@@ -37,11 +40,11 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (to.name === 'login') {
+    if (to.name === config.login) {
       next()
     } else {
       next({
-        name: 'login'
+        name: config.login
       })
     }
   }

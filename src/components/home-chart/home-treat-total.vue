@@ -28,7 +28,7 @@ export default {
         },
         color: ['#58AFFF'],
         yAxis: {
-          name: '单位：人/次',
+          name: '单位:人/次',
           splitLine: {
             lineStyle: {
               type: 'dashed'

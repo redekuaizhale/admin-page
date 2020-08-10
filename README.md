@@ -1,6 +1,6 @@
-一.环境要求：
-1.node js 版本 v10.16.1 
-2.推荐使用淘宝镜像，执行命令：npm install -g cnpm --registry=https://registry.npm.taobao.org
+一.环境要求:
+1.node js 版本 v10.16.1
+2.推荐使用淘宝镜像，执行命令:npm install -g cnpm --registry=https://registry.npm.taobao.org
 3.命名行执行，cnpm install ，安装项目依赖
 4.运行项目，npm run dev，自动打开浏览器跳转登录页面
 

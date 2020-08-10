@@ -2,7 +2,7 @@
  vue description
 
  @author zhanghui
- @date 2020-05-22
+ @date 2020-08-10
  @company Dingxuan
 !-->
 <template>
@@ -14,16 +14,16 @@ export default {
   name: 'BaseData',
   data() {
     return {
-      tableLoading: false,
-      checkedRow: {},
-      tableData: []
+
+    }
+  },
+  computed: {
+    getPageIcon() {
+      return this.$router.currentRoute.meta.icon
     }
   },
   methods: {
-    clearCheckedData() {
-      this.checkedRow = {}
-      this.$refs.TableCustom.clearCheckedId()
-    }
+
   }
 }
 </script>

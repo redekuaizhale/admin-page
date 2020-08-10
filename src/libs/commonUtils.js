@@ -7,7 +7,6 @@
 import Cookie from 'js-cookie'
 import { Notice, Message } from 'view-design'
 import router from '../router/permissions'
-
 import config from '../config/config'
 
 export default class commonUtils {
@@ -163,7 +162,7 @@ export default class commonUtils {
    */
   static checkIsLoginPage() {
     const { hash } = window.location
-    return hash.indexOf('login') > 0
+    return hash.indexOf(config.login) > 0
   }
 
   /**

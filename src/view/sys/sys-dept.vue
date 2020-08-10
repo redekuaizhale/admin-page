@@ -14,7 +14,7 @@
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
-          <FormItem label="机构：">
+          <FormItem label="机构:">
             <CompanySelect :child="false" @commit-compnay-id="updateCompanyId"/>
           </FormItem>
         </Form>
@@ -44,10 +44,9 @@
 </template>
 
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import CompanySelect from '../../components/company-select/company-select'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
-import BaseData from '../../components/base-data/base-data'
+import BaseTableData from '../../components/base-table-data/base-table-data'
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
 import SysDeptModal from '../../components/sys-dept-modal/sys-dept-modal'
@@ -55,8 +54,8 @@ import { deptsReq, deptDeleteReq } from '../../api/dept'
 
 export default {
   name: 'SysDept',
-  components: { SysDeptModal, PageCustom, TableCustom, BaseData, CrudButtonGroup, CompanySelect, CommonIcon },
-  extends: BaseData,
+  components: { SysDeptModal, PageCustom, TableCustom, BaseTableData, CrudButtonGroup, CompanySelect },
+  extends: BaseTableData,
   data() {
     return {
       queryForm: {

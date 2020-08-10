@@ -13,14 +13,13 @@
   </Card>
 </template>
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import SysCompanyModal from '../../components/sys-company-modal/sys-company-modal'
 import { companyTreeReq, companyDeleteReq } from '../../api/company'
 import ConfirmModal from '../../components/confirm-modal/confirm-modal'
 
 export default {
   name: 'SysCompany',
-  components: { ConfirmModal, SysCompanyModal, CommonIcon },
+  components: { ConfirmModal, SysCompanyModal },
   data() {
     return {
       treeData: [

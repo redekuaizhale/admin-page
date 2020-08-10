@@ -36,18 +36,17 @@
 </template>
 
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
-import BaseData from '../../components/base-data/base-data'
+import BaseTableData from '../../components/base-table-data/base-table-data'
 import { roleDeleteReq, rolesReq } from '../../api/role'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import SysRoleModal from '../../components/sys-role-modal/sys-role-modal'
 
 export default {
   name: 'SysRole',
-  components: { SysRoleModal, CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
-  extends: BaseData,
+  components: { SysRoleModal, CrudButtonGroup, BaseTableData, PageCustom, TableCustom },
+  extends: BaseTableData,
   data() {
     return {
       tableColumns: [

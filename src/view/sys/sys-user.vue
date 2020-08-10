@@ -8,22 +8,19 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_menu-user" />
+      <CommonIcon :type="getPageIcon" />
       用户管理
     </p>
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
-          <FormItem label="姓名：">
-            <Input v-model="queryForm.name" type="text" placeholder=""> </Input>
+          <FormItem label="姓名:">
+            <Input v-model="queryForm.name" type="text" placeholder="" clearable> </Input>
           </FormItem>
-          <FormItem label="登录名：">
-            <Input v-model="queryForm.loginCode" type="text" placeholder="">
-            </Input>
+          <FormItem label="登录名:">
+            <Input v-model="queryForm.loginCode" type="text" placeholder="" clearable></Input>
           </FormItem>
-          <FormItem>
-            <Button icon="md-search" type="primary" @click="queryListHandle()">查询</Button>
-          </FormItem>
+          <Button icon="md-search" type="primary" @click="queryListHandle()">查询</Button>
         </Form>
       </div>
       <div class="query-result">
@@ -51,10 +48,17 @@
           :columns="tableColumns"
           :data="tableData"
           :check="true"
+          :index="true"
           :loading="tableLoading"
           @check-change="getCheckedRow"
         />
-        <PageCustom/>
+        <PageCustom
+          :page-num="pageNum"
+          :page-size="pageSize"
+          :total="total"
+          @on-change="pageNumChangeHandle"
+          @on-page-size-change="pageSizeChangeHandle"
+        />
       </div>
       <SysUserMenuModal ref="SysUserMenuModal" :checked-id="checkedRow.id"/>
       <SysUserModal ref="SysUserModal" @update-user="refreshHandle"/>
@@ -64,20 +68,20 @@
 </template>
 
 <script>
-import CommonIcon from '../../components/common-icon/common-icon'
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
-import BaseData from '../../components/base-data/base-data'
+import BaseTableData from '../../components/base-table-data/base-table-data'
 import { userDeleteReq, usersReq } from '../../api/user'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import SysUserMenuModal from '../../components/sys-user-menu-modal/sys-user-menu-modal'
 import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 import SysUserRoleModal from '../../components/sys-user-role/sys-user-role'
+import BaseData from '../../components/base-data/base-data'
 
 export default {
   name: 'SysUser',
-  components: { SysUserRoleModal, SysUserModal, SysUserMenuModal, CrudButtonGroup, BaseData, PageCustom, TableCustom, CommonIcon },
-  extends: BaseData,
+  components: { BaseData, SysUserRoleModal, SysUserModal, SysUserMenuModal, CrudButtonGroup, BaseTableData, PageCustom, TableCustom },
+  mixins: [BaseTableData, BaseData],
   data() {
     return {
       queryForm: {
@@ -85,11 +89,6 @@ export default {
         loginCode: ''
       },
       tableColumns: [
-        {
-          type: 'index',
-          width: 60,
-          align: 'center'
-        },
         {
           title: '姓名',
           key: 'name'
@@ -108,17 +107,11 @@ export default {
         },
         {
           title: '所属机构',
-          key: 'companyEntity.name',
-          render: (h, params) => {
-            return h('div', params.row.deptEntity.companyEntity.name)
-          }
+          key: 'companyName'
         },
         {
           title: '所属部门',
-          key: 'deptEntity.name',
-          render: (h, params) => {
-            return h('div', params.row.deptEntity.name)
-          }
+          key: 'deptName'
         }
       ]
     }
@@ -127,7 +120,7 @@ export default {
     this.getTableData()
   },
   methods: {
-    setQueryParam() {
+    setQueryRequest() {
       const { name, loginCode } = this.queryForm
       const params = []
       if (name) {
@@ -136,7 +129,11 @@ export default {
       if (loginCode) {
         params.push(this.utils.newQueryParam('=', 'loginCode', loginCode, this.config.String))
       }
-      return params
+      return {
+        pageNum: this.pageNum - 1,
+        pageSize: this.pageSize,
+        queryParamList: params
+      }
     },
     queryListHandle() {
       this.getTableData()
@@ -145,19 +142,16 @@ export default {
       this.tableData = []
       this.tableLoading = true
       this.clearCheckedData()
-      const requestData = {
-        queryParamList: this.setQueryParam()
-      }
+      const requestData = this.setQueryRequest()
       usersReq(requestData).then(res => {
-        if (res.data.resultList) {
-          this.tableData = res.data.resultList
-        }
+        const { total, resultList } = res.data
+        this.total = total
+        this.tableData = resultList
       }).finally(() => {
         this.tableLoading = false
       })
     },
     addListHandle() {
-
     },
     getCheckedRow(row) {
       this.checkedRow = row
