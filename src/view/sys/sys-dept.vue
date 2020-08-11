@@ -8,14 +8,14 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_dept"/>
+      <CommonIcon :type="getPageIcon"/>
       部门管理
     </p>
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
           <FormItem label="机构:">
-            <CompanySelect :child="false" @commit-compnay-id="updateCompanyId"/>
+            <CompanySelect :clearable="false" :child="false" @commit-compnay-id="updateCompanyId"/>
           </FormItem>
         </Form>
       </div>
@@ -30,13 +30,19 @@
         />
         <TableCustom
           ref="TableCustom"
+          :index="false"
           :columns="tableColumns"
           :data="tableData"
-          :check="true"
           :loading="tableLoading"
           @check-change="getCheckedRow"
         />
-        <PageCustom/>
+        <PageCustom
+          :page-num="pageNum"
+          :page-size="pageSize"
+          :total="total"
+          @on-change="pageNumChangeHandle"
+          @on-page-size-change="pageSizeChangeHandle"
+        />
       </div>
       <SysDeptModal ref="SysDeptModal" :company-id="queryForm.companyId" @update-dept="refreshHandle"/>
     </div>
@@ -46,16 +52,17 @@
 <script>
 import CompanySelect from '../../components/company-select/company-select'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
-import BaseTableData from '../../components/base-table-data/base-table-data'
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
 import SysDeptModal from '../../components/sys-dept-modal/sys-dept-modal'
 import { deptsReq, deptDeleteReq } from '../../api/dept'
+import BaseMixins from '../../mixins/base-mixins'
+import TableMixins from '../../mixins/table-mixins'
 
 export default {
   name: 'SysDept',
-  components: { SysDeptModal, PageCustom, TableCustom, BaseTableData, CrudButtonGroup, CompanySelect },
-  extends: BaseTableData,
+  components: { SysDeptModal, PageCustom, TableCustom, CrudButtonGroup, CompanySelect },
+  mixins: [BaseMixins, TableMixins],
   data() {
     return {
       queryForm: {
@@ -63,9 +70,9 @@ export default {
       },
       tableColumns: [
         {
-          type: 'index',
-          width: 60,
-          align: 'center'
+          title: '排序',
+          key: 'deptOrder',
+          width: 70
         },
         {
           title: '名称',
@@ -73,8 +80,8 @@ export default {
           width: 200
         },
         {
-          title: '排序',
-          key: 'deptOrder',
+          title: '成立日期',
+          key: 'setupDate',
           width: 200
         },
         {
@@ -85,13 +92,17 @@ export default {
     }
   },
   methods: {
-    setQueryParam() {
+    setQueryRequest() {
       const { companyId } = this.queryForm
       const params = []
       if (companyId) {
         params.push(this.utils.newQueryParam('=', 'companyEntity.id', companyId, this.config.String))
       }
-      return params
+      return {
+        pageNum: this.pageNum - 1,
+        pageSize: this.pageSize,
+        queryParamList: params
+      }
     },
     getTableData() {
       this.tableData = []
@@ -100,9 +111,7 @@ export default {
         return
       }
       this.tableLoading = true
-      const requestData = {
-        queryParamList: this.setQueryParam()
-      }
+      const requestData = this.setQueryRequest()
       deptsReq(requestData).then(res => {
         if (res.data.resultList) {
           this.tableData = res.data.resultList

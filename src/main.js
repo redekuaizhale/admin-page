@@ -12,8 +12,10 @@ import commonUtils from './libs/commonUtils'
 import dateUtils from './libs/dateUtils'
 import echarts from 'echarts'
 import CommonIcon from './components/common-icon'
+import DateCustom from './components/date-custom'
 
 Vue.component(CommonIcon.name, CommonIcon)
+Vue.component(DateCustom.name, DateCustom)
 Vue.use(ViewUI)
 Vue.use(iviewArea)
 Vue.prototype.config = config

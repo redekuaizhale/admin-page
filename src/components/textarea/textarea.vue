@@ -9,7 +9,6 @@
   <div>
     <Input
       v-model="currentValue"
-      :style="{'width':width+'px'}"
       maxlength="2000"
       show-word-limit
       type="textarea"
@@ -24,10 +23,6 @@
 export default {
   name: 'Textarea',
   props: {
-    width: {
-      type: Number,
-      default: 200
-    },
     content: {
       type: String,
       default: ''

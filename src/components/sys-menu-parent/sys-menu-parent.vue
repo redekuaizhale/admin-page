@@ -21,9 +21,9 @@
       />
       <TableCustom
         ref="TableCustom"
+        :index="false"
         :columns="tableColumns"
         :data="tableData"
-        :check="true"
         :loading="tableLoading"
         @check-change="getCheckedRow"
       />
@@ -37,12 +37,13 @@ import { menusReq, menuDeleteReq } from '../../api/menu'
 import CrudButtonGroup from '../crud-button-group/crud-button-group'
 import SysMenuModal from '../sys-menu-modal/sys-menu-modal'
 import TableCustom from '../table-custom/table-custom'
-import BaseTableData from '../base-table-data/base-table-data'
+import BaseMixins from '../../mixins/base-mixins'
+import TableMixins from '../../mixins/table-mixins'
 
 export default {
   name: 'SysMenuParent',
-  components: { BaseTableData, TableCustom, SysMenuModal, CrudButtonGroup },
-  extends: BaseTableData,
+  components: { TableCustom, SysMenuModal, CrudButtonGroup },
+  mixins: [BaseMixins, TableMixins],
   props: {
     parentId: {
       type: String,
@@ -69,7 +70,7 @@ export default {
           title: '图标',
           key: 'icon',
           render: (h, params) => {
-            return h(CommonIcon, {
+            return h('CommonIcon', {
               props: {
                 type: params.row.icon,
                 size: 14
@@ -128,10 +129,7 @@ export default {
         ]
       }
       menusReq(requestData).then(res => {
-        if (res.data.resultList) {
-          this.tableData = res.data.resultList
-        }
-      }).finally(() => {
+        this.tableData = res.data.resultList
         this.tableLoading = false
       })
     },

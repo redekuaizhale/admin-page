@@ -47,8 +47,6 @@
           ref="TableCustom"
           :columns="tableColumns"
           :data="tableData"
-          :check="true"
-          :index="true"
           :loading="tableLoading"
           @check-change="getCheckedRow"
         />
@@ -70,18 +68,18 @@
 <script>
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
-import BaseTableData from '../../components/base-table-data/base-table-data'
 import { userDeleteReq, usersReq } from '../../api/user'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import SysUserMenuModal from '../../components/sys-user-menu-modal/sys-user-menu-modal'
 import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 import SysUserRoleModal from '../../components/sys-user-role/sys-user-role'
-import BaseData from '../../components/base-data/base-data'
+import BaseMixins from '../../mixins/base-mixins'
+import TableMixins from '../../mixins/table-mixins'
 
 export default {
   name: 'SysUser',
-  components: { BaseData, SysUserRoleModal, SysUserModal, SysUserMenuModal, CrudButtonGroup, BaseTableData, PageCustom, TableCustom },
-  mixins: [BaseTableData, BaseData],
+  components: { SysUserRoleModal, SysUserModal, SysUserMenuModal, CrudButtonGroup, PageCustom, TableCustom },
+  mixins: [BaseMixins, TableMixins],
   data() {
     return {
       queryForm: {

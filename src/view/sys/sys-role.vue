@@ -8,7 +8,7 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_menu-role" />
+      <CommonIcon :type="getPageIcon" />
       角色管理
     </p>
     <div>
@@ -23,9 +23,9 @@
         />
         <TableCustom
           ref="TableCustom"
+          :index="false"
           :columns="tableColumns"
           :data="tableData"
-          :check="true"
           :loading="tableLoading"
           @check-change="getCheckedRow"
         />
@@ -38,15 +38,16 @@
 <script>
 import TableCustom from '../../components/table-custom/table-custom'
 import PageCustom from '../../components/page-custom/page-custom'
-import BaseTableData from '../../components/base-table-data/base-table-data'
 import { roleDeleteReq, rolesReq } from '../../api/role'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import SysRoleModal from '../../components/sys-role-modal/sys-role-modal'
+import BaseMixins from '../../mixins/base-mixins'
+import TableMixins from '../../mixins/table-mixins'
 
 export default {
   name: 'SysRole',
-  components: { SysRoleModal, CrudButtonGroup, BaseTableData, PageCustom, TableCustom },
-  extends: BaseTableData,
+  components: { SysRoleModal, CrudButtonGroup, PageCustom, TableCustom },
+  mixins: [BaseMixins, TableMixins],
   data() {
     return {
       tableColumns: [

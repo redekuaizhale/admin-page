@@ -27,11 +27,11 @@ export default {
     },
     check: {
       type: Boolean,
-      default: false
+      default: true
     },
     index: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data() {
@@ -39,7 +39,7 @@ export default {
       checkedId: '',
       operateCheckCol: {
         title: '选中',
-        width: '70',
+        width: 70,
         render: (h, params) => {
           return h('div', [
             h('Checkbox', {

@@ -9,6 +9,7 @@
   <Row class="company-select">
     <Col span="4" style="width:350px;">
     <treeselect
+      :clearable="clearable"
       :disabled="disabled"
       v-model="companyId"
       :options="companyList"
@@ -61,6 +62,10 @@ export default {
     id: {
       type: String,
       default: ''
+    },
+    clearable: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

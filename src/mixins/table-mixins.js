@@ -1,17 +1,11 @@
-<!--
- vue description
-
- @author zhanghui
- @date 2020-05-22
- @company Dingxuan
-!-->
-<template>
-  <div/>
-</template>
-
-<script>
-export default {
-  name: 'BaseTableData',
+/**
+ * js description
+ *
+ * @author zhanghui
+ * @date 2020-08-11
+ * @company Dingxuan
+ */
+const TableMixins = {
   data() {
     return {
       tableLoading: false,
@@ -39,8 +33,4 @@ export default {
     }
   }
 }
-</script>
-
-<style scoped>
-
-</style>
+export default TableMixins
