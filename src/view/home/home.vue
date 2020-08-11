@@ -42,6 +42,7 @@ export default {
   .Home{
     .card-body{
       height: 240px;
+      width: 100%;
     }
   }
 

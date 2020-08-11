@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <div id="test" ref="dom"/>
+  <div ref="dom"/>
 </template>
 
 <script>
@@ -14,6 +14,7 @@ export default {
   name: 'HomeTreatTotal',
   data() {
     return {
+      chart: {},
       option: {
         tooltip: {},
         xAxis: {
@@ -46,6 +47,11 @@ export default {
       }
     }
   },
+  watch: {
+    '$store.state.collapsed'() {
+      this.echartsUtils.widthChangeResize(this.chart)
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       this.createChart()
@@ -53,9 +59,9 @@ export default {
   },
   methods: {
     createChart() {
-      const chart = this.echarts.init(this.$refs.dom)
-      chart.setOption(this.option)
-      window.onresize = chart.resize
+      this.chart = this.echarts.init(this.$refs.dom)
+      this.chart.setOption(this.option)
+      this.echartsUtils.windowResize(this.chart)
     }
   }
 }

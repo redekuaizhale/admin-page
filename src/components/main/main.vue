@@ -42,11 +42,13 @@ export default {
   },
   data() {
     return {
-      isFullscreen: false,
-      collapsed: this.$store.state.isMobile
+      isFullscreen: false
     }
   },
   computed: {
+    collapsed() {
+      return this.$store.state.collapsed
+    },
     projecName() {
       return this.config.title
     }
@@ -56,7 +58,7 @@ export default {
       this.$router.push({ name: route })
     },
     handleCollapsedChange(state) {
-      this.collapsed = state
+      this.$store.dispatch('setCollapsed', state)
     },
     handleClick(item) {
       this.turnToPage(item)

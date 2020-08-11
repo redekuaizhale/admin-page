@@ -5,7 +5,10 @@
 export default {
   name: 'SiderTrigger',
   props: {
-    collapsed: Boolean,
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
     icon: {
       type: String,
       default: 'navicon-round'
