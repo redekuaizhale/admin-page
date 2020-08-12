@@ -5,7 +5,7 @@
  * @date 2020-08-11
  * @company Dingxuan
  */
-const BaseMixins = {
+const ChartMixins = {
   data() {
     return {
     }
@@ -13,9 +13,11 @@ const BaseMixins = {
   methods: {
   },
   computed: {
-    getPageIcon() {
-      return this.$router.currentRoute.meta.icon
+  },
+  watch: {
+    '$store.state.collapsed'() {
+      this.echartsUtils.widthChangeResize(this.chart)
     }
   }
 }
-export default BaseMixins
+export default ChartMixins

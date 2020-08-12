@@ -29,7 +29,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 0
+      default: 14
     },
     avSize: {
       type: String,

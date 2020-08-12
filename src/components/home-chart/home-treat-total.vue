@@ -10,8 +10,11 @@
 </template>
 
 <script>
+import ChartMixins from '../../mixins/chart-mixins'
+
 export default {
   name: 'HomeTreatTotal',
+  mixins: [ChartMixins],
   data() {
     return {
       chart: {},
@@ -45,11 +48,6 @@ export default {
           }
         ]
       }
-    }
-  },
-  watch: {
-    '$store.state.collapsed'() {
-      this.echartsUtils.widthChangeResize(this.chart)
     }
   },
   mounted() {
