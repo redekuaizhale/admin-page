@@ -57,7 +57,6 @@ export default {
   components: { ModalFooter, CompanySelect },
   data() {
     const validateCompany = (rule, value, callback) => {
-      console.info('this.companyId', this)
       if (!this.companyId) {
         callback(new Error('所属机构不能为空！'))
       } else {
