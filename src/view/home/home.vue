@@ -9,7 +9,7 @@
   <div class="home">
     <Card>
       <p slot="title">
-        测试
+        卡片1
       </p>
       <div>
         <Row>
@@ -28,7 +28,7 @@
       <Col :xs="24" :md="12">
       <Card>
         <p slot="title">
-          标签1
+          卡片2
         </p>
         <div>
           <HomeSickTypePie/>
@@ -38,7 +38,7 @@
       <Col :xs="24" :md="12">
       <Card>
         <p slot="title">
-          标签2
+          卡片3
         </p>
         <div>
           <HomeDeptTotalLine/>
