@@ -18,10 +18,10 @@ router.beforeEach((to, from, next) => {
     const { path } = to
     if (path === '/') {
       next({
-        name: config.index
+        name: config.INDEX
       })
     } else {
-      if (to.name === config.login) {
+      if (to.name === config.LOGIN) {
         next()
       } else {
         if (to.name) {
@@ -40,11 +40,11 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (to.name === config.login) {
+    if (to.name === config.LOGIN) {
       next()
     } else {
       next({
-        name: config.login
+        name: config.LOGIN
       })
     }
   }

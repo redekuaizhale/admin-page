@@ -77,10 +77,10 @@ export default {
           }
           loginReq(requestData).then(async res => {
             const { token, name } = res.data
-            this.utils.setCookie(this.config.userTokenKey, token)
-            this.utils.setCookie(this.config.userNameKey, name)
+            this.utils.setCookie(this.config.USER_TOKEN_KEY, token)
+            this.utils.setCookie(this.config.USER_NAME_KEY, name)
             this.$store.dispatch('setUserMenu').then(() => {
-              this.utils.routerPush(this.config.index, {})
+              this.utils.routerPush(this.config.INDEX, {})
               this.loginLoading = false
             })
           }).catch(() => {

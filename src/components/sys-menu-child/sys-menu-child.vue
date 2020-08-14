@@ -109,7 +109,7 @@ export default {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', this.childParentId, this.config.String)]
+      return [this.utils.newQueryParam('=', 'parentId', this.childParentId, this.config.STRING)]
     },
     getTableData(childParentId) {
       this.tableData = []

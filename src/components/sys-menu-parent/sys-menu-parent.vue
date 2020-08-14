@@ -93,7 +93,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  created() {
     this.getTableData()
   },
   methods: {
@@ -113,7 +113,7 @@ export default {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.String)]
+      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.STRING)]
     },
     getTableData() {
       this.tableData = []
@@ -136,10 +136,6 @@ export default {
     getCheckedRow(row) {
       this.checkedRow = row
       this.$emit('update-parent-id', row.id)
-    },
-    clearCheckedData() {
-      this.checkedRow = {}
-      this.$refs.TableCustom.clearCheckedId()
     }
   }
 }

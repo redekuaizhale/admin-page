@@ -23,6 +23,14 @@ export default class mathUtils {
     return this.toNumber(value).toFixed(number || 2)
   }
   /**
+   * 转换百分数
+   * @param value
+   * @returns {*}
+   */
+  static toPercent(value) {
+    return this.multiply(this.toNumber(value), 100)
+  }
+  /**
    * 加法
    * @param a
    * @param b
@@ -30,7 +38,14 @@ export default class mathUtils {
   static add(a, b) {
     return _.add(this.toNumber(a), this.toNumber(b))
   }
-
+  /**
+   * 加法(保留两位小数)
+   * @param a
+   * @param b
+   */
+  static addToFixed(a, b) {
+    return this.toFixedCustom(this.add(a, b))
+  }
   /**
    * 减法
    * @param a
@@ -39,7 +54,14 @@ export default class mathUtils {
   static subtract(a, b) {
     return _.subtract(this.toNumber(a), this.toNumber(b))
   }
-
+  /**
+   * 减法(保留两位小数)
+   * @param a
+   * @param b
+   */
+  static subtractToFixed(a, b) {
+    return this.toFixedCustom(this.subtract(a, b))
+  }
   /**
    * 乘法
    * @param a
@@ -48,7 +70,14 @@ export default class mathUtils {
   static multiply(a, b) {
     return _.multiply(this.toNumber(a), this.toNumber(b))
   }
-
+  /**
+   * 乘法(保留两位小数)
+   * @param a
+   * @param b
+   */
+  static multiplyToFixed(a, b) {
+    return this.toFixedCustom(this.multiply(a, b))
+  }
   /**
    * 除法
    * @param a
@@ -56,5 +85,13 @@ export default class mathUtils {
    */
   static divide(a, b) {
     return _.divide(this.toNumber(a), this.toNumber(b))
+  }
+  /**
+   * 除法(保留两位小数)
+   * @param a
+   * @param b
+   */
+  static divideToFixed(a, b) {
+    return this.toFixedCustom(this.divide(a, b))
   }
 }

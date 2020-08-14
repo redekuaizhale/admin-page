@@ -45,8 +45,8 @@ export default{
   },
   methods: {
     logout() {
-      this.utils.removeCookie(this.config.userTokenKey)
-      this.utils.removeCookie(this.config.userNameKey)
+      this.utils.removeCookie(this.config.USER_TOKEN_KEY)
+      this.utils.removeCookie(this.config.USER_NAME_KEY)
       this.utils.routerPush('login')
       location.reload()
     },

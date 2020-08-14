@@ -74,7 +74,7 @@ export default {
       return this.$store.state.menu.userMenuList
     }
   },
-  mounted() {
+  created() {
     const { matched, name } = this.$route
     this.activeName = name
     this.openNames = [matched[0].name, matched[1].name]

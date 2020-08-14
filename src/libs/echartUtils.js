@@ -14,6 +14,8 @@ export default class echartUtils {
    * @param chart
    */
   static windowResize(chart) {
-    window.onresize = chart.resize
+    window.addEventListener('resize', () => {
+      chart.resize()
+    })
   }
 }

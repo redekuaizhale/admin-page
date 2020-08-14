@@ -1,29 +1,30 @@
 export default {
-  login: 'login',
-  index: 'home',
-  userTokenKey: 'user-token-key',
-  userNameKey: 'user-name-key',
-  title: 'REDEKUAIZHALE',
-  baseUrl: {
-    dev: 'http://127.0.0.1:9528',
-    pro: '/demo/api/'
+  LOGIN: 'login',
+  INDEX: 'home',
+  USER_TOKEN_KEY: 'user-token-key',
+  USER_NAME_KEY: 'user-name-key',
+  TITLE: 'REDEKUAIZHALE',
+  BASE_URL: {
+    DEV: 'http://127.0.0.1:9528',
+    PRO: '/api/'
   },
-  apiSuccessCode: '1',
-  apiErrorMsg: '操作失败，请稍后再试！',
-  String: 'String',
-  Integer: 'Integer',
-  DateTime: 'DateTime',
-  Boolean: 'Boolean',
-  Long: 'Long',
-  BigDecimal: 'BigDecimal',
-  List: 'List',
-  defaultUserPass: '123456',
-  status: {
-    inUse: '可用',
-    noUse: '禁用'
+  API_SUCCESS_CODE: '1',
+  API_ERROR_MSG: '操作失败，请稍后再试！',
+  STRING: 'String',
+  INTEGER: 'Integer',
+  DATE_TIME: 'DateTime',
+  BOOLEAN: 'Boolean',
+  LONG: 'Long',
+  BIG_DECIMAL: 'BigDecimal',
+  LIST: 'List',
+  DEFAULT_USER_PASS: '123456',
+  STATUS: {
+    IN_USE: '可用',
+    NO_USE: '禁用'
   },
-  TreeRoot: '0',
-  pageNum: 1,
-  pageSize: 10,
-  total: 0
+  TREE_ROOT: '0',
+  PAGE_NUM: 1,
+  PAGE_SIZE: 10,
+  TOTAL: 0,
+  ECHARTS_COLOR: ['#5DB1FF', '#A97BE9', '#59D4D4', '#6DD48C', '#6B769F', '#F47F92']
 }

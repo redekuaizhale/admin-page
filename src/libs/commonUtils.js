@@ -34,7 +34,7 @@ export default class commonUtils {
    * @returns {any}
    */
   static getLoginUserToken() {
-    return Cookie.get(config.userTokenKey)
+    return Cookie.get(config.USER_TOKEN_KEY)
   }
 
   /**
@@ -162,7 +162,7 @@ export default class commonUtils {
    */
   static checkIsLoginPage() {
     const { hash } = window.location
-    return hash.indexOf(config.login) > 0
+    return hash.indexOf(config.LOGIN) > 0
   }
 
   /**

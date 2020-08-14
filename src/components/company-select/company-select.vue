@@ -118,12 +118,12 @@ export default {
           operate = 'like'
           fieldName = this.paramPath
           fieldValue = this.path + '%'
-          fieldValueClass = this.config.String
+          fieldValueClass = this.config.STRING
         } else {
           operate = '='
           fieldName = this.paramId
           fieldValue = this.companyId
-          fieldValueClass = this.config.String
+          fieldValueClass = this.config.STRING
         }
         param = this.utils.newQueryParam(operate, fieldName, fieldValue, fieldValueClass)
         this.$emit('commit-query-data', param)

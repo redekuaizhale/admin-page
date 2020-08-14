@@ -50,7 +50,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.$nextTick(() => {
       this.createChart()
     })

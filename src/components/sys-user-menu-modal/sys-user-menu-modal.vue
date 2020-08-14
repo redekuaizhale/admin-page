@@ -79,7 +79,7 @@ export default {
       if (checkedTree.length > 0) {
         checkedTree.map(item => {
           list.push(item.id)
-          if (item.parentId !== this.config.TreeRoot) {
+          if (item.parentId !== this.config.TREE_ROOT) {
             list.push(item.parentId)
           }
         })

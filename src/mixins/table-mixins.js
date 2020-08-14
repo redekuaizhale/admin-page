@@ -11,9 +11,9 @@ const TableMixins = {
       tableLoading: false,
       checkedRow: {},
       tableData: [],
-      pageNum: this.config.pageNum,
-      pageSize: this.config.pageSize,
-      total: this.config.total
+      pageNum: this.config.PAGE_NUM,
+      pageSize: this.config.PAGE_SIZE,
+      total: this.config.TOTAL
     }
   },
   methods: {

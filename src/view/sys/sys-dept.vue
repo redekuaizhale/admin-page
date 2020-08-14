@@ -96,7 +96,7 @@ export default {
       const { companyId } = this.queryForm
       const params = []
       if (companyId) {
-        params.push(this.utils.newQueryParam('=', 'companyEntity.id', companyId, this.config.String))
+        params.push(this.utils.newQueryParam('=', 'companyEntity.id', companyId, this.config.STRING))
       }
       return {
         pageNum: this.pageNum - 1,

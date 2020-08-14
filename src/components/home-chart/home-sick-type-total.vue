@@ -34,32 +34,32 @@ export default {
     return {
       list: [
         {
-          name: '类型1',
-          total: '456.789'
+          name: '深圳-坪山区',
+          total: '5144'
         },
         {
-          name: '类型2',
-          total: '456.789'
+          name: '深圳-龙岗区',
+          total: '4125'
         },
         {
-          name: '类型3',
-          total: '456.789'
+          name: '深圳-罗湖区',
+          total: '4000'
         },
         {
-          name: '类型4',
-          total: '456.789'
+          name: '深圳-福田区',
+          total: '3214'
         },
         {
-          name: '类型5',
-          total: '456.789'
+          name: '深圳-南山区',
+          total: '3110'
         },
         {
-          name: '类型6',
-          total: '456.789'
+          name: '深圳-盐田区',
+          total: '2145'
         },
         {
-          name: '类型7',
-          total: '456.789'
+          name: '惠州',
+          total: '1420'
         }
       ]
     }

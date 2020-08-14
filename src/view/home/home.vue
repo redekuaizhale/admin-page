@@ -15,41 +15,51 @@
         <Row>
           <Col :xs="24" :md="16">
           <h4>访问量趋势</h4>
-          <homeTreatTotal class="height-250"/>
+          <HomeTreatTotal class="height-250"/>
           </Col>
           <Col :xs="24" :md="8">
           <h4>访问量趋势</h4>
-          <homeSickTypeTotal class="height-250"/>
+          <HomeSickTypeTotal class="height-250"/>
           </Col>
         </Row>
       </div>
     </Card>
-
-    <Row class="row">
+    <Row :gutter="16" class="row">
       <Col :xs="24" :md="12">
       <Card>
         <p slot="title">
           标签1
         </p>
         <div>
-          <homeSickTypePie/>
+          <HomeSickTypePie/>
         </div>
       </Card>
       </Col>
       <Col :xs="24" :md="12">
+      <Card>
+        <p slot="title">
+          标签2
+        </p>
+        <div>
+          <HomeDeptTotalLine/>
+        </div>
+      </Card>
       </Col>
     </Row>
   </div>
 </template>
 
 <script>
-import homeTreatTotal from '../../components/home-chart/home-treat-total'
-import homeSickTypeTotal from '../../components/home-chart/home-sick-type-total'
+import HomeTreatTotal from '../../components/home-chart/home-treat-total'
+import HomeSickTypeTotal from '../../components/home-chart/home-sick-type-total'
 import AvatorIcon from '../../components/avator-icon/avator-icon'
-import homeSickTypePie from '../../components/home-chart/home-sick-type-pie'
+import HomeSickTypePie from '../../components/home-chart/home-sick-type-pie'
+import HomeDeptTotalLine from '../../components/home-chart/home-dept-total-line'
 export default {
   name: 'Home',
-  components: { homeSickTypePie, AvatorIcon, homeSickTypeTotal, homeTreatTotal }
+  components: { HomeDeptTotalLine, HomeSickTypePie, AvatorIcon, HomeSickTypeTotal, HomeTreatTotal },
+  created() {
+  }
 }
 </script>
 

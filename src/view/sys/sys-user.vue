@@ -114,7 +114,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  created() {
     this.getTableData()
   },
   methods: {
@@ -122,10 +122,10 @@ export default {
       const { name, loginCode } = this.queryForm
       const params = []
       if (name) {
-        params.push(this.utils.newQueryParam('=', 'name', name, this.config.String))
+        params.push(this.utils.newQueryParam('=', 'name', name, this.config.STRING))
       }
       if (loginCode) {
-        params.push(this.utils.newQueryParam('=', 'loginCode', loginCode, this.config.String))
+        params.push(this.utils.newQueryParam('=', 'loginCode', loginCode, this.config.STRING))
       }
       return {
         pageNum: this.pageNum - 1,

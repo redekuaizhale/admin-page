@@ -110,7 +110,7 @@ export default {
       this.modalVisiable = true
       this.modalForm = Object.assign({}, data)
       if (addFlag) {
-        this.modalForm.status = this.config.status.inUse
+        this.modalForm.status = this.config.STATUS.IN_USE
         this.$refs['modalForm'].resetFields()
       } else {
         this.modalForm.companyId = data.companyId
@@ -123,7 +123,7 @@ export default {
         if (valid) {
           this.submitLoading = true
           const requestData = Object.assign({}, this.modalForm)
-          requestData.password = this.config.defaultUserPass
+          requestData.password = this.config.DEFAULT_USER_PASS
           if (this.addFlag) {
             userAddReq(requestData).then(res => {
               this.submitSuccessHandle(res)

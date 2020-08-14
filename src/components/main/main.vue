@@ -18,9 +18,7 @@
       <Content class="main-content-con">
         <Layout class="main-layout-con">
           <Content class="content-wrapper">
-            <keep-alive>
-              <router-view/>
-            </keep-alive>
+            <router-view/>
           </Content>
         </Layout>
       </Content>
@@ -50,7 +48,7 @@ export default {
       return this.$store.state.collapsed
     },
     projecName() {
-      return this.config.title
+      return this.config.TITLE
     }
   },
   methods: {
