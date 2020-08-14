@@ -32,27 +32,29 @@
             </Select>
           </FormItem>
           <FormItem label="备注:" prop="remark">
-            <Textarea :content="modalForm.remark" :width="350" @update-textarea="updateTextareaHandle"/>
+            <Textarea v-model="modalForm.remark" class="textarea-350px"/>
           </FormItem>
         </Form>
       </div>
-      <div slot="footer">
-        <Button @click="modalVisiable = false">关闭</Button>
-        <Button :loading="modalLoading" type="primary" @click="modalSubmitHandle('modalForm')">提交</Button>
-      </div>
+      <ModalFooter
+        slot="footer"
+        :submit-loading="submitLoading"
+        @cancel="modalVisiable = false"
+        @submit="modalSubmitHandle('modalForm')"
+      />
     </Modal>
   </div>
 </template>
 
 <script>
 import CompanySelect from '../company-select/company-select'
-import Textarea from '../textarea/textarea'
 import { findByCompanyIdReq } from '../../api/dept'
 import { userAddReq, userEditReq } from '../../api/user'
+import ModalFooter from '../modal-footer/modal-footer'
 
 export default {
   name: 'SysUserModal',
-  components: { Textarea, CompanySelect },
+  components: { ModalFooter, CompanySelect },
   data() {
     const validateCompany = (rule, value, callback) => {
       console.info('this.companyId', this)
@@ -72,7 +74,7 @@ export default {
     return {
       modalVisiable: false,
       title: '',
-      modalLoading: false,
+      submitLoading: false,
       modalForm: {
         loginCode: '',
         password: '',
@@ -149,9 +151,6 @@ export default {
       this.modalForm.companyId = companyId
       this.comanyId = companyId
       this.getDeptList()
-    },
-    updateTextareaHandle(remark) {
-      this.modalForm.remark = remark
     },
     getDeptList() {
       this.modalForm.deptId = ''

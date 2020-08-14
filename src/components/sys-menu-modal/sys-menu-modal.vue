@@ -14,7 +14,7 @@
         </span>
       </p>
       <div>
-        <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
+        <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
           <FormItem label="菜单标题:" prop="title">
             <Input v-model="modalForm.title" placeholder=" " class="input-width-300px"></Input>
           </FormItem>

@@ -19,7 +19,7 @@
             <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
           <FormItem label="角色描述:" prop="remark">
-            <Textarea :content="modalForm.remark" :width="300" @update-textarea="updateTextareaHandle"/>
+            <Textarea v-model="modalForm.remark" class="textarea-300px"/>
           </FormItem>
         </Form>
       </div>
@@ -36,11 +36,10 @@
 <script>
 import { roleAddReq, roleEditReq } from '../../api/role'
 import ModalFooter from '../modal-footer/modal-footer'
-import Textarea from '../textarea/textarea'
 
 export default {
   name: 'SysRoleModal',
-  components: { Textarea, ModalFooter },
+  components: { ModalFooter },
   props: {
     parentId: {
       type: String,
@@ -100,9 +99,6 @@ export default {
       this.modalVisiable = false
       this.utils.success(res.resultMessage)
       this.$emit('update-role')
-    },
-    updateTextareaHandle(value) {
-      this.modalForm.remark = value
     }
   }
 }

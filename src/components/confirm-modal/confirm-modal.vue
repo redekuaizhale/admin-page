@@ -14,7 +14,7 @@
       width="400"
     >
       <div class="head">
-        <common-icon :size="18" type="_question" color="#faad14"/>
+        <CommonIcon :size="18" type="_question" color="#faad14"/>
         {{ title }}
       </div>
       <div class="body">
@@ -29,10 +29,8 @@
 </template>
 
 <script>
-import CommonIcon from '../common-icon/common-icon'
 export default {
   name: 'ConfirmModal',
-  components: { CommonIcon },
   props: {
     title: {
       type: String,

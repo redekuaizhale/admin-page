@@ -42,11 +42,10 @@
 <script>
 import { deptAddReq, deptEditReq } from '../../api/dept'
 import ModalFooter from '../modal-footer/modal-footer'
-import Textarea from '../textarea/textarea'
 
 export default {
   name: 'SysDeptModal',
-  components: { Textarea, ModalFooter },
+  components: { ModalFooter },
   props: {
     companyId: {
       type: String,

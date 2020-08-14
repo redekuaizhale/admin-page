@@ -57,12 +57,11 @@
 <script>
 import ModalFooter from '../modal-footer/modal-footer'
 import AreaSelect from '../area-select/area-select'
-import Textarea from '../textarea/textarea'
 import { companyAddReq, companyEditReq } from '../../api/company'
 
 export default {
   name: 'SysCompanyModal',
-  components: { Textarea, AreaSelect, ModalFooter },
+  components: { AreaSelect, ModalFooter },
   props: {
     parentId: {
       type: String,

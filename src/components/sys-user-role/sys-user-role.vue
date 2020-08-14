@@ -32,11 +32,10 @@
 import { rolesReq } from '../../api/role'
 import { addUserRoleReq, findHasRoleIdsReq } from '../../api/userRole'
 import ModalFooter from '../modal-footer/modal-footer'
-import Textarea from '../textarea/textarea'
 
 export default {
   name: 'SysUserRoleModal',
-  components: { Textarea, ModalFooter },
+  components: { ModalFooter },
   props: {
     userId: {
       type: String,
