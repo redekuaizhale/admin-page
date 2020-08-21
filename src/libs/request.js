@@ -1,6 +1,8 @@
 import axios from 'axios'
 import configs from '../config/config'
-import commonUtils from '../libs/commonUtils'
+import { getCookie } from './commonUtils'
+import { error } from './commonUtils'
+
 const baseUrl = process.env.NODE_ENV === 'production' ? configs.BASE_URL.PRO : configs.BASE_URL.DEV
 
 const service = axios.create({
@@ -10,7 +12,7 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  config.headers.Authorization = commonUtils.getCookie(configs.USER_TOKEN_KEY)
+  config.headers.Authorization = getCookie(configs.USER_TOKEN_KEY)
   return config
 }, error => {
   Promise.reject(error)
@@ -20,14 +22,14 @@ service.interceptors.response.use(
   response => {
     const { resultCode, resultMessage } = response.data
     if (resultCode !== configs.API_SUCCESS_CODE) {
-      commonUtils.error(resultMessage)
+      error(resultMessage)
       return Promise.reject(resultMessage)
     } else {
       return response.data
     }
   },
   error => {
-    commonUtils.error(error.response.data.message)
+    error(error.response.data.message)
     return Promise.reject(error)
   }
 )

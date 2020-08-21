@@ -33,6 +33,7 @@
 <script>
 import CommonIcon from '../../../common-icon/common-icon'
 import ConfirmModal from '../../../confirm-modal/confirm-modal'
+import { removeCookie, routerPush } from '../../../../libs/commonUtils'
 
 export default{
   name: 'User',
@@ -45,9 +46,9 @@ export default{
   },
   methods: {
     logout() {
-      this.utils.removeCookie(this.config.USER_TOKEN_KEY)
-      this.utils.removeCookie(this.config.USER_NAME_KEY)
-      this.utils.routerPush('login')
+      removeCookie(this.config.USER_TOKEN_KEY)
+      removeCookie(this.config.USER_NAME_KEY)
+      routerPush('login')
       location.reload()
     },
     handleClick(name) {

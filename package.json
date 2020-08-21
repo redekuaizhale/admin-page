@@ -1,5 +1,5 @@
 {
-  "name": "admin-page",
+  "name": "admin",
   "version": "1.0.0",
   "author": "redekuaizhale",
   "private": false,
@@ -13,8 +13,8 @@
     "@babel/polyfill": "^7.2.5",
     "axios": "^0.18.0",
     "babel-plugin-component": "^1.1.1",
-    "view-design": "^4.0.2",
-    "js-cookie": "^2.2.0",
+    "view-design": "^4.3.2",
+    "js-cookie": "^2.2.1",
     "vue": "^2.5.10",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
@@ -23,7 +23,7 @@
     "dayjs": "^1.8.17",
     "iview-area": "^1.6.0",
     "@riophae/vue-treeselect": "^0.4.0",
-    "echarts": "^4.2.1",
+    "echarts": "^4.8.0",
     "lodash": "^4.17.19"
   },
   "devDependencies": {
@@ -39,8 +39,11 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
+    "core-js": "^3.6.5",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "vue-template-compiler": "^2.5.13",
-    "webpack-bundle-analyzer": "^3.6.0"
+    "webpack-bundle-analyzer": "^3.6.0",
+    "compression-webpack-plugin": "^5.0.0",
+    "progress-bar-webpack-plugin": "^2.1.0"
   }
 }

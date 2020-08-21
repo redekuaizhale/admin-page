@@ -39,6 +39,7 @@ import SysMenuModal from '../sys-menu-modal/sys-menu-modal'
 import TableCustom from '../table-custom/table-custom'
 import BaseMixins from '../../mixins/base-mixins'
 import TableMixins from '../../mixins/table-mixins'
+import { newQueryParam, success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysMenuParent',
@@ -105,7 +106,7 @@ export default {
     },
     deleteHandle() {
       menuDeleteReq({ id: this.checkedRow.id }).then(res => {
-        this.utils.success(res.resultMessage)
+        success(res.resultMessage)
         this.getTableData()
       })
     },
@@ -113,7 +114,7 @@ export default {
       this.$refs.SysMenuModal.openModal('修改', false, this.checkedRow)
     },
     setQueryParam() {
-      return [this.utils.newQueryParam('=', 'parentId', this.parentId, this.config.STRING)]
+      return [newQueryParam('=', 'parentId', this.parentId, this.config.STRING)]
     },
     getTableData() {
       this.tableData = []

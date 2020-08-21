@@ -63,6 +63,7 @@
 <script>
 import { menuAddReq, menuEditReq } from '../../api/menu'
 import ModalFooter from '../modal-footer/modal-footer'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysMenuModal',
@@ -144,7 +145,7 @@ export default {
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
-      this.utils.success(res.resultMessage)
+      success(res.resultMessage)
       this.$emit('update-memu')
     },
     useFlagChangeHandle(flag) {

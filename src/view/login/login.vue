@@ -41,6 +41,7 @@
 
 <script>
 import { loginReq } from '../../api/user'
+import { routerPush, setCookie } from '../../libs/commonUtils'
 
 export default {
   name: 'Login',
@@ -65,6 +66,9 @@ export default {
       loginLoading: false
     }
   },
+  created() {
+    console.info('init---->')
+  },
   methods: {
     loginHandle() {
       this.$refs['loginForm'].validate((valid) => {
@@ -77,10 +81,10 @@ export default {
           }
           loginReq(requestData).then(async res => {
             const { token, name } = res.data
-            this.utils.setCookie(this.config.USER_TOKEN_KEY, token)
-            this.utils.setCookie(this.config.USER_NAME_KEY, name)
+            setCookie(this.config.USER_TOKEN_KEY, token)
+            setCookie(this.config.USER_NAME_KEY, name)
             this.$store.dispatch('setUserMenu').then(() => {
-              this.utils.routerPush(this.config.INDEX, {})
+              routerPush('/', {})
               this.loginLoading = false
             })
           }).catch(() => {

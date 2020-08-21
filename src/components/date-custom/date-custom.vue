@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { formatDate } from '../../libs/dateUtils'
+
 export default {
   name: 'DateCustom',
   props: {
@@ -37,7 +39,7 @@ export default {
   },
   watch: {
     value(val) {
-      this.setCurrentValue(this.dateUtils.formatDate(val))
+      this.setCurrentValue(formatDate(val))
     }
   },
   methods: {
@@ -45,7 +47,7 @@ export default {
       this.currentValue = value
     },
     handleChange(value) {
-      const format = this.dateUtils.formatDate(value)
+      const format = formatDate(value)
       this.$emit('input', format)
       this.$emit('on-change', format)
     }

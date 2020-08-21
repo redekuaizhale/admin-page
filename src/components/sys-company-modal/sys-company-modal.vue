@@ -58,6 +58,7 @@
 import ModalFooter from '../modal-footer/modal-footer'
 import AreaSelect from '../area-select/area-select'
 import { companyAddReq, companyEditReq } from '../../api/company'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysCompanyModal',
@@ -154,7 +155,7 @@ export default {
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
-      this.utils.success(res.resultMessage)
+      success(res.resultMessage)
       this.$emit('update-company')
     },
     areaChangeHandle(value) {

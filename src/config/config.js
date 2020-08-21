@@ -1,10 +1,11 @@
-export default {
+module.exports = {
   LOGIN: 'login',
-  INDEX: 'home',
+  INDEX: 'index',
   USER_TOKEN_KEY: 'user-token-key',
   USER_NAME_KEY: 'user-name-key',
   TITLE: 'REDEKUAIZHALE',
   BASE_URL: {
+    PATH: 'admin',
     DEV: 'http://127.0.0.1:9528',
     PRO: '/api/'
   },

@@ -38,6 +38,7 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { loginUsercompanyTreeReq } from '../../api/company'
+import { newQueryParam } from '../../libs/commonUtils'
 
 export default {
   name: 'CompanySelect',
@@ -125,7 +126,7 @@ export default {
           fieldValue = this.companyId
           fieldValueClass = this.config.STRING
         }
-        param = this.utils.newQueryParam(operate, fieldName, fieldValue, fieldValueClass)
+        param = newQueryParam(operate, fieldName, fieldValue, fieldValueClass)
         this.$emit('commit-query-data', param)
       }
     }

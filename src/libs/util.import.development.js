@@ -1,1 +1,1 @@
-module.exports = file => () => import('@/view' + file)
+module.exports = file => require('@/view' + file).default

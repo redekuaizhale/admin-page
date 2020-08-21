@@ -5,6 +5,7 @@
  * @date 2020-08-11
  * @company Dingxuan
  */
+import { widthChangeResize } from '../libs/echartUtils'
 const ChartMixins = {
   data() {
     return {
@@ -16,7 +17,7 @@ const ChartMixins = {
   },
   watch: {
     '$store.state.collapsed'() {
-      this.echartsUtils.widthChangeResize(this.chart)
+      widthChangeResize(this.chart)
     }
   }
 }

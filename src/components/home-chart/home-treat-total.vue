@@ -11,7 +11,8 @@
 
 <script>
 import ChartMixins from '../../mixins/chart-mixins'
-
+import { windowResize } from '../../libs/echartUtils'
+import echarts from '../../libs/echarts'
 export default {
   name: 'HomeTreatTotal',
   mixins: [ChartMixins],
@@ -57,9 +58,9 @@ export default {
   },
   methods: {
     createChart() {
-      this.chart = this.echarts.init(this.$refs.dom)
+      this.chart = echarts.init(this.$refs.dom)
       this.chart.setOption(this.option)
-      this.echartsUtils.windowResize(this.chart)
+      windowResize(this.chart)
     }
   }
 }

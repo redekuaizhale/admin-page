@@ -16,6 +16,7 @@
 import SysCompanyModal from '../../components/sys-company-modal/sys-company-modal'
 import { companyTreeReq, companyDeleteReq } from '../../api/company'
 import ConfirmModal from '../../components/confirm-modal/confirm-modal'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysCompany',
@@ -147,7 +148,7 @@ export default {
 
     confirmDeleteHandle() {
       companyDeleteReq({ id: this.id }).then(res => {
-        this.utils.success(res.resultMessage)
+        success(res.resultMessage)
         this.getCompanyTree()
       })
     },

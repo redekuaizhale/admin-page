@@ -43,6 +43,7 @@ import CrudButtonGroup from '../../components/crud-button-group/crud-button-grou
 import SysRoleModal from '../../components/sys-role-modal/sys-role-modal'
 import BaseMixins from '../../mixins/base-mixins'
 import TableMixins from '../../mixins/table-mixins'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysRole',
@@ -83,7 +84,7 @@ export default {
     },
     deleteHandle() {
       roleDeleteReq({ id: this.checkedRow.id }).then(res => {
-        this.utils.success(res.resultMessage)
+        success(res.resultMessage)
         this.refreshHandle()
       })
     },

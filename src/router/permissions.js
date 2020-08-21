@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routers'
 import ViewUI from 'view-design'
-import utils from '../libs/commonUtils'
 import { permissionsReq } from '../api/user'
 import config from '../config/config'
+import { getLoginUserToken } from '../libs/commonUtils'
+
 Vue.use(Router)
 
 export const router = new Router({
@@ -14,17 +15,17 @@ export const router = new Router({
 
 router.beforeEach((to, from, next) => {
   ViewUI.LoadingBar.start()
-  if (utils.getLoginUserToken()) {
+  if (getLoginUserToken()) {
     const { path } = to
     if (path === '/') {
       next({
-        name: config.INDEX
+        path: config.INDEX
       })
     } else {
       if (to.name === config.LOGIN) {
         next()
       } else {
-        if (to.name) {
+        if (to.name && to.name !== '/') {
           permissionsReq({ path: path }).then(res => {
             next()
           }).catch(() => {

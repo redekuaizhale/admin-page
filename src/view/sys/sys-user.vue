@@ -75,6 +75,7 @@ import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 import SysUserRoleModal from '../../components/sys-user-role/sys-user-role'
 import BaseMixins from '../../mixins/base-mixins'
 import TableMixins from '../../mixins/table-mixins'
+import { newQueryParam, success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysUser',
@@ -122,10 +123,10 @@ export default {
       const { name, loginCode } = this.queryForm
       const params = []
       if (name) {
-        params.push(this.utils.newQueryParam('=', 'name', name, this.config.STRING))
+        params.push(newQueryParam('=', 'name', name, this.config.STRING))
       }
       if (loginCode) {
-        params.push(this.utils.newQueryParam('=', 'loginCode', loginCode, this.config.STRING))
+        params.push(newQueryParam('=', 'loginCode', loginCode, this.config.STRING))
       }
       return {
         pageNum: this.pageNum - 1,
@@ -165,7 +166,7 @@ export default {
     },
     deleteHandle() {
       userDeleteReq({ id: this.checkedRow.id }).then(res => {
-        this.utils.success(res.resultMessage)
+        success(res.resultMessage)
         this.refreshHandle()
       })
     },

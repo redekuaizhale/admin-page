@@ -51,6 +51,7 @@ import CompanySelect from '../company-select/company-select'
 import { findByCompanyIdReq } from '../../api/dept'
 import { userAddReq, userEditReq } from '../../api/user'
 import ModalFooter from '../modal-footer/modal-footer'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysUserModal',
@@ -143,7 +144,7 @@ export default {
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
-      this.utils.success(res.resultMessage)
+      success(res.resultMessage)
       this.$emit('update-user')
     },
     companyIdChangeHandle(companyId) {

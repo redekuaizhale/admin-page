@@ -10,7 +10,9 @@
 </template>
 
 <script>
+import echarts from '../../libs/echarts'
 import ChartMixins from '../../mixins/chart-mixins'
+import { windowResize } from '../../libs/echartUtils'
 
 export default {
   name: 'HomeDeptTotalLine',
@@ -99,9 +101,9 @@ export default {
   methods: {
     createChart() {
       this.option.series = this.chartData
-      this.chart = this.echarts.init(this.$refs.dom)
+      this.chart = echarts.init(this.$refs.dom)
       this.chart.setOption(this.option)
-      this.echartsUtils.windowResize(this.chart)
+      windowResize(this.chart)
     }
   }
 }

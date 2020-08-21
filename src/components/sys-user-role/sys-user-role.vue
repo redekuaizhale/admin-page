@@ -32,6 +32,7 @@
 import { rolesReq } from '../../api/role'
 import { addUserRoleReq, findHasRoleIdsReq } from '../../api/userRole'
 import ModalFooter from '../modal-footer/modal-footer'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysUserRoleModal',
@@ -72,7 +73,7 @@ export default {
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
-      this.utils.success(res.resultMessage)
+      success(res.resultMessage)
     },
     getRoleList() {
       rolesReq({}).then(res => {

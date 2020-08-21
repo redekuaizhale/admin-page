@@ -6,6 +6,8 @@
 
 <script>
 
+import { checkDeviceIsMobile, checkIsLoginPage, getLoginUserToken } from './libs/commonUtils'
+
 export default {
   name: 'App',
   provide() {
@@ -24,7 +26,7 @@ export default {
   },
   methods: {
     initUserMenuAndRouterData() {
-      if (!this.utils.checkIsLoginPage() && this.utils.getLoginUserToken()) {
+      if (!checkIsLoginPage() && getLoginUserToken()) {
         this.$store.dispatch('setUserMenu')
       }
     },
@@ -35,7 +37,7 @@ export default {
       })
     },
     initDevice() {
-      this.$store.dispatch('setDevice', this.utils.checkDeviceIsMobile())
+      this.$store.dispatch('setDevice', checkDeviceIsMobile())
     }
   }
 }

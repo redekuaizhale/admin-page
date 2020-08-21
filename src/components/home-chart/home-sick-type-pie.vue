@@ -35,7 +35,9 @@
 
 <script>
 import ChartMixins from '../../mixins/chart-mixins'
-
+import { add, divide, toFixedCustom, toPercent } from '../../libs/mathUtils'
+import { windowResize } from '../../libs/echartUtils'
+import echarts from '../../libs/echarts'
 export default {
   name: 'HomeSickTypePie',
   mixins: [ChartMixins],
@@ -95,22 +97,22 @@ export default {
       this.tipData = []
       let total = 0
       this.chartData.map(item => {
-        total = this.mathUtils.add(item.value, total)
+        total = add(item.value, total)
       })
       this.chartData.forEach((item, index) => {
-        const divideValue = this.mathUtils.divide(item.value, total)
+        const divideValue = divide(item.value, total)
         this.tipData.push({
           color: this.option.color[index],
           name: item.name,
           value: item.value,
-          percent: `${this.mathUtils.toFixedCustom(this.mathUtils.toPercent(divideValue))}%`
+          percent: `${toFixedCustom(toPercent(divideValue))}%`
         })
       })
       this.option.title.text = total
       this.option.series[0].data = this.chartData
-      this.chart = this.echarts.init(this.$refs.dom)
+      this.chart = echarts.init(this.$refs.dom)
       this.chart.setOption(this.option)
-      this.echartsUtils.windowResize(this.chart)
+      windowResize(this.chart)
     }
   }
 }

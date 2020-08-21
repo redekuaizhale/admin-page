@@ -36,6 +36,7 @@
 <script>
 import { roleAddReq, roleEditReq } from '../../api/role'
 import ModalFooter from '../modal-footer/modal-footer'
+import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysRoleModal',
@@ -97,7 +98,7 @@ export default {
     },
     submitSuccessHandle(res) {
       this.modalVisiable = false
-      this.utils.success(res.resultMessage)
+      success(res.resultMessage)
       this.$emit('update-role')
     }
   }

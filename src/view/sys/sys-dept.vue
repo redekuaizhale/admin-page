@@ -58,6 +58,7 @@ import SysDeptModal from '../../components/sys-dept-modal/sys-dept-modal'
 import { deptsReq, deptDeleteReq } from '../../api/dept'
 import BaseMixins from '../../mixins/base-mixins'
 import TableMixins from '../../mixins/table-mixins'
+import { newQueryParam, success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysDept',
@@ -96,7 +97,7 @@ export default {
       const { companyId } = this.queryForm
       const params = []
       if (companyId) {
-        params.push(this.utils.newQueryParam('=', 'companyEntity.id', companyId, this.config.STRING))
+        params.push(newQueryParam('=', 'companyEntity.id', companyId, this.config.STRING))
       }
       return {
         pageNum: this.pageNum - 1,
@@ -135,7 +136,7 @@ export default {
     },
     deleteHandle() {
       deptDeleteReq({ id: this.checkedRow.id }).then(res => {
-        this.utils.success(res.resultMessage)
+        success(res.resultMessage)
         this.getTableData()
       })
     },
