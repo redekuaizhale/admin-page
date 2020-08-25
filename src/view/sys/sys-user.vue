@@ -15,7 +15,7 @@
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
           <FormItem label="姓名:">
-            <Input v-model="queryForm.name" type="text" placeholder="" clearable> </Input>
+            <Input v-model="queryForm.name" type="text" placeholder="" clearable></Input>
           </FormItem>
           <FormItem label="登录名:">
             <Input v-model="queryForm.loginCode" type="text" placeholder="" clearable></Input>

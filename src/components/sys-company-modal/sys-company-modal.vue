@@ -17,29 +17,29 @@
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
           <FormItem label="机构全称:" prop="fullName">
             <span v-if="readOnly">{{ modalForm.fullName }}</span>
-            <Input v-else v-model="modalForm.fullName" placeholder=" " class="input-width-300px"></Input>
+            <Input v-else v-model="modalForm.fullName" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="机构简称:" prop="name">
             <span v-if="readOnly">{{ modalForm.name }}</span>
-            <Input v-else v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
+            <Input v-else v-model="modalForm.name" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="状态:" prop="status">
             <span v-if="readOnly">{{ modalForm.status }}</span>
             <RadioGroup v-else v-model="modalForm.status">
-              <Radio v-for="item in statusList" :key="item.label" :label="item.label"/>
+              <Radio v-for="item in statusList" :key="item.label" :label="item.label" />
             </RadioGroup>
           </FormItem>
           <FormItem label="机构排序:" prop="companyOrder">
             <span v-if="readOnly">{{ modalForm.companyOrder }}</span>
-            <InputNumber v-else :max="10000" :min="0" v-model="modalForm.companyOrder" style="width: 300px;"/>
+            <InputNumber v-else v-model="modalForm.companyOrder" :max="10000" :min="0" style="width: 300px;" />
           </FormItem>
           <FormItem label="所属区域:" prop="area">
             <span v-if="readOnly">{{ modalForm.area }}</span>
-            <AreaSelect v-else ref="AreaSelect" :modal-visiable="modalVisiable" :width="300" @udpate-area="areaChangeHandle"/>
+            <AreaSelect v-else ref="AreaSelect" v-model="testArea" style="width: 300px;" @udpate-area="areaChangeHandle" />
           </FormItem>
           <FormItem label="详细地址:" prop="address">
             <span v-if="readOnly">{{ modalForm.address }}</span>
-            <Textarea v-else :content="modalForm.address" :width="300" @update-textarea="addressChangeHandle"/>
+            <Textarea v-else v-model="modalForm.address" style="width: 300px;" />
           </FormItem>
         </Form>
       </div>
@@ -58,7 +58,7 @@
 import ModalFooter from '../modal-footer/modal-footer'
 import AreaSelect from '../area-select/area-select'
 import { companyAddReq, companyEditReq } from '../../api/company'
-import { success } from '../../libs/commonUtils'
+import { splitContent, success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysCompanyModal',
@@ -75,6 +75,7 @@ export default {
   },
   data() {
     return {
+      testArea: ['110000', '110100', '110101'],
       addFlag: false,
       title: '',
       modalVisiable: false,
@@ -121,15 +122,12 @@ export default {
       this.addFlag = addFlag
       if (data) {
         this.modalForm = Object.assign({}, data)
-        this.area = this.utils.splitContent(data.area, '/')
+        this.area = splitContent(data.area, '/')
       } else {
         this.$refs['modalForm'].resetFields()
         this.area = []
       }
       this.modalVisiable = true
-      if (this.$refs.AreaSelect) {
-        this.$refs.AreaSelect.setDefaultValue(this.area)
-      }
     },
     modalSubmitHandle() {
       this.$refs['modalForm'].validate((valid) => {
@@ -160,9 +158,6 @@ export default {
     },
     areaChangeHandle(value) {
       this.modalForm.area = value
-    },
-    addressChangeHandle(value) {
-      this.modalForm.address = value
     }
   }
 }

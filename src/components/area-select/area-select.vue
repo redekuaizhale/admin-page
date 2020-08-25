@@ -7,46 +7,50 @@
 !-->
 <template>
   <div>
-    <al-cascader
-      v-if="modalVisiable"
-      :level="level"
-      v-model="value"
-      :style="{'width':width+'px'}"
-      data-type="name"
-      @on-change="areaChangeHandle"
-    />
+    <Cascader v-model="currentValue" :data="areaOptions" @on-change="areaChangeHandle" />
   </div>
 </template>
 
 <script>
+import { regionData } from 'element-china-area-data'
+import { arrayIsEmpty } from '../../libs/commonUtils'
 export default {
   name: 'AreaSelect',
   props: {
-    width: {
-      type: Number,
-      default: 200
-    },
     level: {
       type: String,
-      default: '1'
+      default: '2'
     },
-    modalVisiable: {
-      type: Boolean,
-      default: false
+    value: {
+      type: Array,
+      default: Array
     }
   },
   data() {
     return {
-      show: false,
-      value: []
+      currentValue: this.value,
+      areaOptions: regionData
+    }
+  },
+  watch: {
+    value(val) {
+      this.setCurrentValue(val)
     }
   },
   methods: {
-    setDefaultValue(value) {
+    setCurrentValue(value) {
+      console.info('value', value)
       this.value = value
     },
-    areaChangeHandle(value) {
-      this.$emit('udpate-area', value ? value.toString().replace(',', '/') : '')
+    areaChangeHandle(value, selectData) {
+      const arr = []
+      if (!arrayIsEmpty(selectData)) {
+        selectData.map(item => {
+          arr.push(item.value)
+        })
+      }
+      this.$emit('input', arr)
+      this.$emit('on-change', arr)
     }
   }
 }

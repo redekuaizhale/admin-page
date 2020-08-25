@@ -200,3 +200,11 @@ export const checkDeviceIsMobile = () => {
   }
   return flag
 }
+/**
+ * 判断数组非空
+ * @param arr
+ * @returns {boolean}
+ */
+export const arrayIsEmpty = (arr) => {
+  return !(arr && arr.length > 0)
+}
