@@ -14,7 +14,7 @@
         </span>
       </p>
       <div>
-        <Tree :data="treeData" show-checkbox @on-check-change="treeCheckHandle" />
+        <Tree :data="treeData" show-checkbox @on-check-change="treeCheckHandle"/>
       </div>
       <ModalFooter
         slot="footer"

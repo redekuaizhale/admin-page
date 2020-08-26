@@ -16,25 +16,23 @@
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
           <FormItem label="登录账号:" prop="loginCode">
-            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-350px" /></Input>
+            <Input v-model="modalForm.loginCode" placeholder=" " class="input-width-350px"></Input>
           </FormItem>
           <FormItem label="是否可用:" prop="status">
             <RadioGroup v-model="modalForm.status">
-              <Radio v-for="item in statusList" :key="item.label" :label="item.label" />
+              <Radio v-for="item in statusList" :key="item.label" :label="item.label"/>
             </RadioGroup>
           </FormItem>
           <FormItem label="所属机构:">
-            <CompanySelect :id="modalForm.companyId" @commit-compnay-id="companyIdChangeHandle" />
+            <CompanySelect :id="modalForm.companyId" @commit-compnay-id="companyIdChangeHandle"/>
           </FormItem>
           <FormItem label="所属部门:" prop="deptId">
             <Select v-model="modalForm.deptId" class="select-width-350px">
-              <Option v-for="item in deptList" :key="item.value" :value="item.value">
-                {{ item.label }}
-              </Option>
+              <Option v-for="item in deptList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </FormItem>
           <FormItem label="备注:" prop="remark">
-            <Textarea v-model="modalForm.remark" class="textarea-350px" />
+            <Textarea v-model="modalForm.remark" class="textarea-350px"/>
           </FormItem>
         </Form>
       </div>

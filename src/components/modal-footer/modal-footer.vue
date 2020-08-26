@@ -7,12 +7,8 @@
 !-->
 <template>
   <div>
-    <Button @click="modalCancelHandle">
-      关闭
-    </Button>
-    <Button v-if="!readOnly" :loading="submitLoading" type="primary" @click="modalSubmitHandle()">
-      提交
-    </Button>
+    <Button @click="modalCancelHandle">关闭</Button>
+    <Button v-if="!readOnly" :loading="submitLoading" type="primary" @click="modalSubmitHandle()">提交</Button>
   </div>
 </template>
 

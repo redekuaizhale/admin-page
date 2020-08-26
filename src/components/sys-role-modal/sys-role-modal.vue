@@ -16,10 +16,10 @@
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
           <FormItem label="角色名称:" prop="name">
-            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px" /></Input>
+            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
           </FormItem>
           <FormItem label="角色描述:" prop="remark">
-            <Textarea v-model="modalForm.remark" class="textarea-300px" />
+            <Textarea v-model="modalForm.remark" class="textarea-300px"/>
           </FormItem>
         </Form>
       </div>

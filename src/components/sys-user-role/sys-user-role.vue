@@ -15,9 +15,7 @@
       </p>
       <div class="sys-user-role">
         <CheckboxGroup v-model="roleIdList">
-          <Checkbox v-for="item in roleList" :key="item.id" :label="item.id">
-            {{ item.name }}
-          </Checkbox>
+          <Checkbox v-for="item in roleList" :label="item.id" :key="item.id">{{ item.name }}</Checkbox>
         </CheckboxGroup>
       </div>
       <ModalFooter

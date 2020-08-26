@@ -27,7 +27,7 @@
         :loading="tableLoading"
         @check-change="getCheckedRow"
       />
-      <SysMenuModal ref="SysMenuModal" :parent-id="childParentId" @update-memu="refreshHandle" />
+      <SysMenuModal ref="SysMenuModal" :parent-id="childParentId" @update-memu="refreshHandle"/>
     </div>
   </Card>
 </template>

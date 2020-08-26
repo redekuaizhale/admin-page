@@ -44,7 +44,10 @@ export default {
   },
   actions: {
     setUserRouter({ commit, dispath }, list) {
-      commit('SET_USER_ROUTER', list)
+      return new Promise(async resolve => {
+        await commit('SET_USER_ROUTER', list)
+        resolve()
+      })
     }
   }
 }

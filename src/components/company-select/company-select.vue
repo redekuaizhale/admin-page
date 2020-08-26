@@ -7,11 +7,11 @@
 !-->
 <template>
   <Row class="company-select">
-    <Col span="4" style="width:350px;" />
+    <Col span="4" style="width:350px;">
     <treeselect
-      v-model="companyId"
       :clearable="clearable"
       :disabled="disabled"
+      v-model="companyId"
       :options="companyList"
       :show-count="false"
       :normalizer="normalizer"
@@ -21,14 +21,13 @@
       no-children-text="无数据"
       @select="companyChangeHandle($event)"
     />
-    </Col>
-    <Col span="4" />
+      </Col>
+    <Col span="4">
     <Checkbox
       v-if="child"
       v-model="queryChildFlag"
       style="position: relative;top: 0;left: 5px;"
-      @on-change="queryChildChange"
-    >
+      @on-change="queryChildChange">
       包含子机构
     </Checkbox>
     </Col>

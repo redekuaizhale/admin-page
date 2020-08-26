@@ -1,6 +1,6 @@
 <template>
   <Layout class="main">
-    <Sider v-model="collapsed" :collapsed-width="64" :style="{overflow: 'hidden'}" width="256px;" hide-trigger collapsible class="left-sider">
+    <Sider :collapsed-width="64" v-model="collapsed" :style="{overflow: 'hidden'}" width="256px;" hide-trigger collapsible class="left-sider">
       <side-menu ref="sideMenu" :collapsed="collapsed" accordion @turn-to-page="turnToPage">
         <div v-if="!collapsed" class="logo-con">
           <div class="title">
@@ -12,13 +12,13 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user />
+          <user/>
         </header-bar>
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
           <Content class="content-wrapper">
-            <router-view />
+            <router-view/>
           </Content>
         </Layout>
       </Content>

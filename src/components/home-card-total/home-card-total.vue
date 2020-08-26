@@ -7,8 +7,8 @@
       <span class="num-total">
         25,848
       </span>
-      <div />
-      <div />
+      <div/>
+      <div/>
     </div>
   </Card>
 </template>

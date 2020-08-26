@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <div ref="dom" />
+  <div ref="dom"/>
 </template>
 
 <script>

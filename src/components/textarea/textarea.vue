@@ -14,7 +14,7 @@
       type="textarea"
       placeholder=" "
       @input="handleInput"
-    />
+    >
     </Input>
   </div>
 </template>

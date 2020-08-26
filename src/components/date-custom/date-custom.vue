@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <DatePicker v-model="currentValue" :type="type" :options="options" :format="format" placeholder=" " @on-change="handleChange" />
+  <DatePicker v-model="currentValue" :type="type" :options="options" :format="format" placeholder=" " @on-change="handleChange"/>
 </template>
 
 <script>

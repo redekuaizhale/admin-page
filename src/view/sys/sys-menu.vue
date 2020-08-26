@@ -7,8 +7,8 @@
 !-->
 <template>
   <div>
-    <SysMenuParent parent-id="0" @update-parent-id="updateParentId" />
-    <SysMenuChild ref="SysMenuChild" />
+    <SysMenuParent parent-id="0" @update-parent-id="updateParentId"/>
+    <SysMenuChild ref="SysMenuChild"/>
   </div>
 </template>
 

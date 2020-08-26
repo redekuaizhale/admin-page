@@ -10,15 +10,15 @@
     <ul>
       <li v-for="(item,index) in list" :key="index">
         <Row>
-          <Col span="14" />
+          <Col span="14">
           <span>
-            <Avatar :class="index < 3 ? 'rank-in':'rank-out'" size="small">{{ index + 1 }}</Avatar>
+            <Avatar :class="index < 3 ? 'rank-in':'rank-out'" size="small" >{{ index + 1 }}</Avatar>
           </span>
           <span class="margin-left-8">
             {{ item.name }}
           </span>
           </Col>
-          <Col span="10" class="iv-text-right" />
+          <Col span="10" class="iv-text-right">
           {{ item.total }}
           </Col>
         </Row>
