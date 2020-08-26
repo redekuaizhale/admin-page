@@ -1,5 +1,4 @@
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { BASE_URL, TITLE } = require('./src/config/config')
 const { HashedModuleIdsPlugin } = require('webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
@@ -63,21 +62,6 @@ module.exports = {
   configureWebpack: config => {
     const plugins = []
     if (isProduction) {
-      plugins.push(
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            output: {
-              comments: false // 去掉注释
-            },
-            warnings: false,
-            compress: {
-              drop_console: true,
-              drop_debugger: false,
-              pure_funcs: ['console.log']// 移除console
-            }
-          }
-        })
-      )
       // 用于根据模块的相对路径生成 hash 作为模块 id
       plugins.push(
         new HashedModuleIdsPlugin()

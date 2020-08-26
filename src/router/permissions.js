@@ -5,7 +5,6 @@ import ViewUI from 'view-design'
 import { permissionsReq } from '../api/user'
 import config from '../config/config'
 import { getLoginUserToken } from '../libs/commonUtils'
-
 Vue.use(Router)
 
 export const router = new Router({
@@ -55,10 +54,5 @@ router.afterEach(to => {
   ViewUI.LoadingBar.finish()
   window.scrollTo(0, 0)
 })
-
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
 
 export default router

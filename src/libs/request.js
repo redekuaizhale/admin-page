@@ -1,9 +1,8 @@
 import axios from 'axios'
 import configs from '../config/config'
-import { getCookie } from './commonUtils'
-import { error } from './commonUtils'
+import { getCookie, error, isProduction } from './commonUtils'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? configs.BASE_URL.PRO : configs.BASE_URL.DEV
+const baseUrl = isProduction ? configs.BASE_URL.PRO : configs.BASE_URL.DEV
 
 const service = axios.create({
   baseURL: baseUrl,
