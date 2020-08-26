@@ -8,29 +8,30 @@
 <template>
   <div class="curd-button-group">
     <Button v-if="refreshVisiable" type="primary" size="small" @click="refreshHandle">
-      <CommonIcon type="_refresh"/>
+      <CommonIcon type="_reload" />
       刷新
     </Button>
     <Button v-if="addVisiable" type="primary" size="small" @click="addHandle">
-      <CommonIcon type="_add"/>
+      <CommonIcon type="_add" />
       新增
     </Button>
     <Button v-if="editVisiable" type="primary" size="small" @click="editHandle">
-      <CommonIcon type="_edit"/>
+      <CommonIcon type="_edit1" />
       修改
     </Button>
     <Button v-if="deleteVisiable" type="primary" size="small" @click="deleteHandle">
-      <CommonIcon type="_delete"/>
+      <CommonIcon type="_delete1" />
       删除
     </Button>
-    <slot name="extra"/>
-    <ConfirmModal ref="confirmModal" @on-confirm-handle="confirmDeleteHandle"/>
+    <slot name="extra" />
+    <ConfirmModal ref="confirmModal" @on-confirm-handle="confirmDeleteHandle" />
   </div>
 </template>
 
 <script>
 import CommonIcon from '../common-icon/common-icon'
 import ConfirmModal from '../confirm-modal/confirm-modal'
+import { uncheckedError } from '../../libs/commonUtils'
 export default {
   name: 'CrudButtonGroup',
   components: { ConfirmModal, CommonIcon },
@@ -77,7 +78,7 @@ export default {
     },
     validateCheckId() {
       if (!this.checkedId) {
-        this.utils.uncheckedError()
+        uncheckedError()
       }
       return !!this.checkedId
     },

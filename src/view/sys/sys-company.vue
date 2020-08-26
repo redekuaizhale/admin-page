@@ -1,7 +1,7 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_org" />
+      <CommonIcon type="_org" :size="getPageIconSize" />
       机构管理
       <Checkbox v-model="edit" style="margin-left: 10px;">
         操作
@@ -19,10 +19,12 @@ import SysCompanyModal from '../../components/sys-company-modal/sys-company-moda
 import { companyTreeReq, companyDeleteReq } from '../../api/company'
 import ConfirmModal from '../../components/confirm-modal/confirm-modal'
 import { success } from '../../libs/commonUtils'
+import BaseMixins from '../../mixins/base-mixins'
 
 export default {
   name: 'SysCompany',
   components: { ConfirmModal, SysCompanyModal },
+  mixins: [BaseMixins],
   data() {
     return {
       treeData: [
@@ -40,9 +42,9 @@ export default {
               }
             }, [
               h('span', [
-                h('Icon', {
+                h('CommonIcon', {
                   props: {
-                    type: 'ios-home',
+                    type: '_org',
                     size: 18
                   },
                   style: {
@@ -59,7 +61,6 @@ export default {
               }, this.edit ? [
                 h('Button', {
                   props: Object.assign({}, this.buttonProps, {
-                    icon: 'md-create',
                     type: 'primary'
                   }),
                   style: {
@@ -71,7 +72,6 @@ export default {
                 }, '修改'),
                 h('Button', {
                   props: Object.assign({}, this.buttonProps, {
-                    icon: 'ios-more',
                     type: 'primary'
                   }),
                   style: {
@@ -83,7 +83,6 @@ export default {
                 }, '详情'),
                 h('Button', {
                   props: Object.assign({}, this.buttonProps, {
-                    icon: 'md-add',
                     type: 'primary'
                   }),
                   style: {
@@ -162,9 +161,9 @@ export default {
         }
       }, [
         h('span', [
-          h('Icon', {
+          h('CommonIcon', {
             props: {
-              type: 'ios-cube',
+              type: '_folder',
               size: 15
             },
             style: {
@@ -181,7 +180,6 @@ export default {
         }, this.edit ? [
           h('Button', {
             props: Object.assign({}, this.buttonProps, {
-              icon: 'md-create',
               type: 'primary'
             }),
             style: {
@@ -193,7 +191,6 @@ export default {
           }, '修改'),
           h('Button', {
             props: Object.assign({}, this.buttonProps, {
-              icon: 'ios-more',
               type: 'primary'
             }),
             style: {
@@ -205,7 +202,6 @@ export default {
           }, '详情'),
           h('Button', {
             props: Object.assign({}, this.buttonProps, {
-              icon: 'ios-trash',
               type: 'primary'
             }),
             on: {

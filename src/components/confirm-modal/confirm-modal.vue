@@ -9,20 +9,24 @@
   <div>
     <Modal
       v-model="confirmModalVisiable"
-      :z-index= "9999"
+      :z-index="9999"
       class="confirm-modal"
       width="400"
     >
       <div class="head">
-        <CommonIcon :size="18" type="_question" color="#faad14"/>
+        <CommonIcon :size="18" type="_question-circle" color="#faad14" />
         {{ title }}
       </div>
       <div class="body">
         {{ desc }}
       </div>
       <div slot="footer">
-        <Button @click="confirmModalVisiable = false">取消</Button>
-        <Button type="primary" @click="confirmHandle">确定</Button>
+        <Button @click="confirmModalVisiable = false">
+          取消
+        </Button>
+        <Button type="primary" @click="confirmHandle">
+          确定
+        </Button>
       </div>
     </Modal>
   </div>
@@ -34,11 +38,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: '提示'
+      default: '确认删除?'
     },
     desc: {
       type: String,
-      default: '您确定删除这条内容吗？'
+      default: '删除后该数据不能找回'
     }
   },
   data() {

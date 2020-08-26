@@ -15,6 +15,9 @@ const BaseMixins = {
   computed: {
     getPageIcon() {
       return this.$router.currentRoute.meta.icon
+    },
+    getPageIconSize() {
+      return 17
     }
   }
 }

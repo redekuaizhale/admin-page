@@ -1,5 +1,5 @@
 <template>
-  <component :is="iconType" :type="iconName" :color="iconColor" :size="iconSize"/>
+  <component :is="iconType" :type="iconName" :color="iconColor" :size="iconSize" />
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 0
+      default: 14
     }
   },
   computed: {
