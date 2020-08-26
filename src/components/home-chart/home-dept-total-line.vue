@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <div ref="dom" class="height-300"/>
+  <div ref="dom" class="height-300" />
 </template>
 
 <script>

@@ -7,24 +7,28 @@
         </span>
       </div>
       <div class="form">
-        <Button v-if="errorVisiable" icon="md-close-circle" type="error" ghost class="error-message">{{ errorMessage }}</Button>
+        <Button v-if="errorVisiable" icon="md-close-circle" type="error" ghost class="error-message">
+          {{ errorMessage }}
+        </Button>
         <Form ref="loginForm" :model="loginForm" :rules="rules" @keydown.enter.native="loginHandle">
           <FormItem prop="loginCode">
-            <Input v-model="loginForm.loginCode" clearable size="large" placeholder="请输入用户名">
+            <Input v-model="loginForm.loginCode" clearable size="large" placeholder="请输入用户名" />
             <span slot="prepend">
-              <Icon :size="22" type="ios-person"/>
+              <Icon :size="22" type="ios-person" />
             </span>
             </Input>
           </FormItem>
           <FormItem prop="password">
-            <Input v-model="loginForm.password" clearable size="large" type="password" placeholder="请输入密码">
+            <Input v-model="loginForm.password" clearable size="large" type="password" placeholder="请输入密码" />
             <span slot="prepend">
-              <Icon :size="20" type="md-lock"/>
+              <Icon :size="20" type="md-lock" />
             </span>
             </Input>
           </FormItem>
           <FormItem>
-            <Button :loading="loginLoading" type="primary" long class="login-button" @click="loginHandle">登 录</Button>
+            <Button :loading="loginLoading" type="primary" long class="login-button" @click="loginHandle">
+              登 录
+            </Button>
           </FormItem>
         </Form>
       </div>
@@ -32,7 +36,7 @@
     <div class="footer">
       <div>
         2019
-        <common-icon type="_copyright"/>
+        <common-icon type="_copyright" />
         redekuaizhale
       </div>
     </div>

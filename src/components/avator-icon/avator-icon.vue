@@ -7,8 +7,8 @@
 !-->
 <template>
   <div class="AvatorIcon">
-    <Avatar :size="avSize" >
-      <CommonIcon :type="type" :color="color" :size="size"/>
+    <Avatar :size="avSize">
+      <CommonIcon :type="type" :color="color" :size="size" />
     </Avatar>
   </div>
 </template>

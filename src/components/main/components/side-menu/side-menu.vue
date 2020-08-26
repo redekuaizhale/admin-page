@@ -1,6 +1,6 @@
 <template>
   <div class="side-menu-wrapper">
-    <slot/>
+    <slot />
     <Menu v-show="!collapsed" ref="menu" :theme="theme" :open-names="openNames" :active-name="activeName" :accordion="accordion" @on-select="handleSelect">
       <template v-for="item in menuList">
         <template>
@@ -11,7 +11,7 @@
             :icon-color="iconColor"
             :icon-size="iconSize"
           />
-          <menu-item v-else :name="item.children[0].name" :key="`menu-${item.children[0].name}`">
+          <menu-item v-else :key="`menu-${item.children[0].name}`" :name="item.children[0].name">
             <common-icon :type="item.icon" :size="iconSize" :color="iconColor" />
             <span>
               {{ item.children[0].title }}
@@ -25,16 +25,16 @@
       <template v-for="item in menuList">
         <collapsed-menu
           v-if="item.children && item.children.length > 1"
-          :parent-item="item"
           :key="`drop-menu-${item.name}`"
+          :parent-item="item"
           :icon-color="iconColor"
           :icon-size="iconSize"
           hide-title
           @on-click="handleSelect"
         />
-        <Tooltip v-else :content="showTitle(item.children && item.children[0] ? item.children[0] : item)" :key="`drop-menu-${item.name}`" transfer placement="right">
+        <Tooltip v-else :key="`drop-menu-${item.name}`" :content="showTitle(item.children && item.children[0] ? item.children[0] : item)" transfer placement="right">
           <a :style="{textAlign: 'center'}" class="drop-menu-a" @click="handleSelect(item.children[0].name)">
-            <common-icon :type="item.children[0].icon" :size="iconSize" :color="iconColor"/>
+            <common-icon :type="item.children[0].icon" :size="iconSize" :color="iconColor" />
           </a>
         </Tooltip>
       </template>

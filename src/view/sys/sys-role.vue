@@ -37,7 +37,6 @@
 
 <script>
 import TableCustom from '../../components/table-custom/table-custom'
-import PageCustom from '../../components/page-custom/page-custom'
 import { roleDeleteReq, rolesReq } from '../../api/role'
 import CrudButtonGroup from '../../components/crud-button-group/crud-button-group'
 import SysRoleModal from '../../components/sys-role-modal/sys-role-modal'
@@ -47,7 +46,7 @@ import { success } from '../../libs/commonUtils'
 
 export default {
   name: 'SysRole',
-  components: { SysRoleModal, CrudButtonGroup, PageCustom, TableCustom },
+  components: { SysRoleModal, CrudButtonGroup, TableCustom },
   mixins: [BaseMixins, TableMixins],
   data() {
     return {

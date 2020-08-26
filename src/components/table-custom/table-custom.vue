@@ -6,7 +6,7 @@
  @company Dingxuan
 !-->
 <template>
-  <Table :loading="loading" :columns="initColumns" :data="data" border stripe @on-row-click="onRowClickHandle"/>
+  <Table :loading="loading" :columns="initColumns" :data="data" border stripe @on-row-click="onRowClickHandle" />
 </template>
 
 <script>

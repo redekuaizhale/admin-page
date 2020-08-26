@@ -6,15 +6,15 @@
  @company Dingxuan
 !-->
 <template>
-  <Row class="home-sick-type-pie" type="flex" justify="center" align="middle" >
-    <Col span="14">
-    <div ref="dom" class="height-300"/>
+  <Row class="home-sick-type-pie" type="flex" justify="center" align="middle">
+    <Col span="14" />
+    <div ref="dom" class="height-300" />
     </Col>
-    <Col span="10">
+    <Col span="10" />
     <ul class="tip">
       <li v-for="item in tipData" :key="item.name">
         <span>
-          <Icon :color="item.color" type="ios-radio-button-on"/>
+          <Icon :color="item.color" type="ios-radio-button-on" />
         </span>
         <span class="name">
           {{ item.name }}

@@ -16,16 +16,16 @@
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
           <FormItem label="部门排序:" prop="deptOrder">
-            <InputNumber :max="10000" :min="0" v-model="modalForm.deptOrder" class="number-input-300px"/>
+            <InputNumber v-model="modalForm.deptOrder" :max="10000" :min="0" class="number-input-300px" />
           </FormItem>
           <FormItem label="部门名称:" prop="name">
-            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="成立时间:" prop="setupDate">
-            <DateCustom v-model="modalForm.setupDate" class="input-width-300px"/>
+            <DateCustom v-model="modalForm.setupDate" class="input-width-300px" />
           </FormItem>
           <FormItem label="部门描述:" prop="remark">
-            <Textarea v-model="modalForm.remark" class="textarea-300px"/>
+            <Textarea v-model="modalForm.remark" class="textarea-300px" />
           </FormItem>
         </Form>
       </div>

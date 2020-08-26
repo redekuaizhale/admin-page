@@ -16,25 +16,25 @@
       <div>
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="100">
           <FormItem label="菜单标题:" prop="title">
-            <Input v-model="modalForm.title" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.title" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="菜单图标:" prop="icon">
-            <Input v-model="modalForm.icon" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.icon" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="菜单名称:" prop="name">
-            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.name" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="菜单路径:" prop="path">
-            <Input v-model="modalForm.path" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.path" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="组件:" prop="component">
-            <Input v-model="modalForm.component" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.component" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="重定向地址:" prop="redirect">
-            <Input v-model="modalForm.redirect" placeholder=" " class="input-width-300px"></Input>
+            <Input v-model="modalForm.redirect" placeholder=" " class="input-width-300px" /></Input>
           </FormItem>
           <FormItem label="菜单排序:" prop="menuOrder">
-            <InputNumber :max="10000" :min="0" v-model="modalForm.menuOrder" style="width: 300px;"/>
+            <InputNumber v-model="modalForm.menuOrder" :max="10000" :min="0" style="width: 300px;" />
           </FormItem>
           <FormItem label="显示状态:" prop="hidden">
             <iSwitch :value="modalForm.hidden === '显示'" size="large" @on-change="hiddenChangeHandle">
