@@ -19,15 +19,11 @@ const externals = {
 }
 const cdn = {
   dev: {
-    css: [
-      'https://cdn.jsdelivr.net/npm/view-design@4.3.2/dist/styles/iview.css'
-    ],
+    css: [],
     js: []
   },
   build: {
-    css: [
-      'https://cdn.jsdelivr.net/npm/view-design@4.3.2/dist/styles/iview.css'
-    ],
+    css: [],
     js: [
       'https://cdn.jsdelivr.net/npm/vue@2.5.10/dist/vue.min.js',
       'https://cdn.jsdelivr.net/npm/vue-router@3.0.1/dist/vue-router.min.js',
@@ -91,7 +87,7 @@ module.exports = {
         new ProgressBarPlugin({
           format: ' build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
           clear: false
-        }),
+        })
       )
       // gzip压缩,服务端nginx需要开启
       plugins.push(

@@ -6,8 +6,8 @@
  @company Dingxuan
 !-->
 <template>
-  <div>
-    <Cascader v-model="currentValue" :data="areaOptions" @on-change="areaChangeHandle" />
+  <div class="area-select">
+    <Cascader v-model="currentValue" :disabled="disabled" :data="areaOptions" @on-change="areaChangeHandle" />
   </div>
 </template>
 
@@ -24,6 +24,10 @@ export default {
     value: {
       type: Array,
       default: Array
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -33,13 +37,13 @@ export default {
     }
   },
   watch: {
-    value(val) {
-      this.setCurrentValue(val)
+    value(value) {
+      this.setCurrentValue(value)
     }
   },
   methods: {
     setCurrentValue(value) {
-      console.info('value', value)
+      this.currentValue = value
       this.value = value
     },
     areaChangeHandle(value, selectData) {
@@ -56,6 +60,11 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less">
+  .area-select{
+    .ivu-input[disabled], fieldset[disabled] .ivu-input{
+      color: #515a6e;
+      background-color: transparent;
+    }
+  }
 </style>

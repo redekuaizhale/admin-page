@@ -1,15 +1,17 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon type="_org"/>
+      <CommonIcon type="_org" />
       机构管理
-      <Checkbox v-model="edit" style="margin-left: 10px;">修改</Checkbox>
+      <Checkbox v-model="edit" style="margin-left: 10px;">
+        操作
+      </Checkbox>
     </p>
     <div>
-      <Tree :data="treeData" :render="renderContent"/>
+      <Tree :data="treeData" :render="renderContent" />
     </div>
-    <SysCompanyModal ref="SysCompanyModal" :read-only="readOnly" :parent-id="parentId" @update-company="getCompanyTree"/>
-    <ConfirmModal ref="ConfirmModal" @on-confirm-handle="confirmDeleteHandle"/>
+    <SysCompanyModal ref="SysCompanyModal" :read-only="readOnly" :parent-id="parentId" @update-company="getCompanyTree" />
+    <ConfirmModal ref="ConfirmModal" @on-confirm-handle="confirmDeleteHandle" />
   </Card>
 </template>
 <script>

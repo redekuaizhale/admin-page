@@ -27,5 +27,6 @@ module.exports = {
   PAGE_NUM: 1,
   PAGE_SIZE: 10,
   TOTAL: 0,
-  ECHARTS_COLOR: ['#5DB1FF', '#A97BE9', '#59D4D4', '#6DD48C', '#6B769F', '#F47F92']
+  ECHARTS_COLOR: ['#5DB1FF', '#A97BE9', '#59D4D4', '#6DD48C', '#6B769F', '#F47F92'],
+  SPLIT_CHAR: ','
 }

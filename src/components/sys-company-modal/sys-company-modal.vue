@@ -17,11 +17,11 @@
         <Form ref="modalForm" :model="modalForm" :rules="modalRule" :label-width="90">
           <FormItem label="机构全称:" prop="fullName">
             <span v-if="readOnly">{{ modalForm.fullName }}</span>
-            <Input v-else v-model="modalForm.fullName" placeholder=" " class="input-width-300px" /></Input>
+            <Input v-else v-model="modalForm.fullName" placeholder=" " class="input-width-300px" />
           </FormItem>
           <FormItem label="机构简称:" prop="name">
             <span v-if="readOnly">{{ modalForm.name }}</span>
-            <Input v-else v-model="modalForm.name" placeholder=" " class="input-width-300px" /></Input>
+            <Input v-else v-model="modalForm.name" placeholder=" " class="input-width-300px" />
           </FormItem>
           <FormItem label="状态:" prop="status">
             <span v-if="readOnly">{{ modalForm.status }}</span>
@@ -34,8 +34,7 @@
             <InputNumber v-else v-model="modalForm.companyOrder" :max="10000" :min="0" style="width: 300px;" />
           </FormItem>
           <FormItem label="所属区域:" prop="area">
-            <span v-if="readOnly">{{ modalForm.area }}</span>
-            <AreaSelect v-else ref="AreaSelect" v-model="testArea" style="width: 300px;" @udpate-area="areaChangeHandle" />
+            <AreaSelect ref="AreaSelect" v-model="modalForm.area" :disabled="readOnly" style="width: 300px;" />
           </FormItem>
           <FormItem label="详细地址:" prop="address">
             <span v-if="readOnly">{{ modalForm.address }}</span>
@@ -75,7 +74,6 @@ export default {
   },
   data() {
     return {
-      testArea: ['110000', '110100', '110101'],
       addFlag: false,
       title: '',
       modalVisiable: false,
@@ -91,7 +89,7 @@ export default {
           { required: true, message: '状态必填', trigger: 'change' }
         ],
         area: [
-          { required: true, message: '所属区域必填', trigger: 'blur' }
+          { required: true, type: 'array', message: '所属区域必填', trigger: 'blur' }
         ],
         address: [
           { required: true, message: '详细地址必填', trigger: 'blur' }
@@ -122,7 +120,11 @@ export default {
       this.addFlag = addFlag
       if (data) {
         this.modalForm = Object.assign({}, data)
-        this.area = splitContent(data.area, '/')
+        if (this.modalForm.area) {
+          this.modalForm.area = splitContent(data.area, this.config.SPLIT_CHAR)
+        } else {
+          this.modalForm.area = []
+        }
       } else {
         this.$refs['modalForm'].resetFields()
         this.area = []
@@ -130,11 +132,13 @@ export default {
       this.modalVisiable = true
     },
     modalSubmitHandle() {
+      console.info('this.modalForm', this.modalForm)
       this.$refs['modalForm'].validate((valid) => {
         if (valid) {
           this.submitLoading = true
           const requestData = Object.assign({}, this.modalForm)
           requestData.parentId = this.parentId
+          requestData.area = this.modalForm.area.toString()
           if (this.addFlag) {
             companyAddReq(requestData).then(res => {
               this.submitSuccessHandle(res)
@@ -155,9 +159,6 @@ export default {
       this.modalVisiable = false
       success(res.resultMessage)
       this.$emit('update-company')
-    },
-    areaChangeHandle(value) {
-      this.modalForm.area = value
     }
   }
 }
