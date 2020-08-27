@@ -66,9 +66,6 @@ export default {
       loginLoading: false
     }
   },
-  created() {
-    console.info('init---->')
-  },
   methods: {
     loginHandle() {
       this.$refs['loginForm'].validate((valid) => {

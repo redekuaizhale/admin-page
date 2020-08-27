@@ -208,11 +208,3 @@ export const checkDeviceIsMobile = () => {
 export const arrayIsEmpty = (arr) => {
   return !(arr && arr.length > 0)
 }
-/**
- * 判断是否是正常环境
- * @returns {boolean}
- */
-export const isProduction = () => {
-  console.info('process.env.NODE_ENV', process.env.NODE_ENV)
-  return process.env.NODE_ENV === 'production'
-}

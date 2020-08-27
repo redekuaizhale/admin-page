@@ -4,6 +4,8 @@ const { HashedModuleIdsPlugin } = require('webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const chalk = require('chalk')
+const TerserPlugin = require('terser-webpack-plugin')
+
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
@@ -19,7 +21,9 @@ const externals = {
 const cdn = {
   dev: {
     css: [],
-    js: []
+    js: [
+      'https://cdn.jsdelivr.net/npm/default-passive-events@2.0.0/dist/index.min.js'
+    ]
   },
   build: {
     css: [],
@@ -27,12 +31,14 @@ const cdn = {
       'https://cdn.jsdelivr.net/npm/vue@2.5.10/dist/vue.min.js',
       'https://cdn.jsdelivr.net/npm/vue-router@3.0.1/dist/vue-router.min.js',
       'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js',
-      'https://cdn.jsdelivr.net/npm/view-design@4.3.2/dist/iview.min.js'
+      'https://cdn.jsdelivr.net/npm/view-design@4.3.2/dist/iview.min.js',
+      'https://cdn.jsdelivr.net/npm/default-passive-events@2.0.0/dist/index.min.js'
     ]
   }
 }
 module.exports = {
   publicPath: BASE_URL.PATH,
+  outputDir: BASE_URL.OUT_PATH,
   lintOnSave: !isProduction,
   transpileDependencies: ['view-design'],
   chainWebpack: config => {
@@ -81,6 +87,19 @@ module.exports = {
           threshold: 10000, // 对超过10M的数据压缩
           deleteOriginalAssets: false, // 不删除源文件
           minRatio: 0.8 // 压缩比
+        })
+      )
+      plugins.push(
+        new TerserPlugin({
+          terserOptions: {
+            warnings: false,
+            compress: {
+              warnings: false,
+              drop_console: true,
+              drop_debugger: true,
+              pure_funcs: ['console.log']
+            }
+          }
         })
       )
       // 开启分离js

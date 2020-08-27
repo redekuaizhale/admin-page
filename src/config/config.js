@@ -5,6 +5,7 @@ module.exports = {
   USER_NAME_KEY: 'user-name-key',
   TITLE: 'REDEKUAIZHALE',
   BASE_URL: {
+    OUT_PATH: 'admin',
     PATH: 'admin',
     DEV: 'http://127.0.0.1:9528',
     PRO: '/api/'

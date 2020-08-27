@@ -5,6 +5,14 @@ import ViewUI from 'view-design'
 import { permissionsReq } from '../api/user'
 import config from '../config/config'
 import { getLoginUserToken } from '../libs/commonUtils'
+
+if (process.env.NODE_ENV !== 'production') {
+  const originalPush = Router.prototype.push
+  Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+  }
+}
+
 Vue.use(Router)
 
 export const router = new Router({

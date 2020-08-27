@@ -35,7 +35,7 @@ import CommonIcon from '../../../common-icon/common-icon'
 import ConfirmModal from '../../../confirm-modal/confirm-modal'
 import { removeCookie, routerPush } from '../../../../libs/commonUtils'
 
-export default{
+export default {
   name: 'User',
   components: { ConfirmModal, CommonIcon },
   data() {
