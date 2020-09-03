@@ -44,6 +44,7 @@ export default {
   },
   actions: {
     setUserRouter({ commit, dispath }, list) {
+      // eslint-disable-next-line no-async-promise-executor
       return new Promise(async resolve => {
         await commit('SET_USER_ROUTER', list)
         resolve()
