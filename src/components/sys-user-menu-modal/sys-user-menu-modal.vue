@@ -29,6 +29,7 @@
 <script>
 import { userHasMenusReq, editUserHasMenusReq } from '../../api/userMenu'
 import ModalFooter from '../modal-footer/modal-footer'
+import { removeArrayRepeat } from '../../libs/commonUtils'
 
 export default {
   name: 'SysUserMenuModal',
@@ -83,7 +84,7 @@ export default {
             list.push(item.parentId)
           }
         })
-        this.checkedTree = this.utils.removeArrayRepeat(list)
+        this.checkedTree = removeArrayRepeat(list)
       }
     }
   }

@@ -100,7 +100,7 @@ export const uncheckedError = () => {
  */
 export const isChecked = (id) => {
   if (!id) {
-    this.uncheckedError()
+    uncheckedError()
     return false
   } else {
     return true

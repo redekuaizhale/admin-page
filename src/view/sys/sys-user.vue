@@ -77,7 +77,7 @@ import SysUserModal from '../../components/sys-user-modal/sys-user-modal'
 import SysUserRoleModal from '../../components/sys-user-role/sys-user-role'
 import BaseMixins from '../../mixins/base-mixins'
 import TableMixins from '../../mixins/table-mixins'
-import { newQueryParam, success } from '../../libs/commonUtils'
+import { newQueryParam, success, isChecked } from '../../libs/commonUtils'
 
 export default {
   name: 'SysUser',
@@ -117,7 +117,7 @@ export default {
       ]
     }
   },
-  created() {
+  mounted() {
     this.getTableData()
   },
   methods: {
@@ -173,11 +173,15 @@ export default {
       })
     },
     menuSetHandle() {
-      if (this.utils.isChecked(this.checkedRow.id)) {
-        this.$refs.SysUserMenuModal.openModal()
+      if (!isChecked(this.checkedRow.id)) {
+        return
       }
+      this.$refs.SysUserMenuModal.openModal()
     },
     roleSetHandle() {
+      if (!isChecked(this.checkedRow.id)) {
+        return
+      }
       this.$refs.SysUserRoleModal.openModal(this.checkedRow.name)
     }
   }
