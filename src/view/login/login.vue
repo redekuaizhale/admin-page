@@ -3,7 +3,7 @@
     <div class="content">
       <div class="header">
         <span class="title">
-          <!--          REDEKUAIZHALE-->
+          REDEKUAIZHALE
         </span>
       </div>
       <div class="form">

@@ -8,17 +8,17 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon :type="getPageIcon" :size="getPageIconSize" />
+      <CommonIcon :type="getPageIcon" :size="getPageIconSize"/>
       用户管理
     </p>
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
           <FormItem label="姓名:">
-            <Input v-model="queryForm.name" type="text" placeholder="" clearable />
+            <Input v-model="queryForm.name" type="text" placeholder="" clearable/>
           </FormItem>
           <FormItem label="登录名:">
-            <Input v-model="queryForm.loginCode" type="text" placeholder="" clearable />
+            <Input v-model="queryForm.loginCode" type="text" placeholder="" clearable/>
           </FormItem>
           <Button icon="md-search" type="primary" @click="queryListHandle()">
             查询
@@ -36,11 +36,11 @@
         >
           <div slot="extra" class="extra">
             <Button type="primary" size="small" @click="menuSetHandle">
-              <CommonIcon type="_menu1" />
+              <CommonIcon type="_menu1"/>
               配置菜单
             </Button>
             <Button type="primary" size="small" @click="roleSetHandle">
-              <CommonIcon type="_key" />
+              <CommonIcon type="_key"/>
               配置角色
             </Button>
           </div>

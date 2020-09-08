@@ -8,7 +8,7 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon :type="getPageIcon" :size="getPageIconSize" />
+      <CommonIcon :type="getPageIcon" :size="getPageIconSize"/>
       角色管理
     </p>
     <div>
@@ -30,7 +30,7 @@
           @check-change="getCheckedRow"
         />
       </div>
-      <SysRoleModal ref="SysRoleModal" @update-role="refreshHandle" />
+      <SysRoleModal ref="SysRoleModal" @update-role="refreshHandle"/>
     </div>
   </Card>
 </template>

@@ -8,14 +8,14 @@
 <template>
   <Card>
     <p slot="title">
-      <CommonIcon :type="getPageIcon" :size="getPageIconSize" />
+      <CommonIcon :type="getPageIcon" :size="getPageIconSize"/>
       部门管理
     </p>
     <div>
       <div class="query-form">
         <Form :model="queryForm" :label-width="80" inline>
           <FormItem label="机构:">
-            <CompanySelect :clearable="false" :child="false" @commit-compnay-id="updateCompanyId" />
+            <CompanySelect :clearable="false" :child="false" @commit-compnay-id="updateCompanyId"/>
           </FormItem>
         </Form>
       </div>
@@ -44,7 +44,7 @@
           @on-page-size-change="pageSizeChangeHandle"
         />
       </div>
-      <SysDeptModal ref="SysDeptModal" :company-id="queryForm.companyId" @update-dept="refreshHandle" />
+      <SysDeptModal ref="SysDeptModal" :company-id="queryForm.companyId" @update-dept="refreshHandle"/>
     </div>
   </Card>
 </template>
