@@ -29,13 +29,6 @@
         </Form>
       </div>
     </div>
-    <div class="footer">
-      <div>
-        2019
-        <common-icon type="_copyright"/>
-        redekuaizhale
-      </div>
-    </div>
   </div>
 </template>
 
@@ -67,6 +60,10 @@ export default {
     }
   },
   methods: {
+
+    clickTest() {
+      console.info('31313')
+    },
     loginHandle() {
       this.$refs['loginForm'].validate((valid) => {
         if (valid) {

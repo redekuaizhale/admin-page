@@ -1,12 +1,12 @@
 <template>
-  <component :is="iconType" :type="iconName" :color="iconColor" :size="iconSize" />
+  <svg class="icon" :style="style" aria-hidden="true" @click="handleClick">
+    <use :xlink:href="iconName"></use>
+  </svg>
 </template>
 
 <script>
-import Icons from '../icons/icons'
 export default {
   name: 'CommonIcon',
-  components: { Icons },
   props: {
     type: {
       type: String,
@@ -18,31 +18,30 @@ export default {
     },
     size: {
       type: Number,
-      default: 14
+      default: 0
     }
   },
   computed: {
-    iconType() {
-      return this.type.indexOf('_') === 0 ? 'Icons' : 'Icon'
-    },
     iconName() {
-      return this.iconType === 'Icons' ? this.getCustomIconName(this.type) : this.type
+      return `#icon-${this.type}`
     },
-    iconSize() {
-      return this.size || (this.iconType === 'Icons' ? 12 : undefined)
-    },
-    iconColor() {
-      return this.color || ''
+    style() {
+      const fill = this.color ? this.color : 'currentColor'
+      const size = this.size ? (this.size + 'px') : '1em'
+      return { fill: fill, width: size, height: size }
     }
   },
   methods: {
-    getCustomIconName(iconName) {
-      return iconName.slice(1)
+    handleClick(event) {
+      this.$emit('click', event)
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .icon {
+    vertical-align: -0.15em;
+    overflow: hidden;
+  }
 </style>

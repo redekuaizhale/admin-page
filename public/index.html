@@ -9,9 +9,46 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
   <% for (var i in
   htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
-  <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="preload" as="style" />
-  <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
+  <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="preload" as="style"/>
+  <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet"/>
   <% } %>
+  <script>
+    window.onload = function () {
+      const url = "<%= htmlWebpackPlugin.options.url%>/parameter/findByKey.do"
+      loadHttpRequest(url,{key:'iconfont'});
+    };
+    function loadJs(url) {
+      var script = document.createElement('script');
+      script.type = "text/javascript";
+      if (script.readyState) {
+        script.onreadystatechange = function () {
+          if (script.readyState === "loaded" || script.readyState === "complete") {
+            script.onreadystatechange = null;
+          }
+        }
+      }
+      script.src = url;
+      document.body.appendChild(script);
+    }
+    function loadHttpRequest(url,json) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true)
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200){
+          var responseText = xhr.responseText;
+          if (!responseText) {
+            return;
+          }
+          const obj = JSON.parse(responseText);
+          if (obj && obj.data.value) {
+            loadJs(obj.data.value)
+          }
+        }
+      };
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify(json));
+    }
+  </script>
 </head>
 
 <body>

@@ -1,7 +1,9 @@
 <template>
   <Submenu :name="`${parentName}`">
     <template slot="title">
-      <common-icon :type="parentItem.icon || ''" :size="iconSize" :color="iconColor"/>
+      <span class="i-layout-menu-side-title-icon">
+        <CommonIcon :type="parentItem.icon || ''" :size="iconSize" :color="iconColor"/>
+      </span>
       <span>
         {{ showTitle(parentItem) }}
       </span>
@@ -10,7 +12,9 @@
       <template v-if="item.children && item.children.length === 1">
         <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"/>
         <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`">
-          <common-icon :type="item.children[0].icon || ''" :size="iconSize" :color="iconColor"/>
+          <span class="i-layout-menu-side-title-icon">
+            <CommonIcon :type="item.children[0].icon || ''" :size="iconSize" :color="iconColor"/>
+          </span>
           <span>
             {{ item.title + item.name }}
           </span>
@@ -19,7 +23,9 @@
       <template v-else>
         <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"/>
         <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`">
-          <common-icon :type="item.icon" :size="iconSize" :color="iconColor"/>
+          <span class="i-layout-menu-side-title-icon">
+            <CommonIcon :type="item.icon" :size="iconSize" :color="iconColor"/>
+          </span>
           <span>
             {{ showTitle(item) }}
           </span>
@@ -31,6 +37,7 @@
 <script>
 import mixin from './mixin'
 import itemMixin from './item-mixin'
+
 export default {
   name: 'SideMenuItem',
   mixins: [mixin, itemMixin]

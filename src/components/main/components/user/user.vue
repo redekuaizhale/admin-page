@@ -7,15 +7,15 @@
       <Icon type="ios-arrow-down"/>
       <DropdownMenu slot="list">
         <DropdownItem name="info">
-          <common-icon :size="15" type="_personinfo"/>
+          <CommonIcon :size="15" type="_personinfo"/>
           个人信息
         </DropdownItem>
         <DropdownItem name="password">
-          <common-icon :size="15" type="_password"/>
+          <CommonIcon :size="15" type="_password"/>
           修改密码
         </DropdownItem>
         <DropdownItem name="logout">
-          <common-icon :size="15" type="_logout"/>
+          <CommonIcon :size="15" type="_logout"/>
           退出登录
         </DropdownItem>
       </DropdownMenu>

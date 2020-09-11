@@ -57,6 +57,7 @@ module.exports = {
         args[0].cdn = cdn.dev
       }
       args[0].title = TITLE
+      args[0].url = isProduction ? BASE_URL.PRO : BASE_URL.DEV
       return args
     })
     if (process.env.VUE_APP_ANALYSIS) {

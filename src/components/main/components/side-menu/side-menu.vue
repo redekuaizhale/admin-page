@@ -5,22 +5,14 @@
       <template v-for="item in menuList">
         <template>
           <side-menu-item
-            v-if="showChildren(item)"
             :key="`menu-${item.name}`"
             :parent-item="item"
             :icon-color="iconColor"
             :icon-size="iconSize"
           />
-          <menu-item v-else :name="item.children[0].name" :key="`menu-${item.children[0].name}`">
-            <common-icon :type="item.icon" :size="iconSize" :color="iconColor" />
-            <span>
-              {{ item.children[0].title }}
-            </span>
-          </menu-item>
         </template>
       </template>
     </Menu>
-
     <div v-show="collapsed" :list="menuList" class="menu-collapsed">
       <template v-for="item in menuList">
         <collapsed-menu
@@ -34,7 +26,9 @@
         />
         <Tooltip v-else :content="showTitle(item.children && item.children[0] ? item.children[0] : item)" :key="`drop-menu-${item.name}`" transfer placement="right">
           <a :style="{textAlign: 'center'}" class="drop-menu-a" @click="handleSelect(item.children[0].name)">
-            <common-icon :type="item.children[0].icon" :size="iconSize" :color="iconColor"/>
+            <span class="i-layout-menu-side-title-icon">
+                <CommonIcon :type="item.children[0].icon" :size="iconSize" :color="iconColor"/>
+            </span>
           </a>
         </Tooltip>
       </template>

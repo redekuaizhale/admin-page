@@ -27,8 +27,8 @@ service.interceptors.response.use(
       return response.data
     }
   },
-  error => {
-    error(error.response.data.message)
+  e => {
+    error(e.response.data.message)
     return Promise.reject(error)
   }
 )

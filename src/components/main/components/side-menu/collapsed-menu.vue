@@ -1,7 +1,7 @@
 <template>
   <Dropdown ref="dropdown" :class="hideTitle ? '' : 'collased-menu-dropdown'" :transfer="hideTitle" :placement="placement" @on-click="handleClick">
     <a :style="{textAlign: !hideTitle ? 'left' : ''}" class="drop-menu-a" type="text" @mouseover="handleMousemove($event, children)">
-      <common-icon :size="rootIconSize" :type="parentItem.icon" color="rgba(255, 255, 255, 0.7)"/>
+      <CommonIcon :size="rootIconSize" :type="parentItem.icon" color="rgba(255, 255, 255, 0.7)"/>
       <span v-if="!hideTitle" class="menu-title">
         {{ showTitle(parentItem) }}
       </span>
@@ -9,7 +9,12 @@
     <DropdownMenu ref="dropdown" slot="list">
       <template v-for="child in children">
         <collapsed-menu v-if="showChildren(child)" :icon-size="iconSize" :parent-item="child" :key="`drop-${child.name}`"/>
-        <DropdownItem v-else :key="`drop-${child.name}`" :name="child.name"><common-icon :size="iconSize" :type="child.icon"/><span class="menu-title">{{ showTitle(child) }}</span></DropdownItem>
+        <DropdownItem v-else :key="`drop-${child.name}`" :name="child.name">
+          <CommonIcon :size="iconSize" :type="child.icon"/>
+          <span class="menu-title">
+            {{ showTitle(child) }}
+          </span>
+        </DropdownItem>
       </template>
     </DropdownMenu>
   </Dropdown>
